@@ -19,15 +19,15 @@ export function initFooter() {
           building software, running a company.
         </p>
         <div class="footer__socials">
-          <a href="https://github.com/mgbah" target="_blank" rel="noopener noreferrer"
+          <a href="https://github.com/mrwayne-dev" target="_blank" rel="noopener noreferrer"
              aria-label="GitHub" class="footer__social-link">
             <i class="ph ph-github-logo"></i>
           </a>
-          <a href="https://twitter.com/mgbah" target="_blank" rel="noopener noreferrer"
+          <a href="https://x.com/_mgbah" target="_blank" rel="noopener noreferrer"
              aria-label="Twitter / X" class="footer__social-link">
             <i class="ph ph-x-logo"></i>
           </a>
-          <a href="https://instagram.com/mgbah" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.instagram.com/_mgbah/" target="_blank" rel="noopener noreferrer"
              aria-label="Instagram" class="footer__social-link">
             <i class="ph ph-instagram-logo"></i>
           </a>

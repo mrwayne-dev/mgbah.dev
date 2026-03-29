@@ -1,6 +1,8 @@
 /vendor/
 /node_modules/
 .env
+.envlocal
+.envpublic
 .vscode/
 .idea/
 *.log

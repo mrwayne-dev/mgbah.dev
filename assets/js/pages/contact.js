@@ -50,7 +50,7 @@ export function render() {
 
           <nav class="contact-social" aria-label="Social links">
             <a
-              href="https://x.com/mgbah_"
+              href="https://x.com/_mgbah"
               target="_blank"
               rel="noopener noreferrer"
               class="contact-social__link"
@@ -58,7 +58,7 @@ export function render() {
             ><i class="ph ph-x-logo" aria-hidden="true"></i></a>
 
             <a
-              href="https://github.com/mgbah"
+              href="https://github.com/mrwayne-dev"
               target="_blank"
               rel="noopener noreferrer"
               class="contact-social__link"
@@ -66,12 +66,12 @@ export function render() {
             ><i class="ph ph-github-logo" aria-hidden="true"></i></a>
 
             <a
-              href="https://linkedin.com/in/mgbah"
+              href="https://www.instagram.com/_mgbah/"
               target="_blank"
               rel="noopener noreferrer"
               class="contact-social__link"
-              aria-label="Michael on LinkedIn"
-            ><i class="ph ph-linkedin-logo" aria-hidden="true"></i></a>
+              aria-label="Michael on Instagram"
+            ><i class="ph ph-instagram-logo" aria-hidden="true"></i></a>
           </nav>
         </div>
 
