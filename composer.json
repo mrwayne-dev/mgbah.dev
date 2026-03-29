@@ -1,0 +1,22 @@
+{
+    "name": "mgbah-dev/mgbah-dev",
+    "description": "mgbah.dev - PHP Web Application",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Wayne"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "phpmailer/phpmailer": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

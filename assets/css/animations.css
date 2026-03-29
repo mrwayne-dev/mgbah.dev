@@ -1,0 +1,220 @@
+/* ==========================================================================
+   animations.css — mgbah.dev
+   Keyframes, page transitions, scroll entrance, hover effects, marquee
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Page transitions — applied to #app by transitions.js via GSAP
+   (GSAP handles opacity + translateY — these classes are the initial states)
+   -------------------------------------------------------------------------- */
+
+#app {
+  will-change: transform, opacity;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll entrance animations
+   Elements start invisible; .is-visible added by Intersection Observer
+   -------------------------------------------------------------------------- */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow),
+              filter var(--transition-slow);
+}
+
+.fade-in {
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity var(--transition-slow), filter var(--transition-slow);
+}
+
+.fade-up.is-visible,
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* --------------------------------------------------------------------------
+   Marquee — infinite horizontal scroll
+   -------------------------------------------------------------------------- */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-md) 0;
+}
+
+.marquee__inner {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee__inner {
+  animation-play-state: paused;
+}
+
+.marquee__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: 0 var(--space-lg);
+  white-space: nowrap;
+  color: var(--color-text-dim);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.marquee__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-text-dim);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Particle canvas fade-in
+   -------------------------------------------------------------------------- */
+
+#hero-canvas {
+  opacity: 0;
+  transition: opacity 1.2s ease 0.2s;
+}
+
+#hero-canvas.is-loaded {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Hero entrance — staggered on first load, with blur fog effect
+   -------------------------------------------------------------------------- */
+
+.hero__tagline,
+.hero__ctas,
+.hero__scroll-indicator {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(8px);
+  animation: heroEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero__tagline         { animation-delay: 0.45s; }
+.hero__ctas            { animation-delay: 0.65s; }
+.hero__scroll-indicator { animation-delay: 0.9s; }
+
+@keyframes heroEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Hero H1 word-by-word reveal
+   .words-split on the <h1> suppresses the parent's own heroEntrance so only
+   the child <span> elements animate (driven by JS-set animation-delay).
+   -------------------------------------------------------------------------- */
+
+/* Suppress parent h1 animation when word spans are injected */
+.hero__name.words-split {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  animation: none;
+}
+
+/* Each word span — animation-delay set inline by home.js */
+.hero__name--word {
+  display: inline-block;   /* transform/filter require block or inline-block */
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(10px);
+  animation: wordReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes wordReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll indicator — mouse dot animation
+   -------------------------------------------------------------------------- */
+
+@keyframes scrollDot {
+  0%   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80%  { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+}
+
+/* --------------------------------------------------------------------------
+   Project card hover
+   -------------------------------------------------------------------------- */
+
+/* Card lift — works with or without images */
+.project-card {
+  transition: transform 400ms ease, box-shadow 400ms ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Image grayscale → colour — ready for when real images are added */
+.project-card__image-wrap img {
+  filter: grayscale(100%);
+  transition: filter 400ms ease, transform 400ms ease;
+}
+.project-card:hover .project-card__image-wrap img {
+  filter: grayscale(0%);
+  transform: scale(1.03);
+}
+
+/* Placeholder brightness shift — visible feedback with current placeholders */
+.project-card__placeholder {
+  transition: filter var(--transition-base);
+}
+.project-card:hover .project-card__placeholder {
+  filter: brightness(1.4);
+}
+
+/* --------------------------------------------------------------------------
+   Button hover states
+   -------------------------------------------------------------------------- */
+
+.btn-primary {
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+              transform var(--transition-fast);
+}
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+              transform var(--transition-fast);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
