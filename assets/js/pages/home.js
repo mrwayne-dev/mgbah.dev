@@ -191,7 +191,7 @@ export function render() {
         <span class="hero__scroll-mouse">
           <span class="hero__scroll-dot"></span>
         </span>
-        <span class="hero__scroll-label">Scroll to explore</span>
+        <span class="hero__scroll-label">Welcome to the 6</span>
       </div>
     </section>
 

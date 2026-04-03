@@ -10,7 +10,9 @@
       "Bash(curl -sL \"https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=1920&q=85&auto=format&fit=crop\" -o \"C:/Users/aleru/OneDrive/Desktop/mrwayne/web_dev/mgbah.dev/assets/images/hero-bg.jpg\")",
       "Bash(curl -sL \"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85&fit=crop\" -o \"C:/Users/aleru/OneDrive/Desktop/mrwayne/web_dev/mgbah.dev/assets/images/rock-left.jpg\")",
       "Bash(curl -sL \"https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=700&q=85&fit=crop\" -o \"C:/Users/aleru/OneDrive/Desktop/mrwayne/web_dev/mgbah.dev/assets/images/rock-right.jpg\")",
-      "WebFetch(domain:api.cal.com)"
+      "WebFetch(domain:api.cal.com)",
+      "Bash(python3 -c \":*)",
+      "Bash(wc:*)"
     ]
   }
 }

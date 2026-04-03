@@ -5,6 +5,7 @@
 
 import { pageExit, pageEnter } from './utils/transitions.js';
 import { destroyParticles } from './components/particles.js';
+import { showLoader, hideLoader } from './components/loader.js';
 
 const META = {
   '/':         { title: 'Michael Mgbah — Backend Developer & Entrepreneur', desc: 'CEO of Lymora. Building products that solve real problems.' },
@@ -26,6 +27,7 @@ export class Router {
       '/contact':  () => import('./pages/contact.js'),
     };
 
+    this._firstLoad = true;
     this._onClick = this._onClick.bind(this);
     this._onPopState = this._onPopState.bind(this);
   }
@@ -46,6 +48,11 @@ export class Router {
     const normPath = path.length > 1 ? path.replace(/\/$/, '') : path;
     const route = this.routes[normPath];
 
+    // Show loader for all navigations except the very first page load
+    const isFirstLoad = this._firstLoad;
+    this._firstLoad = false;
+    if (!isFirstLoad) showLoader();
+
     // Destroy particles before leaving any page (no-op if not on home)
     destroyParticles();
 
@@ -58,6 +65,7 @@ export class Router {
       appEl.innerHTML = this._notFound(normPath);
       this._updateMeta(normPath);
       window.dispatchEvent(new CustomEvent('routechange', { detail: { path: normPath } }));
+      hideLoader();
       await pageEnter();
       return;
     }
@@ -70,10 +78,12 @@ export class Router {
       this._updateMeta(normPath);
       // Dispatch before pageEnter so nav active state is correct as content fades in
       window.dispatchEvent(new CustomEvent('routechange', { detail: { path: normPath } }));
+      hideLoader();
       await pageEnter();
       mod.init?.();
     } catch (err) {
       appEl.innerHTML = this._error();
+      hideLoader();
       await pageEnter();
     }
   }

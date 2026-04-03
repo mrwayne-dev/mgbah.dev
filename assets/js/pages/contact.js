@@ -4,6 +4,8 @@
  * Form: client-side validation → fetch POST → success/error states
  */
 
+import { showToast } from '../components/toast.js';
+
 // ── Validation helpers ────────────────────────────────────────────────────
 
 function isValidEmail(email) {
@@ -225,12 +227,17 @@ export function init() {
       const data = await response.json();
 
       if (data.status === 'success') {
+        showToast("Message sent. I'll be in touch.", 'success');
         showSuccess();
       } else {
-        showError(data.message || 'Something went wrong. Please try again.');
+        const msg = data.message || 'Something went wrong. Please try again.';
+        showError(msg);
+        showToast(msg, 'error');
       }
     } catch {
-      showError('Unable to send message. Please check your connection and try again.');
+      const msg = 'Unable to send message. Check your connection and try again.';
+      showError(msg);
+      showToast(msg, 'error');
     } finally {
       setLoading(false);
     }

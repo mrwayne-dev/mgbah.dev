@@ -2,6 +2,7 @@
  * about.js — About page
  * Sections: Header → Two-column (bio/skills/exp + portrait) →
  *           Philosophy → Stats → Companies → CTA
+ * Experience rows open role-detail modals (bottom drawer on mobile).
  */
 
 const SKILLS = [
@@ -12,11 +13,40 @@ const SKILLS = [
 ];
 
 const EXPERIENCE = [
-  { role: 'CEO & Lead Engineer',  company: 'Lymora',             year: '2023 — Present' },
-  { role: 'Intern Teacher',       company: 'NIIT Port Harcourt', year: 'Early 2025'     },
-  { role: 'Freelance Developer',  company: 'Freelance',          year: '2019 — Present' },
-  { role: 'Director Development',  company: 'Zirostack',          year: '2025 — Present' },
+  { role: 'CEO & Lead Engineer',  company: 'Lymora',             year: '2023 — Present', key: 'lymora'    },
+  { role: 'Intern Teacher',       company: 'NIIT Port Harcourt', year: 'Early 2025',     key: 'niit'      },
+  { role: 'Freelance Developer',  company: 'Freelance',          year: '2019 — Present', key: 'freelance' },
+  { role: 'Director Development', company: 'Zirostack',          year: '2025 — Present', key: 'zirostack' },
 ];
+
+// Role detail content — one entry per EXPERIENCE key.
+const ROLE_DETAILS = {
+  lymora: [
+    'Founded Lymora in 2023 — no co-founder, no external funding. Built from zero.',
+    'Architected the full backend: multi-tenant PHP API, JWT auth, Paystack integration, role-based access control.',
+    'Shipped Lymora Learn — AI exam prep powered by Claude, analysing 10+ years of past questions.',
+    'Built and launched Lymora Student Housing — verified accommodation marketplace with escrow payments.',
+    'Grew the team to nine people across engineering, design, and operations.',
+    '100+ active users. ₦500k+ revenue. Self-funded entirely through freelance work.',
+  ],
+  niit: [
+    'Taught web development fundamentals to new students at NIIT Port Harcourt in early 2025.',
+    'Covered HTML, CSS, JavaScript, and introductory PHP across structured practical sessions.',
+    'Ran hands-on code reviews and project walkthroughs for class cohorts.',
+    'Interesting being on the other side of the classroom after spending five years as a student there.',
+  ],
+  freelance: [
+    '6+ years building backend-heavy web apps for startups, small teams, and individual founders.',
+    'Clients across West Africa and Europe — remote, async, no hand-holding required.',
+    'Work spans REST API design, database architecture, payment integrations (Paystack, Flutterwave), and full-stack builds.',
+    'Primary stack: PHP (native + Laravel), JavaScript (Node.js + vanilla), MySQL, PostgreSQL.',
+    'This is how I self-fund Lymora.',
+  ],
+  zirostack: [
+    'Leading development at Zirostack from 2025.',
+    'Overseeing technical direction, system architecture, and the engineering workflow.',
+  ],
+};
 
 const STATS = [
   { number: '5+',   label: 'Years coding'      },
@@ -25,14 +55,11 @@ const STATS = [
   { number: '100+', label: 'Users on Lymora'   },
 ];
 
-// Add companies here — swap in real images when available.
-// Images go in assets/images/clients/ as WebP/PNG files.
 const CLIENTS = [
-  { name: 'Lymora',             image: '/assets/images/clients/lymora.png',  href: '/lymora.tech' },
-  { name: 'NIIT Port Harcourt', image: '/assets/images/clients/niit.webp',    href: 'niit.mgbah.dev'},
-  { name: 'Zirostack',          image: '/assets/images/clients/zirostack.png', href: '/zirostack.com' },
-  { name: 'Creedlance',          image: '/assets/images/clients/creedlance.png', href: '/creedlance.com' },
-  // { name: 'Client Name',     image: '/assets/images/clients/client.webp',  href: '#'       },
+  { name: 'Lymora',             image: '/assets/images/clients/lymora.png',    href: 'lymora.tech'    },
+  { name: 'NIIT Port Harcourt', image: '/assets/images/clients/niit.webp',     href: 'niit.mgbah.dev'  },
+  { name: 'Zirostack',          image: '/assets/images/clients/zirostack.png', href: 'zirostack.com'  },
+  { name: 'Creedlance',         image: '/assets/images/clients/creedlance.png', href: 'creedlance.com' },
 ];
 
 function clientCard({ name, image, href }) {
@@ -49,9 +76,14 @@ export function render() {
     `<span class="skill-pill fade-up">${s}</span>`
   ).join('');
 
-  const expRows = EXPERIENCE.map(({ role, company, year }) => `
+  const expRows = EXPERIENCE.map(({ role, company, year, key }) => `
     <tr class="fade-up">
-      <td>${role}</td>
+      <td>
+        <span class="exp-role-name">${role}</span>
+        <button class="exp-role-link" data-role="${key}" aria-label="View details for ${role} at ${company}">
+          My Role &nearr;
+        </button>
+      </td>
       <td>${company}</td>
       <td>${year}</td>
     </tr>
@@ -177,10 +209,29 @@ export function render() {
       </div>
 
     </article>
+
+    <!-- ===== EXPERIENCE ROLE MODAL (desktop: centered / mobile: bottom drawer) ===== -->
+    <div class="exp-modal-overlay" id="exp-modal-overlay" aria-hidden="true">
+      <div class="exp-modal" id="exp-modal" role="dialog" aria-modal="true" aria-labelledby="exp-modal-role">
+        <!-- Drag handle — only visible on mobile (bottom drawer) -->
+        <div class="exp-modal__drag-indicator" aria-hidden="true"></div>
+        <div class="exp-modal__header">
+          <div class="exp-modal__title-wrap">
+            <p class="exp-modal__role" id="exp-modal-role"></p>
+            <p class="exp-modal__company" id="exp-modal-company"></p>
+          </div>
+          <button class="exp-modal__close" id="exp-modal-close" aria-label="Close">
+            <i class="ph ph-x"></i>
+          </button>
+        </div>
+        <ul class="exp-modal__points" id="exp-modal-points"></ul>
+      </div>
+    </div>
   `;
 }
 
 export function init() {
+  // ── Scroll entrance animations ──────────────────────────────────────────
   const animatables = document.querySelectorAll(
     '.about-left .fade-up, .about-left .fade-in, ' +
     '.about-portrait.fade-in, ' +
@@ -204,4 +255,69 @@ export function init() {
   );
 
   animatables.forEach((el) => observer.observe(el));
+
+  // ── Experience role modals ─────────────────────────────────────────────
+  // Move the overlay to document.body so position:fixed works correctly —
+  // GSAP leaves a transform on #app which would otherwise create a new
+  // containing block and break fixed positioning inside it.
+  const overlay   = document.getElementById('exp-modal-overlay');
+  if (overlay) document.body.appendChild(overlay);
+
+  const closeBtn  = document.getElementById('exp-modal-close');
+  const roleEl    = document.getElementById('exp-modal-role');
+  const companyEl = document.getElementById('exp-modal-company');
+  const pointsEl  = document.getElementById('exp-modal-points');
+
+  if (!overlay) return;
+
+  function openModal(key) {
+    const points = ROLE_DETAILS[key];
+    const exp    = EXPERIENCE.find(e => e.key === key);
+    if (!points || !exp) return;
+
+    roleEl.textContent    = exp.role;
+    companyEl.textContent = `${exp.company}  ·  ${exp.year}`;
+    pointsEl.innerHTML    = points.map(p => `<li>${p}</li>`).join('');
+
+    overlay.removeAttribute('aria-hidden');
+    // Force a reflow so the browser registers the closed state (opacity:0 /
+    // translateY offset) before we add 'is-open' — otherwise the move to body
+    // and the class addition collapse into one paint and the transition is skipped.
+    overlay.getBoundingClientRect();
+    requestAnimationFrame(() => {
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      closeBtn?.focus();
+    });
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Open on button click
+  document.querySelectorAll('.exp-role-link').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn.dataset.role));
+  });
+
+  // Close on X button
+  closeBtn?.addEventListener('click', closeModal);
+
+  // Close on backdrop click (not on the modal itself)
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+
+  // Close on Escape — removed when page changes
+  const onKeydown = (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  };
+  document.addEventListener('keydown', onKeydown);
+  window.addEventListener('routechange', () => {
+    document.removeEventListener('keydown', onKeydown);
+    closeModal();
+    overlay?.remove();
+  }, { once: true });
 }
