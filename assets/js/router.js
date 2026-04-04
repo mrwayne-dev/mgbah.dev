@@ -46,7 +46,17 @@ export class Router {
   async navigate(path, pushState = true) {
     // Normalise path — strip trailing slash except for root
     const normPath = path.length > 1 ? path.replace(/\/$/, '') : path;
-    const route = this.routes[normPath];
+    let route = this.routes[normPath];
+
+    // Dynamic case study routes: /projects/:slug
+    if (!route && /^\/projects\/[^/]+$/.test(normPath)) {
+      const slug = normPath.split('/')[2];
+      route = () =>
+        import('./pages/casestudy.js').then(mod => ({
+          render: () => mod.render(slug),
+          init:   () => mod.init(slug),
+        }));
+    }
 
     // Show loader for all navigations except the very first page load
     const isFirstLoad = this._firstLoad;
@@ -115,6 +125,13 @@ export class Router {
   }
 
   _updateMeta(path) {
+    // Case study pages update their own title in init() — set a generic placeholder here
+    if (/^\/projects\/[^/]+$/.test(path)) {
+      document.title = 'Project — Michael Mgbah';
+      const desc = document.querySelector('meta[name="description"]');
+      if (desc) desc.setAttribute('content', 'Project case study — Michael Mgbah');
+      return;
+    }
     const meta = META[path] || META['/'];
     document.title = meta.title;
     const desc    = document.querySelector('meta[name="description"]');

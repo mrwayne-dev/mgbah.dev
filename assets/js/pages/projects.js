@@ -6,52 +6,130 @@
 
 const PROJECTS = [
   {
-    slug:     'lymora-learn',
-    name:     'Lymora Learn',
-    desc:     'AI exam prep platform analysing 10+ years of past questions.',
-    tags:     ['PHP', 'JavaScript', 'MySQL', 'AI'],
-    category: 'platforms',
-    href:     '/lymora',
+    slug:           'mock-investment-platform',
+    name:           'Mock Investment Platform',
+    desc:           'Simulated forex and stock trading platform with real-time charting, virtual portfolio management, position sizing, and live P&L tracking.',
+    tags:           ['PHP', 'Laravel', 'JavaScript', 'WebSockets'],
+    category:       'platforms',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
   },
   {
-    slug:     'lymora-housing',
-    name:     'Lymora Student Housing',
-    desc:     'Verified student accommodation marketplace with escrow payments.',
-    tags:     ['PHP', 'MySQL', 'JavaScript'],
-    category: 'platforms',
-    href:     '/lymora',
+    slug:           'logistics-tracking',
+    name:           'Logistics Tracking Platform',
+    desc:           'End-to-end shipment tracking platform — waybill generation, transit stage updates, driver assignment, and automated customer SMS notifications.',
+    tags:           ['PHP', 'Laravel', 'MySQL', 'JavaScript'],
+    category:       'platforms',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
   },
   {
-    slug:     'mgbah-dev',
-    name:     'mgbah.dev',
-    desc:     'This portfolio — vanilla SPA in PHP, pure CSS, zero frameworks.',
-    tags:     ['PHP', 'CSS', 'Vanilla JS'],
-    category: 'web-apps',
-    href:     '/',
+    slug:           'escrow-payment-api',
+    name:           'Escrow Payment API',
+    desc:           'Payment escrow service — funds held on behalf of transacting parties, conditional release on confirmation, dispute flagging, and Paystack integration.',
+    tags:           ['PHP', 'Laravel', 'MySQL', 'Paystack'],
+    category:       'web-apps',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
   },
   {
-    slug:     'school-api',
-    name:     'School Management API',
-    desc:     'RESTful API powering student records, timetables, and fee tracking.',
-    tags:     ['PHP', 'MySQL', 'REST'],
-    category: 'web-apps',
-    href:     '#',
+    slug:           'exam-pattern-analyzer',
+    name:           'Exam Pattern Analyzer API',
+    desc:           'REST API that ingests past exam papers and surfaces topic frequency distributions, recurring question patterns, and predicted high-yield areas.',
+    tags:           ['PHP', 'Laravel', 'MySQL', 'REST'],
+    category:       'web-apps',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
   },
   {
-    slug:     'cli-tools',
-    name:     'Dev CLI Toolkit',
-    desc:     'A collection of shell utilities for automating PHP project scaffolding.',
-    tags:     ['Bash', 'PHP', 'CLI'],
-    category: 'open-source',
-    href:     '#',
+    slug:           'webhook-tester',
+    name:           'Webhook Tester',
+    desc:           'Live webhook inspection tool — generates temporary endpoints, captures incoming payloads in real time, and displays headers, body, and response codes.',
+    tags:           ['PHP', 'Laravel', 'JavaScript', 'REST'],
+    category:       'web-apps',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
   },
   {
-    slug:     'php-router',
-    name:     'Lightweight PHP Router',
-    desc:     'Zero-dependency PHP router with middleware support and named routes.',
-    tags:     ['PHP', 'Open Source'],
-    category: 'open-source',
-    href:     '#',
+    slug:           'sql-query-explainer',
+    name:           'SQL Query Explainer',
+    desc:           'Developer tool that parses a raw SQL query and returns a plain-English breakdown — joins explained, filters described, and performance suggestions included.',
+    tags:           ['PHP', 'MySQL', 'JavaScript', 'REST'],
+    category:       'web-apps',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
+  },
+  {
+    slug:           'id-card-generator',
+    name:           'ID Card Generator',
+    desc:           'Web tool for generating printable institution ID cards from manual input or bulk CSV upload. Custom templates, photo upload, and PDF export.',
+    tags:           ['PHP', 'JavaScript', 'HTML Canvas', 'PDF'],
+    category:       'web-apps',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: true,
+  },
+  {
+    slug:           'niit-website',
+    name:           'NIIT Port Harcourt Website',
+    desc:           'Institutional website for NIIT Port Harcourt — course listings, enrollment enquiry flow, and a content-managed news and announcements section.',
+    tags:           ['PHP', 'JavaScript', 'CSS', 'HTML'],
+    category:       'web-apps',
+    href:           'https://niit.mgbah.dev',
+    caseStudyReady: true,
+  },
+  {
+    slug:           'portfolio-api',
+    name:           'Portfolio API',
+    desc:           'The PHP backend powering mgbah.dev — contact form processing, rate limiting, email delivery via PHPMailer, and request validation.',
+    tags:           ['PHP', 'MySQL', 'PHPMailer', 'REST'],
+    category:       'web-apps',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
+  },
+  {
+    slug:           'laravel-audit-trail',
+    name:           'Laravel Audit Trail',
+    desc:           'Drop-in Composer package that logs every Eloquent model mutation — who changed what, when, and from which IP. Fully queryable audit history.',
+    tags:           ['PHP', 'Laravel', 'Composer', 'MySQL'],
+    category:       'open-source',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
+  },
+  {
+    slug:           'php-response-formatter',
+    name:           'PHP Response Formatter',
+    desc:           'Composer package for standardising JSON API responses across Laravel apps. Consistent envelope structure, status codes, and error shapes out of the box.',
+    tags:           ['PHP', 'Composer', 'Laravel', 'REST'],
+    category:       'open-source',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
+  },
+  {
+    slug:           'api-key-manager',
+    name:           'Rate-Limited API Key Manager',
+    desc:           'API key generation and management system with configurable per-client rate limiting, usage analytics, and key revocation.',
+    tags:           ['PHP', 'Laravel', 'MySQL', 'REST'],
+    category:       'open-source',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
+  },
+  {
+    slug:           'laravel-cli-scaffolder',
+    name:           'Laravel CLI Scaffolder',
+    desc:           'Composer package and CLI tool that scaffolds an opinionated Laravel project structure — service layers, modules, and base classes in one command.',
+    tags:           ['PHP', 'Laravel', 'CLI', 'Composer'],
+    category:       'open-source',
+    href:           'https://github.com/mrwayne-dev',
+    caseStudyReady: false,
+  },
+  {
+    slug:           'webstarter-cli',
+    name:           'WebStarter CLI',
+    desc:           'Node.js CLI tool (v2.0.0) that scaffolds complete PHP web application projects interactively.',
+    tags:           ['Node.js', 'CLI', 'npm', 'PHP'],
+    category:       'open-source',
+    href:           'https://github.com/mrwayne-dev/webstarter-cli',
+    caseStudyReady: true,
   },
 ];
 
@@ -81,9 +159,10 @@ const DESIGNS = [
 
 const TABS = [
   { label: 'All',         value: 'all'         },
-  { label: 'Web Apps',    value: 'web-apps'    },
   { label: 'Platforms',   value: 'platforms'   },
+  { label: 'Web Apps',    value: 'web-apps'    },
   { label: 'Open Source', value: 'open-source' },
+  { label: 'Ready',       value: 'ready'       },
 ];
 
 function cardHTML(project) {
@@ -91,11 +170,19 @@ function cardHTML(project) {
     .map(t => `<span class="tag">${t}</span>`)
     .join('');
 
+  const caseStudyLink = `<a
+    href="/projects/${project.slug}"
+    class="link-arrow"
+    style="font-size: var(--text-xs); letter-spacing: 0.04em;"
+    aria-label="View case study for ${project.name}"
+  >View Case Study &rarr;</a>`;
+
   return `
     <article
       class="project-card fade-up"
       data-category="${project.category}"
       data-slug="${project.slug}"
+      data-ready="${project.caseStudyReady}"
     >
       <div class="project-card__image-wrap">
         <div class="project-card__placeholder" aria-hidden="true">
@@ -107,12 +194,7 @@ function cardHTML(project) {
         <p class="project-card__desc">${project.desc}</p>
         <div class="project-card__tags">${tags}</div>
         <div style="margin-top: var(--space-md);">
-          <a
-            href="${project.href}"
-            class="link-arrow"
-            style="font-size: var(--text-xs); letter-spacing: 0.04em;"
-            aria-label="View case study for ${project.name}"
-          >View Case Study &rarr;</a>
+          ${caseStudyLink}
         </div>
       </div>
     </article>
@@ -175,7 +257,7 @@ export function render() {
           style="font-size: var(--text-base); color: var(--color-text-muted); max-width: 520px;"
           class="fade-up"
         >
-          Six years of building. These are the ones worth showing.
+          Five years of building. Thirteen projects worth showing.
         </p>
       </header>
 
@@ -232,7 +314,12 @@ export function init() {
       // Only filter dev projects, not design cards
       cards.forEach(card => {
         if (card.classList.contains('design-card')) return;
-        const matches = filter === 'all' || card.dataset.category === filter;
+        let matches;
+        if (filter === 'ready') {
+          matches = card.dataset.ready === 'true';
+        } else {
+          matches = filter === 'all' || card.dataset.category === filter;
+        }
         card.classList.toggle('project-card--hidden', !matches);
       });
     });

@@ -15,26 +15,26 @@ const MARQUEE_ITEMS = [
 const PROJECTS = [
   {
     name: 'Lymora Learn',
-    desc: 'AI-powered exam prep platform analysing 10+ years of past questions.',
-    tags: ['PHP', 'JavaScript', 'MySQL', 'AI'],
+    desc: 'AI exam prep platform. Analyses 10+ years of past questions, predicts likely topics, 100+ active users.',
+    tags: ['PHP', 'JavaScript', 'MySQL', 'Claude AI'],
     href: '/lymora',
   },
   {
-    name: 'Lymora Student Housing',
-    desc: 'Verified student accommodation marketplace with escrow payments.',
-    tags: ['PHP', 'MySQL', 'JavaScript'],
-    href: '/lymora',
+    name: 'Mock Investment Platform',
+    desc: 'Simulated forex and stock trading with real-time charting, virtual portfolios, and live P&L tracking.',
+    tags: ['PHP', 'Laravel', 'JavaScript', 'WebSockets'],
+    href: '/projects',
   },
   {
-    name: 'Lymora Backend API',
-    desc: 'Core PHP API powering both Lymora products — multi-tenant architecture, JWT auth, and Paystack integration.',
-    tags: ['PHP', 'MySQL', 'JWT', 'Paystack'],
-    href: '/lymora',
+    name: 'Logistics Tracking Platform',
+    desc: 'End-to-end shipment tracking, waybill generation, transit stage updates, and automated SMS notifications.',
+    tags: ['PHP', 'Laravel', 'MySQL', 'JavaScript'],
+    href: '/projects',
   },
   {
-    name: 'mgbah.dev',
-    desc: 'This portfolio — vanilla SPA built with PHP, pure CSS, and no frameworks.',
-    tags: ['PHP', 'CSS', 'Vanilla JS'],
+    name: 'Laravel Audit Trail',
+    desc: 'Drop-in Composer package logging every Eloquent model mutation who changed what, when, and from which IP.',
+    tags: ['PHP', 'Laravel', 'Composer', 'MySQL'],
     href: '/projects',
   },
 ];
@@ -181,7 +181,7 @@ export function render() {
 
       <div class="hero__content">
         <h1 class="hero__name words-split">${splitIntoWordSpans('Michael Mgbah', 0.1, 0.12)}</h1>
-        <p class="hero__tagline">Backend developer &amp; entrepreneur<br>building software, running a company.</p>
+        <p class="hero__tagline">Backend-leaning full stack developer.<br>Founder of Lymora. Building things that matter.</p>
         <div class="hero__ctas">
           <a href="/projects" class="btn btn-primary">See My Work</a>
         </div>
@@ -230,9 +230,10 @@ export function render() {
           <div class="about-strip__text-col">
             <p class="section-label">• About</p>
             <p class="about-strip__text">
-              I started in tech at 15 &mdash; building, not studying. I&rsquo;m 20 now, running
-              Lymora from Port Harcourt and taking on backend and full-stack freelance work to fund it.
-              I ship end-to-end.
+              the boy is a 20 year old backend-leaning full-stack developer, running Lymora.
+              the rest of my craft is just how i keep it moving. graphics, video editing, whatever the moment calls for. i'm quite proficient there too.
+              either way i'm just trying to have fun with whatever i touch. <br>
+              <b>all credit to GOD!</b>
             </p>
             <a href="/about" class="link-arrow">More about me &rarr;</a>
           </div>
@@ -326,7 +327,7 @@ export function render() {
         <div class="cta-banner fade-up">
           <div class="cta-banner__content">
             <h2 class="cta-banner__heading">Let&rsquo;s build<br>something.</h2>
-            <p class="cta-banner__sub">Six years building. Book 30 minutes &mdash; no agenda.</p>
+            <p class="cta-banner__sub">Five years building. Book 30 minutes &mdash; no agenda.</p>
             <button
               class="btn btn-primary"
               data-cal-namespace="30min"

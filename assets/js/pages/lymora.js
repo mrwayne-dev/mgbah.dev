@@ -6,8 +6,8 @@
 // Traction data — prefix/target/suffix separated so the counter
 // can animate only the numeric part while preserving context.
 const TRACTION = [
-  { prefix: '',  target: 100, suffix: '+',  label: 'Active users'       },
-  { prefix: '₦', target: 500, suffix: 'k+', label: 'Revenue generated'  },
+  { prefix: '',  target: 200, suffix: '+',  label: 'Active users'       },
+  { prefix: '₦', target: 650, suffix: 'k+', label: 'Revenue generated'  },
   { prefix: '',  target: 2,   suffix: '',   label: 'Live products'       },
   { prefix: '~', target: 9,   suffix: '',   label: 'Team members'        },
 ];
@@ -97,21 +97,23 @@ export function render() {
           </div>
 
           <!-- Lymora Student Housing -->
-          <div class="lymora-product-card fade-up">
-            <p class="lymora-product-card__name">
-              Lymora Student Housing
-              <span class="lymora-badge lymora-badge--dev" style="margin-left: 8px; font-size: var(--text-xs); font-weight: 400; vertical-align: middle;">In Development</span>
-            </p>
-            <p class="lymora-product-card__desc">
-              A verified student accommodation marketplace that removes the scams,
-              inflated agent fees, and blind bookings that define student housing in Nigeria.
-              Trust infrastructure for students and landlords.
-            </p>
-            <div class="lymora-product-card__points">
-              <p class="lymora-product-card__point">Verified listings with physical inspection</p>
-              <p class="lymora-product-card__point">Escrow payments — money held until move-in</p>
-              <p class="lymora-product-card__point">Agent fee caps enforced on platform</p>
-              <p class="lymora-product-card__point">RSU-first, expanding to all PH campuses</p>
+          <div class="lymora-product-card lymora-product-card--wip fade-up">
+            <div class="lymora-product-card__blur-content">
+              <p class="lymora-product-card__name">Lymora Student Housing</p>
+              <p class="lymora-product-card__desc">
+                A verified student accommodation marketplace that removes the scams,
+                inflated agent fees, and blind bookings that define student housing in Nigeria.
+                Trust infrastructure for students and landlords.
+              </p>
+              <div class="lymora-product-card__points">
+                <p class="lymora-product-card__point">Verified listings with physical inspection</p>
+                <p class="lymora-product-card__point">Escrow payments — money held until move-in</p>
+                <p class="lymora-product-card__point">Agent fee caps enforced on platform</p>
+                <p class="lymora-product-card__point">RSU-first, expanding to all PH campuses</p>
+              </div>
+            </div>
+            <div class="lymora-product-card__wip-overlay" aria-hidden="true">
+              <span class="lymora-badge lymora-badge--dev">In Development</span>
             </div>
           </div>
 

@@ -7,15 +7,15 @@ require_once __DIR__ . '/config/constants.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Michael Mgbah — Backend Developer &amp; Entrepreneur</title>
+  <title>Michael Mgbah — Full Stack Developer &amp; Founder</title>
 
   <!-- SEO -->
-  <meta name="description" content="Michael Mgbah — Backend Developer &amp; Entrepreneur. CEO of Lymora. Building products that solve real problems.">
+  <meta name="description" content="Michael Mgbah — backend-leaning full stack developer and founder of Lymora. Five years building products that solve real problems.">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Michael Mgbah">
-  <meta property="og:description" content="Backend Developer &amp; Entrepreneur. CEO of Lymora. Building products that solve real problems.">
+  <meta property="og:description" content="Backend-leaning full stack developer and founder of Lymora. Five years building products that solve real problems.">
   <meta property="og:image" content="/assets/images/profile/og-image.jpg">
   <meta property="og:url" content="https://mgbah.dev">
   <meta property="og:type" content="website">
@@ -24,7 +24,7 @@ require_once __DIR__ . '/config/constants.php';
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Michael Mgbah">
-  <meta name="twitter:description" content="Backend Developer &amp; Entrepreneur. CEO of Lymora.">
+  <meta name="twitter:description" content="Backend-leaning full stack developer and founder of Lymora. Five years building products that solve real problems.">
   <meta name="twitter:image" content="/assets/images/profile/og-image.jpg">
 
   <!-- Theme -->
