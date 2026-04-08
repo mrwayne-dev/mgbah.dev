@@ -73,7 +73,7 @@ export function initScrollAnimations() {
   );
 
   function observeAnimatables() {
-    document.querySelectorAll('.fade-up, .fade-in').forEach((el) => {
+    document.querySelectorAll('.fade-up, .fade-in, .scale-in, .slide-right').forEach((el) => {
       if (!el.classList.contains('is-visible')) {
         observer.observe(el);
       }

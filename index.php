@@ -18,8 +18,8 @@ require_once __DIR__ . '/config/constants.php';
   <meta property="og:description" content="Backend-leaning full stack developer and founder of Lymora. Five years building products that solve real problems.">
   <meta property="og:image" content="/assets/images/profile/og-image.jpg">
   <meta property="og:url" content="https://mgbah.dev">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="mgbah.dev">
+  <meta property="og:type" content="website"
+  <meta property="og:site_name" content="mgbah.dev"
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -32,6 +32,15 @@ require_once __DIR__ . '/config/constants.php';
 
   <!-- Canonical -->
   <link rel="canonical" href="https://mgbah.dev">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/assets/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon/android-chrome-512x512.png">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
 
   <!-- Font Preloads -->
   <link rel="preload" href="/assets/fonts/HostGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -96,6 +105,26 @@ require_once __DIR__ . '/config/constants.php';
 
   <!-- App Entry Point -->
   <script type="module" src="/assets/js/app.js"></script>
+
+  <!-- In Development Modal — global overlay (desktop: centered card / mobile: bottom drawer) -->
+  <div class="dev-modal-overlay" id="dev-modal-overlay" aria-hidden="true">
+    <div class="dev-modal" id="dev-modal" role="dialog" aria-modal="true">
+      <!-- Drag handle — visible on mobile bottom drawer only -->
+      <div class="dev-modal__drag-indicator" aria-hidden="true"></div>
+      <div class="dev-modal__header">
+        <div class="dev-modal__icon" aria-hidden="true">
+          <i class="ph ph-clock-countdown"></i>
+        </div>
+        <button class="dev-modal__close" id="dev-modal-close" aria-label="Close">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+      <h2 class="dev-modal__heading">In development.</h2>
+      <p class="dev-modal__text">
+        Just chill a little before I blow your mind.
+      </p>
+    </div>
+  </div>
 
   <!-- Smartsupp Live Chat (widget button hidden — driven by custom FAB) -->
   <script type="text/javascript">

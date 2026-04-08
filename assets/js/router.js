@@ -8,7 +8,7 @@ import { destroyParticles } from './components/particles.js';
 import { showLoader, hideLoader } from './components/loader.js';
 
 const META = {
-  '/':         { title: 'Michael Mgbah — Backend Developer & Entrepreneur', desc: 'CEO of Lymora. Building products that solve real problems.' },
+  '/':         { title: 'Michael Mgbah, Backend Developer & Entrepreneur', desc: 'CEO of Lymora. Building products that solve real problems.' },
   '/about':    { title: 'About',    desc: 'The story behind the developer.' },
   '/projects': { title: 'Projects', desc: 'Selected work in web development and product.' },
   '/services': { title: 'Services', desc: 'Backend development, API design, database architecture, and product consulting.' },
@@ -53,6 +53,16 @@ export class Router {
       const slug = normPath.split('/')[2];
       route = () =>
         import('./pages/casestudy.js').then(mod => ({
+          render: () => mod.render(slug),
+          init:   () => mod.init(slug),
+        }));
+    }
+
+    // Dynamic design study routes: /designs/:slug
+    if (!route && /^\/designs\/[^/]+$/.test(normPath)) {
+      const slug = normPath.split('/')[2];
+      route = () =>
+        import('./pages/designstudy.js').then(mod => ({
           render: () => mod.render(slug),
           init:   () => mod.init(slug),
         }));
@@ -127,9 +137,15 @@ export class Router {
   _updateMeta(path) {
     // Case study pages update their own title in init() — set a generic placeholder here
     if (/^\/projects\/[^/]+$/.test(path)) {
-      document.title = 'Project — Michael Mgbah';
+      document.title = 'Project | Michael Mgbah';
       const desc = document.querySelector('meta[name="description"]');
-      if (desc) desc.setAttribute('content', 'Project case study — Michael Mgbah');
+      if (desc) desc.setAttribute('content', 'Project case study by Michael Mgbah');
+      return;
+    }
+    if (/^\/designs\/[^/]+$/.test(path)) {
+      document.title = 'Design | Michael Mgbah';
+      const desc = document.querySelector('meta[name="description"]');
+      if (desc) desc.setAttribute('content', 'Design case study by Michael Mgbah');
       return;
     }
     const meta = META[path] || META['/'];

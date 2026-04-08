@@ -38,6 +38,33 @@
   filter: blur(0px);
 }
 
+/* Scale-in — for cards, modals, stats */
+.scale-in {
+  opacity: 0;
+  transform: scale(0.94) translateY(12px);
+  filter: blur(4px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow),
+              filter var(--transition-slow);
+}
+
+.scale-in.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0px);
+}
+
+/* Slide-right — for list items, skill pills */
+.slide-right {
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.slide-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* --------------------------------------------------------------------------
    Marquee — infinite horizontal scroll
    -------------------------------------------------------------------------- */

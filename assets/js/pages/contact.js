@@ -40,7 +40,7 @@ export function render() {
 
           <p class="contact-info__body">
             I work with founders and small teams who need backend engineering
-            done properly &mdash; APIs, databases, full-stack builds. If the
+            done properly: APIs, databases, full-stack builds. If the
             problem is worth solving, I want to hear about it.
           </p>
 

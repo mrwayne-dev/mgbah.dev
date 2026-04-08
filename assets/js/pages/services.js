@@ -25,7 +25,7 @@ const SERVICES = [
   {
     icon: 'ph-rocket-launch',
     title: 'MVP Development',
-    desc: 'Full-stack product builds for founders who need to move fast. From idea to live product in 4–8 weeks — scoped carefully, built properly.',
+    desc: 'Full-stack product builds for founders who need to move fast. From idea to live product in 4–8 weeks, scoped carefully, built properly.',
     tags: ['Full-stack', 'Product', 'Launch', 'PHP + JS'],
   },
   {
@@ -37,7 +37,7 @@ const SERVICES = [
   {
     icon: 'ph-pen-nib',
     title: 'Graphic Design & Video Editing',
-    desc: 'Brand identity, visual assets, and motion content. Photoshop, Illustrator, and video editing — a secondary skill that sharpens how I think about the products I build.',
+    desc: 'Brand identity, visual assets, and motion content. Photoshop, Illustrator, and video editing, a secondary skill that sharpens how I think about the products I build.',
     tags: ['Photoshop', 'Illustrator', 'Video Editing', 'Branding'],
   },
 ];
@@ -93,7 +93,7 @@ export function render() {
           style="font-size: var(--text-base); color: var(--color-text-muted); max-width: 520px;"
           class="fade-up"
         >
-          Backend engineering, product development, and creative work — done properly.
+          Backend engineering, product development, and creative work. Done properly.
           I specialise in PHP and JavaScript stacks, with a secondary eye for design.
         </p>
       </header>

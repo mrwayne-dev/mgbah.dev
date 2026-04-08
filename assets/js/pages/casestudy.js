@@ -1,7 +1,9 @@
 /**
  * casestudy.js — Project case study page
  * Reusable page module — receives a slug, looks up from PROJECTS_DATA,
- * renders the full case study layout.
+ * renders the full case study layout for all projects.
+ * Projects with caseStudyReady: false show an "In Development" notice and
+ * a modal trigger button instead of a live link.
  *
  * render(slug) — returns HTML string
  * init(slug)   — wires interactivity and scroll animations
@@ -41,24 +43,42 @@ function notFound(slug) {
   `;
 }
 
+function codeBlock(code) {
+  return `
+    <div class="cs-code-block">
+      <code>${code}</code>
+      <button class="cs-code-copy" aria-label="Copy code">
+        <i class="ph ph-copy"></i>
+      </button>
+    </div>
+  `;
+}
+
 // ── Render ───────────────────────────────────────────────────────────────────
 
 export function render(slug) {
   const project = PROJECTS_DATA.find(p => p.slug === slug);
   if (!project) return notFound(slug);
 
-  const { name, shortDesc, year, category, status, role, overview, problem, features, challenges, stack, images, links } = project;
+  const { name, shortDesc, year, category, status, role, overview, problem, features, challenges, stack, images, links, howToUse, caseStudyReady } = project;
+
+  // Pad features to exactly 6
+  const paddedFeatures = features.slice(0, 6);
+  while (paddedFeatures.length < 6) {
+    paddedFeatures.push({ title: 'In Progress', desc: 'This feature is currently being built.' });
+  }
 
   // Meta chips
   const metaChips = [year, category, status, role]
     .map(val => `<span class="cs-meta-chip">${val}</span>`)
     .join('');
 
-  // CTA buttons
+  // CTA buttons — for in-development projects, add a modal trigger instead of/alongside live link
   const ctaLinks = [
     links.live   ? `<a href="${links.live}"   class="btn btn-primary"  target="_blank" rel="noopener">View Live &rarr;</a>` : '',
     links.github ? `<a href="${links.github}" class="btn btn-ghost"    target="_blank" rel="noopener">GitHub &rarr;</a>`    : '',
     links.docs   ? `<a href="${links.docs}"   class="btn btn-ghost"    target="_blank" rel="noopener">Docs &rarr;</a>`      : '',
+    !caseStudyReady ? `<button class="btn btn-ghost cs-dev-modal-trigger">View Live &nearr;</button>` : '',
   ].filter(Boolean).join('');
 
   // Stack groups
@@ -78,8 +98,8 @@ export function render(slug) {
       </div>
     `).join('');
 
-  // Feature cards
-  const featureCards = features.map((f, i) => `
+  // Feature cards (always 6)
+  const featureCards = paddedFeatures.map((f, i) => `
     <div class="cs-feature-card fade-up">
       <span class="cs-feature-card__num">${pad(i + 1)}</span>
       <p class="cs-feature-card__title">${f.title}</p>
@@ -101,8 +121,40 @@ export function render(slug) {
     </div>
   `).join('');
 
+  // How to Use heading
+  const howToUseHeading = category === 'open-source'
+    ? 'Get it running.'
+    : category === 'platforms'
+      ? 'How it works.'
+      : 'Using the API.';
+
+  // How to Use section
+  const installBlock = howToUse && howToUse.install
+    ? `
+      <div class="cs-install-block fade-up">
+        <p class="cs-install-block__label">Install</p>
+        ${codeBlock(howToUse.install)}
+      </div>
+    ` : '';
+
+  const stepsHTML = howToUse && howToUse.steps
+    ? `
+      <ol class="cs-steps">
+        ${howToUse.steps.map(step => `
+          <li class="cs-step fade-up">
+            <div class="cs-step__header">
+              <span class="cs-step__num">${step.step}</span>
+              <h3 class="cs-step__title">${step.title}</h3>
+            </div>
+            <p class="cs-step__desc">${step.desc}</p>
+            ${step.code ? codeBlock(step.code) : ''}
+          </li>
+        `).join('')}
+      </ol>
+    ` : '';
+
   return `
-    <article class="page-container cs-page" aria-label="${name} — Case Study">
+    <article class="page-container cs-page" aria-label="${name} Case Study">
 
       <!-- ===== BACK NAV ===== -->
       <a href="/projects" class="cs-back">
@@ -121,7 +173,7 @@ export function render(slug) {
       </div>
 
       <!-- ===== IN DEVELOPMENT NOTICE ===== -->
-      ${!project.caseStudyReady ? `
+      ${!caseStudyReady ? `
       <div class="cs-dev-notice fade-up">
         <i class="ph ph-wrench" aria-hidden="true"></i>
         This project is currently in development. What you&rsquo;re reading reflects work in progress.
@@ -169,20 +221,54 @@ export function render(slug) {
         ${challengeItems}
       </div>
 
+      <!-- ===== HOW TO USE ===== -->
+      ${howToUse ? `
+      <section class="cs-how-to-use" aria-label="How to use">
+        <p class="section-label fade-up">• How to Use</p>
+        <h2 class="cs-section-heading fade-up">${howToUseHeading}</h2>
+        ${installBlock}
+        ${stepsHTML}
+      </section>
+      ` : ''}
+
     </article>
   `;
 }
 
 // ── Init ─────────────────────────────────────────────────────────────────────
 
+function initComingSoon() {
+  document.querySelector('.cs-dev-modal-trigger')
+    ?.addEventListener('click', () => window.openDevModal?.());
+}
+
+function wireCopyButtons() {
+  document.querySelectorAll('.cs-code-copy').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const codeEl = btn.previousElementSibling;
+      const text = codeEl?.textContent?.trim();
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        const icon = btn.querySelector('i');
+        if (icon) {
+          icon.className = 'ph ph-check';
+          setTimeout(() => { icon.className = 'ph ph-copy'; }, 1500);
+        }
+      } catch (_) {
+        // clipboard unavailable — silent fail
+      }
+    });
+  });
+}
+
 export function init(slug) {
-  // Update document title with actual project name
   const project = PROJECTS_DATA.find(p => p.slug === slug);
   if (project) {
-    document.title = `${project.name} — Michael Mgbah`;
+    document.title = `${project.name} | Michael Mgbah`;
   }
 
-  // Scroll entrance animations
+  // Scroll entrance animations (shared across full and coming-soon)
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -194,6 +280,13 @@ export function init(slug) {
     },
     { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
   );
-
   document.querySelectorAll('.cs-page .fade-up, .cs-page .fade-in').forEach(el => observer.observe(el));
+
+  // Wire modal trigger for in-development projects
+  if (!project || !project.caseStudyReady) {
+    initComingSoon();
+  }
+
+  // Wire copy buttons for all projects (How to Use section)
+  wireCopyButtons();
 }

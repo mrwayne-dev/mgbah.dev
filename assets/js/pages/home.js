@@ -41,28 +41,34 @@ const PROJECTS = [
 
 const TESTIMONIALS = [
   {
-    quote: 'Michael rebuilt our backend API in three weeks. Response times dropped from 10 seconds to under 200ms. The code is clean, documented, and actually maintainable.',
-    name: 'Chidi Okafor',
-    role: 'CTO, TechStartup Lagos',
-    num: '1/4',
+    quote: 'From my very first interaction with Michael, it was clear he possesses a strong ability to think outside the box. He has handled several projects for Zirostack, consistently demonstrating professionalism, competence, and attention to detail. His ability to adapt, think critically, and improvise makes him a valuable asset. I confidently recommend Michael for any role requiring creativity, reliability, and execution excellence.',
+    name: 'Tonye Williams',
+    role: 'Entrepreneur &amp; CEO, Zirostack',
   },
   {
-    quote: 'I hired Michael to build our student housing platform from scratch. He delivered on time, handled every edge case, and the codebase is one of the cleanest I\'ve seen.',
-    name: 'Ngozi Adeyemi',
-    role: 'Founder, PropTech NG',
-    num: '2/4',
+    quote: "I've known Michael since his earliest days at NIIT, and I had the privilege of watching him grow from a student into someone who came back to teach. When he joined us as an instructor, I was his supervisor, but honestly, he needed very little oversight. Sharp instincts, clean work, and a genuine love for the craft. We've collaborated on a few projects since, and every time, he shows up with more than you asked for.",
+    name: 'Boss Kings',
+    role: 'Full Stack Developer &amp; Instructor, NIIT',
   },
   {
-    quote: 'He doesn\'t just execute — he thinks. Michael pushed back on a bad architectural decision we made early on, and he was right. Ship fast without cutting corners.',
-    name: 'Emmanuel Taiwo',
-    role: 'Product Manager',
-    num: '3/4',
+    quote: "Our website was outdated and slow, and it didn't reflect who we are. Lymora completely restructured our digital presence, delivering a fast and intuitive website that's easier for our team to manage and for our users to experience. The difference was immediate, and it keeps getting better as we grow.",
+    name: 'Precious Ogulu',
+    role: 'Center Head, NIIT Port Harcourt',
   },
   {
-    quote: 'Smooth payment integration, solid MySQL schema design, and he explained every decision. If you need a backend engineer who genuinely cares about the product — it\'s Michael.',
-    name: 'Babatunde Raji',
-    role: 'Engineering Lead',
-    num: '4/4',
+    quote: "Michael brought serious architectural thinking to our ecommerce API. The integration was clean, the endpoints were well-documented, and he was always two steps ahead on edge cases. Working with him felt less like outsourcing and more like having a senior engineer on the team.",
+    name: 'Sammy',
+    role: 'Backend Engineer',
+  },
+  {
+    quote: "Michael handled everything: logo, brand identity, flyers, mockups. He didn't just deliver assets; he delivered a visual language that actually feels like us. The cohesion across every touchpoint is exactly what we needed to show up credibly in the market.",
+    name: 'CyberCyn',
+    role: 'Tech Company',
+  },
+  {
+    quote: "I needed a brand identity that could stand on its own and still scale. Michael came back with a logo system that worked at every size, a colour palette that felt intentional, and design files clean enough that any designer could pick up. Exactly the kind of quality that makes the difference between looking like a startup and looking like a company.",
+    name: 'David Okonkwo',
+    role: 'Founder, Brand &amp; Identity Project',
   },
 ];
 
@@ -73,7 +79,7 @@ const FAQS = [
   },
   {
     q: 'How do I start working with you?',
-    a: 'Book a 30-minute call — no agenda needed. We\'ll talk about what you\'re building and figure out if there\'s a fit.',
+    a: 'Book a 30-minute call. No agenda needed. We\'ll talk about what you\'re building and figure out if there\'s a fit.',
   },
   {
     q: 'What\'s your typical project timeline?',
@@ -81,15 +87,15 @@ const FAQS = [
   },
   {
     q: 'Are you available for full-time roles?',
-    a: 'Yes. Remote full-time or part-time contracts. I work best with product-led teams — fintech, edtech, developer tooling.',
+    a: 'Yes. Remote full-time or part-time contracts. I work best with product-led teams: fintech, edtech, developer tooling.',
   },
   {
     q: 'Do you work with international clients?',
-    a: 'Yes. Clients across West Africa and Europe. Async works fine — I\'m used to it.',
+    a: 'Yes. Clients across West Africa and Europe. Async works fine, I\'m used to it.',
   },
   {
     q: 'What\'s your go-to tech stack?',
-    a: 'PHP (native + Laravel), JavaScript (Node.js + vanilla), MySQL, PostgreSQL, REST APIs, Linux. I\'m pragmatic — the stack depends on the problem.',
+    a: 'PHP (native + Laravel), JavaScript (Node.js + vanilla), MySQL, PostgreSQL, REST APIs, Linux. I\'m pragmatic, the stack depends on the problem.',
   },
 ];
 
@@ -120,7 +126,8 @@ function projectCard({ name, desc, tags, href }) {
   `;
 }
 
-function testimonialCard({ quote, name, role, num }) {
+function testimonialCard({ quote, name, role }, index) {
+  const num = `${index + 1}/${TESTIMONIALS.length}`;
   return `
     <div class="testimonial-card">
       <blockquote class="testimonial-card__quote">${quote}</blockquote>
@@ -230,9 +237,8 @@ export function render() {
           <div class="about-strip__text-col">
             <p class="section-label">• About</p>
             <p class="about-strip__text">
-              the boy is a 20 year old backend-leaning full-stack developer, running Lymora.
-              the rest of my craft is just how i keep it moving. graphics, video editing, whatever the moment calls for. i'm quite proficient there too.
-              either way i'm just trying to have fun with whatever i touch. <br>
+              The boy is a 20 year old backend-leaning full-stack developer, running Lymora. the rest is whatever the work needs; 
+              graphics, video editing, whatever the moment calls for. i've never had to call for help on any of it. either way i'm just trying to have fun with whatever i touch.<br>
               <b>all credit to GOD!</b>
             </p>
             <a href="/about" class="link-arrow">More about me &rarr;</a>
@@ -255,8 +261,8 @@ export function render() {
             <h2 class="lymora-block__name">Lymora</h2>
             <p class="lymora-block__tagline">&ldquo;Academic Operating System.&rdquo;</p>
             <p class="lymora-block__desc">
-              Lymora is a Nigerian edtech startup &mdash; AI exam prep live, student housing
-              in development. Built for RSU students. 100+ users. &#8358;500k+ revenue. Nine-person team.
+              Lymora is a Nigerian edtech startup. AI exam prep live, student housing
+              in development. Built for RSU students. 200+ users. &#8358;650k+ revenue. Nine-person team.
             </p>
             <a href="/lymora" class="btn btn-ghost">Learn about Lymora &rarr;</a>
           </div>
@@ -268,12 +274,17 @@ export function render() {
                 likely to come up next. Subscription-based, powered by Claude AI.
               </p>
             </div>
-            <div class="lymora-product">
-              <p class="lymora-product__name">Lymora Student Housing</p>
-              <p class="lymora-product__desc">
-                Verified student accommodation listings with escrow payments
-                and capped agent fees. Starting with RSU, scaling nationally.
-              </p>
+            <div class="lymora-product lymora-product--wip">
+              <div class="lymora-product__blur-content">
+                <p class="lymora-product__name">Lymora Student Housing</p>
+                <p class="lymora-product__desc">
+                  Verified student accommodation listings with escrow payments
+                  and capped agent fees. Starting with RSU, scaling nationally.
+                </p>
+              </div>
+              <div class="lymora-product__wip-overlay" aria-hidden="true">
+                <span class="lymora-wip-badge">In Development</span>
+              </div>
             </div>
           </div>
         </div>
@@ -289,7 +300,7 @@ export function render() {
         </h2>
         <div class="testimonials-wrap fade-up">
           <div class="testimonials-track" id="testimonials-track">
-            ${TESTIMONIALS.map(testimonialCard).join('')}
+            ${TESTIMONIALS.map((t, i) => testimonialCard(t, i)).join('')}
           </div>
           <div class="testimonials-nav">
             <button class="testimonials-btn" id="testimonials-prev" aria-label="Previous testimonial">
@@ -327,7 +338,7 @@ export function render() {
         <div class="cta-banner fade-up">
           <div class="cta-banner__content">
             <h2 class="cta-banner__heading">Let&rsquo;s build<br>something.</h2>
-            <p class="cta-banner__sub">Five years building. Book 30 minutes &mdash; no agenda.</p>
+            <p class="cta-banner__sub">Five years building. Book 30 minutes, no agenda.</p>
             <button
               class="btn btn-primary"
               data-cal-namespace="30min"
@@ -397,8 +408,63 @@ export function init() {
       nextBtn.disabled = index >= getMaxIndex();
     }
 
-    prevBtn.addEventListener('click', () => update(index - 1));
-    nextBtn.addEventListener('click', () => update(index + 1));
+    prevBtn.addEventListener('click', () => { update(index - 1); resetAutoTimer(); });
+    nextBtn.addEventListener('click', () => { update(index + 1); resetAutoTimer(); });
+
+    let autoTimer = null;
+    let isPaused  = false;
+
+    function startAutoTimer() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => {
+        if (!isPaused) update(index >= getMaxIndex() ? 0 : index + 1);
+      }, 5000);
+    }
+
+    function resetAutoTimer() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => {
+        if (!isPaused) update(index >= getMaxIndex() ? 0 : index + 1);
+      }, 5000);
+    }
+
+    // Pause on hover — flag approach avoids stale interval ID bugs
+    const wrap = track.closest('.testimonials-wrap');
+    if (wrap) {
+      wrap.addEventListener('mouseenter', () => { isPaused = true; });
+      wrap.addEventListener('mouseleave', () => { isPaused = false; });
+    }
+
+    // Touch swipe on mobile
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      isPaused = true;
+    }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const delta = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(delta) > 50) update(delta > 0 ? index + 1 : index - 1);
+      isPaused = false;
+    });
+
+    // Start auto-scroll only when section is scrolled into view
+    const section = document.getElementById('testimonials');
+    if (section) {
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              startAutoTimer();
+            } else {
+              clearInterval(autoTimer);
+              autoTimer = null;
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      sectionObserver.observe(section);
+    }
 
     // Set initial disabled state
     update(0);

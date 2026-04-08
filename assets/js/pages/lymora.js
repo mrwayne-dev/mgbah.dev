@@ -56,7 +56,7 @@ export function render() {
       <!-- ===== HERO ===== -->
       <div style="padding-top: var(--space-xl);">
         <div class="lymora-hero fade-up">
-          <p class="lymora-hero__eyebrow">• Company — Est. 2023</p>
+          <p class="lymora-hero__eyebrow">• Company, Est. 2023</p>
           <h1 class="lymora-hero__name">Lymora</h1>
           <p class="lymora-hero__tagline">&ldquo;Academic Operating System.&rdquo;</p>
           <div class="lymora-hero__meta">
@@ -90,7 +90,7 @@ export function render() {
             </p>
             <div class="lymora-product-card__points">
               <p class="lymora-product-card__point">Pattern analysis of 10+ years of past questions</p>
-              <p class="lymora-product-card__point">Subscription model — affordable at ₦2,500/month</p>
+              <p class="lymora-product-card__point">Subscription model, affordable at ₦2,500/month</p>
               <p class="lymora-product-card__point">AI-generated study paths per course</p>
               <p class="lymora-product-card__point">Built for WAEC, JAMB, and university exams</p>
             </div>
@@ -107,7 +107,7 @@ export function render() {
               </p>
               <div class="lymora-product-card__points">
                 <p class="lymora-product-card__point">Verified listings with physical inspection</p>
-                <p class="lymora-product-card__point">Escrow payments — money held until move-in</p>
+                <p class="lymora-product-card__point">Escrow payments, held until move-in</p>
                 <p class="lymora-product-card__point">Agent fee caps enforced on platform</p>
                 <p class="lymora-product-card__point">RSU-first, expanding to all PH campuses</p>
               </div>
@@ -133,7 +133,7 @@ export function render() {
         <p class="section-label">• Team</p>
         <h2 class="lymora-section__heading">~9 people building this</h2>
         <p class="lymora-section__text">
-          Lymora runs on a small, high-conviction team — engineers, designers, and
+          Lymora runs on a small, high-conviction team: engineers, designers, and
           operations people who believe Nigerian students deserve better infrastructure.
           Everyone wears multiple hats. We move fast because we have to.
         </p>
@@ -145,7 +145,7 @@ export function render() {
         <h2 class="lymora-section__heading">Where we&rsquo;re going</h2>
         <p class="lymora-section__text">
           Lymora&rsquo;s goal is to become the default operating layer for Nigerian student
-          life &mdash; the platform students open when they need to study, find housing,
+          life, the platform students open when they need to study, find housing,
           manage their academic calendar, or connect with opportunities. We started where
           the pain is loudest. We&rsquo;re not stopping at two products.
         </p>
@@ -206,4 +206,5 @@ export function init() {
     '[aria-label="Lymora company page"] .fade-up, ' +
     '[aria-label="Lymora company page"] .fade-in'
   ).forEach(el => entranceObserver.observe(el));
+
 }

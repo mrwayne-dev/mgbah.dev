@@ -122,7 +122,7 @@ export function initFooter() {
 
       if (json.success) {
         form.innerHTML = `<p class="footer__form-success">
-          <i class="ph ph-check-circle"></i> Message sent — I'll be in touch soon.
+          <i class="ph ph-check-circle"></i> Message sent. I'll be in touch soon.
         </p>`;
       } else {
         submitBtn.disabled = false;

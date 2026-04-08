@@ -4,6 +4,8 @@
  * Filter: CSS class toggle on .project-card--hidden, no DOM removal
  */
 
+import { DESIGNS_DATA } from '../data/projects.js';
+
 const PROJECTS = [
   {
     slug:           'mock-investment-platform',
@@ -17,7 +19,7 @@ const PROJECTS = [
   {
     slug:           'logistics-tracking',
     name:           'Logistics Tracking Platform',
-    desc:           'End-to-end shipment tracking platform — waybill generation, transit stage updates, driver assignment, and automated customer SMS notifications.',
+    desc:           'End-to-end shipment tracking platform. Waybill generation, transit stage updates, driver assignment, and automated customer SMS notifications.',
     tags:           ['PHP', 'Laravel', 'MySQL', 'JavaScript'],
     category:       'platforms',
     href:           'https://github.com/mrwayne-dev',
@@ -26,7 +28,7 @@ const PROJECTS = [
   {
     slug:           'escrow-payment-api',
     name:           'Escrow Payment API',
-    desc:           'Payment escrow service — funds held on behalf of transacting parties, conditional release on confirmation, dispute flagging, and Paystack integration.',
+    desc:           'Payment escrow service. Funds held on behalf of transacting parties, conditional release on confirmation, dispute flagging, and Paystack integration.',
     tags:           ['PHP', 'Laravel', 'MySQL', 'Paystack'],
     category:       'web-apps',
     href:           'https://github.com/mrwayne-dev',
@@ -44,7 +46,7 @@ const PROJECTS = [
   {
     slug:           'webhook-tester',
     name:           'Webhook Tester',
-    desc:           'Live webhook inspection tool — generates temporary endpoints, captures incoming payloads in real time, and displays headers, body, and response codes.',
+    desc:           'Live webhook inspection tool. Generates temporary endpoints, captures incoming payloads in real time, and displays headers, body, and response codes.',
     tags:           ['PHP', 'Laravel', 'JavaScript', 'REST'],
     category:       'web-apps',
     href:           'https://github.com/mrwayne-dev',
@@ -53,7 +55,7 @@ const PROJECTS = [
   {
     slug:           'sql-query-explainer',
     name:           'SQL Query Explainer',
-    desc:           'Developer tool that parses a raw SQL query and returns a plain-English breakdown — joins explained, filters described, and performance suggestions included.',
+    desc:           'Developer tool that parses a raw SQL query and returns a plain-English breakdown. Joins explained, filters described, and performance suggestions included.',
     tags:           ['PHP', 'MySQL', 'JavaScript', 'REST'],
     category:       'web-apps',
     href:           'https://github.com/mrwayne-dev',
@@ -71,7 +73,7 @@ const PROJECTS = [
   {
     slug:           'niit-website',
     name:           'NIIT Port Harcourt Website',
-    desc:           'Institutional website for NIIT Port Harcourt — course listings, enrollment enquiry flow, and a content-managed news and announcements section.',
+    desc:           'Institutional website for NIIT Port Harcourt. Course listings, enrollment enquiry flow, and a content-managed news and announcements section.',
     tags:           ['PHP', 'JavaScript', 'CSS', 'HTML'],
     category:       'web-apps',
     href:           'https://niit.mgbah.dev',
@@ -80,7 +82,7 @@ const PROJECTS = [
   {
     slug:           'portfolio-api',
     name:           'Portfolio API',
-    desc:           'The PHP backend powering mgbah.dev — contact form processing, rate limiting, email delivery via PHPMailer, and request validation.',
+    desc:           'The PHP backend powering mgbah.dev. Contact form processing, rate limiting, email delivery via PHPMailer, and request validation.',
     tags:           ['PHP', 'MySQL', 'PHPMailer', 'REST'],
     category:       'web-apps',
     href:           'https://github.com/mrwayne-dev',
@@ -89,7 +91,7 @@ const PROJECTS = [
   {
     slug:           'laravel-audit-trail',
     name:           'Laravel Audit Trail',
-    desc:           'Drop-in Composer package that logs every Eloquent model mutation — who changed what, when, and from which IP. Fully queryable audit history.',
+    desc:           'Drop-in Composer package that logs every Eloquent model mutation: who changed what, when, and from which IP. Fully queryable audit history.',
     tags:           ['PHP', 'Laravel', 'Composer', 'MySQL'],
     category:       'open-source',
     href:           'https://github.com/mrwayne-dev',
@@ -116,7 +118,7 @@ const PROJECTS = [
   {
     slug:           'laravel-cli-scaffolder',
     name:           'Laravel CLI Scaffolder',
-    desc:           'Composer package and CLI tool that scaffolds an opinionated Laravel project structure — service layers, modules, and base classes in one command.',
+    desc:           'Composer package and CLI tool that scaffolds an opinionated Laravel project structure: service layers, modules, and base classes in one command.',
     tags:           ['PHP', 'Laravel', 'CLI', 'Composer'],
     category:       'open-source',
     href:           'https://github.com/mrwayne-dev',
@@ -124,36 +126,12 @@ const PROJECTS = [
   },
   {
     slug:           'webstarter-cli',
-    name:           'WebStarter CLI',
-    desc:           'Node.js CLI tool (v2.0.0) that scaffolds complete PHP web application projects interactively.',
+    name:           'create-php-starter',
+    desc:           'Node.js CLI tool (v1.1.2) that scaffolds complete PHP web application projects with complexity-aware scaffolding and optional auth, admin, PHPMailer, and Phosphor Icons.',
     tags:           ['Node.js', 'CLI', 'npm', 'PHP'],
     category:       'open-source',
-    href:           'https://github.com/mrwayne-dev/webstarter-cli',
+    href:           'https://github.com/mrwayne-dev/create-web-starter',
     caseStudyReady: true,
-  },
-];
-
-const DESIGNS = [
-  {
-    slug:  'lymora-brand',
-    name:  'Lymora Brand Identity',
-    desc:  'Logo, colour system, and typography for Lymora\'s suite of student products.',
-    tools: ['Figma'],
-    href:  '#',
-  },
-  {
-    slug:  'lymora-learn-ui',
-    name:  'Lymora Learn — UI Design',
-    desc:  'End-to-end UI for the exam prep app: onboarding, question flow, and results.',
-    tools: ['Figma'],
-    href:  '#',
-  },
-  {
-    slug:  'mgbah-portfolio-ui',
-    name:  'mgbah.dev — Portfolio Design',
-    desc:  'Full design system and page layouts for this portfolio before it was built.',
-    tools: ['Figma'],
-    href:  '#',
   },
 ];
 
@@ -206,6 +184,21 @@ function designCardHTML(design) {
     .map(t => `<span class="tag">${t}</span>`)
     .join('');
 
+  const categoryPill = `<span class="tag">${design.category}</span>`;
+
+  const actionLink = design.caseStudyReady
+    ? `<a
+        href="/designs/${design.slug}"
+        class="link-arrow"
+        style="font-size: var(--text-xs); letter-spacing: 0.04em;"
+        aria-label="View case study for ${design.name}"
+      >View Case Study &rarr;</a>`
+    : `<span
+        class="link-arrow link-arrow--muted"
+        style="font-size: var(--text-xs); letter-spacing: 0.04em;"
+        aria-label="Case study coming soon for ${design.name}"
+      >Case Study Coming Soon</span>`;
+
   return `
     <article class="project-card design-card fade-up" data-slug="${design.slug}">
       <div class="project-card__image-wrap design-card__image-wrap">
@@ -215,15 +208,10 @@ function designCardHTML(design) {
       </div>
       <div class="project-card__body">
         <h3 class="project-card__name">${design.name}</h3>
-        <p class="project-card__desc">${design.desc}</p>
-        <div class="project-card__tags">${tools}</div>
+        <p class="project-card__desc">${design.shortDesc}</p>
+        <div class="project-card__tags">${categoryPill}${tools}</div>
         <div style="margin-top: var(--space-md);">
-          <a
-            href="${design.href}"
-            class="link-arrow"
-            style="font-size: var(--text-xs); letter-spacing: 0.04em;"
-            aria-label="View design for ${design.name}"
-          >View Design &rarr;</a>
+          ${actionLink}
         </div>
       </div>
     </article>
@@ -231,7 +219,7 @@ function designCardHTML(design) {
 }
 
 export function render() {
-  const tabsHTML   = TABS.map(({ label, value }) => `
+  const tabsHTML    = TABS.map(({ label, value }) => `
     <button
       class="filter-tab${value === 'all' ? ' is-active' : ''}"
       data-filter="${value}"
@@ -239,8 +227,8 @@ export function render() {
     >${label}</button>
   `).join('');
 
-  const cardsHTML  = PROJECTS.map(cardHTML).join('');
-  const designsHTML = DESIGNS.map(designCardHTML).join('');
+  const cardsHTML   = PROJECTS.map(cardHTML).join('');
+  const designsHTML = DESIGNS_DATA.map(designCardHTML).join('');
 
   return `
     <section class="page-container" aria-label="Projects">
@@ -283,7 +271,7 @@ export function render() {
           style="font-size: var(--text-base); color: var(--color-text-muted); max-width: 520px;"
           class="fade-up"
         >
-          UI/UX and brand design work — the visual side of what I build.
+          UI/UX and brand design work. The visual side of what I build.
         </p>
       </header>
 

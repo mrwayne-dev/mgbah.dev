@@ -16,19 +16,19 @@ const SKILLS_SECONDARY = [
 ];
 
 const EXPERIENCE = [
-  { role: 'Freelance Developer',       company: 'Freelance',          year: '2019 — Present',        key: 'freelance'      },
-  { role: 'Freelance Graphic Designer', company: 'Freelance',          year: '2021 — Present',        key: 'graphic-design' },
-  { role: 'CEO & Lead Engineer',        company: 'Lymora',             year: '2023 — Present',        key: 'lymora'         },
-  { role: 'Video Editor',               company: 'Creedlance',         year: ' Early 2025', key: 'creedlance'    },
-  { role: 'Intern Teacher',             company: 'NIIT Port Harcourt', year: 'Early 2025',            key: 'niit'           },
-  { role: 'Director Development',       company: 'Zirostack',          year: '2025 — Present',        key: 'zirostack'      },
+  { role: 'Freelance Developer',       company: 'Freelance',          year: '2019 to Present', key: 'freelance'      },
+  { role: 'Freelance Graphic Designer', company: 'Freelance',          year: '2021 to Present', key: 'graphic-design' },
+  { role: 'CEO & Lead Engineer',        company: 'Lymora',             year: '2023 to Present', key: 'lymora'         },
+  { role: 'Video Editor',               company: 'Creedlance',         year: 'Early 2025',      key: 'creedlance'     },
+  { role: 'Intern Teacher',             company: 'NIIT Port Harcourt', year: 'Early 2025',      key: 'niit'           },
+  { role: 'Director Development',       company: 'Zirostack',          year: '2025 to Present', key: 'zirostack'      },
 ];
 
 // Role detail content — one entry per EXPERIENCE key.
 const ROLE_DETAILS = {
   freelance: [
     '6+ years building backend-heavy web apps for startups, small teams, and individual founders.',
-    'Clients across West Africa and Europe — remote, async, no hand-holding required.',
+    'Clients across West Africa and Europe. Remote, async, no hand-holding required.',
     'Work spans REST API design, database architecture, payment integrations (Paystack, Flutterwave), and full-stack builds.',
     'Primary stack: PHP (native + Laravel), JavaScript (Node.js + vanilla), MySQL, PostgreSQL.',
     'This is how I self-fund Lymora.',
@@ -40,10 +40,10 @@ const ROLE_DETAILS = {
     'Design thinking directly informs how I approach UI and product decisions in development work.',
   ],
   lymora: [
-    'Founded Lymora in 2023 — no co-founder, no external funding. Built from zero.',
+    'Founded Lymora in 2023. No co-founder, no external funding. Built from zero.',
     'Architected the full backend: multi-tenant PHP API, JWT auth, Paystack integration, role-based access control.',
-    'Shipped Lymora Learn — AI exam prep powered by Claude, analysing 10+ years of past questions.',
-    'Built and launched Lymora Student Housing — verified accommodation marketplace with escrow payments.',
+    'Shipped Lymora Learn, AI exam prep powered by Claude, analysing 10+ years of past questions.',
+    'Built and launched Lymora Student Housing, a verified accommodation marketplace with escrow payments.',
     'Grew the team to nine people across engineering, design, and operations.',
     '200+ active users. ₦500k+ revenue. Self-funded entirely through freelance work.',
   ],
@@ -73,9 +73,10 @@ const STATS = [
 
 const CLIENTS = [
   { name: 'Lymora',             image: '/assets/images/clients/lymora.png',     href: 'https://lymora.tech'    },
-  { name: 'NIIT Port Harcourt', image: '/assets/images/clients/niit.webp',      href: 'https://niit.mgbah.dev'  },
+  { name: 'NIIT Port Harcourt', image: '/assets/images/clients/niit.png',      href: 'https://niit.mgbah.dev'  },
   { name: 'Zirostack',          image: '/assets/images/clients/zirostack.png',  href: 'https://zirostack.com'  },
   { name: 'Creedlance',         image: '/assets/images/clients/creedlance.png', href: 'https://creedlance.com' },
+  { name: 'CyberCyn',         image: '/assets/images/clients/cybercyn.png', href: '/projects' },
 ];
 
 const WHAT_I_BRING = [
@@ -87,12 +88,12 @@ const WHAT_I_BRING = [
   {
     icon: 'ph-rocket-launch',
     title: 'Founder Mentality',
-    desc: "I built and fund Lymora myself. I know what it costs to ship slowly, and I know what it means to own an outcome — not just a ticket.",
+    desc: "I built and fund Lymora myself. I know what it costs to ship slowly, and I know what it means to own an outcome. Not just a ticket.",
   },
   {
     icon: 'ph-lightning',
     title: 'Speed Without Shortcuts',
-    desc: 'Fast is not the same as rushed. I move quickly because I think clearly upfront — architecture first, then execution.',
+    desc: 'Fast is not the same as rushed. I move quickly because I think clearly upfront. Architecture first, then execution.',
   },
   {
     icon: 'ph-handshake',
@@ -102,7 +103,7 @@ const WHAT_I_BRING = [
   {
     icon: 'ph-code',
     title: 'Backend Depth',
-    desc: 'PHP, Laravel, MySQL, REST APIs — not just functional, but clean, maintainable, and built to last beyond the first deployment.',
+    desc: 'PHP, Laravel, MySQL, REST APIs. Not just functional, but clean, maintainable, and built to last beyond the first deployment.',
   },
   {
     icon: 'ph-palette',
@@ -112,14 +113,29 @@ const WHAT_I_BRING = [
   {
     icon: 'ph-chart-line-up',
     title: 'Product Intuition',
-    desc: "I've made product decisions under real constraints — users, revenue, and a team depending on the call. That sharpens your judgment fast.",
+    desc: "I've made product decisions under real constraints: users, revenue, and a team depending on the call. That sharpens your judgment fast.",
   },
   {
     icon: 'ph-lock-key',
     title: 'Ownership Mindset',
-    desc: "No co-founder, no external capital. I take full responsibility for what I ship. That's not a flex — it's just how I'm wired.",
+    desc: "No co-founder, no external capital. I take full responsibility for what I ship. That's not a flex, it's just how I'm wired.",
   },
 ];
+
+/**
+ * Animates a number from 0 to target over duration ms using rAF.
+ */
+function animateCounter(el, target, duration = 1400) {
+  const start = performance.now();
+  function tick(now) {
+    const elapsed  = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased    = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target);
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 
 /**
  * Splits a heading into word-span elements for the stagger word-reveal animation.
@@ -145,15 +161,16 @@ function clientCard({ name, image, href }) {
 }
 
 export function render() {
-  // ── Skill pills with staggered animation-delay ────────────────────────────
+  // ── Skill pills with staggered entrance animation ────────────────────────
+  // animation-delay is set inline; the CSS keyframe fires when parent gets .is-revealed
   const skillPillsPrimary = SKILLS_PRIMARY.map((s, i) => {
-    const delay = (i * 0.04).toFixed(2);
-    return `<span class="skill-pill fade-up" style="animation-delay:${delay}s">${s}</span>`;
+    const delay = (i * 0.06).toFixed(2);
+    return `<span class="skill-pill" style="animation-delay:${delay}s">${s}</span>`;
   }).join('');
 
   const skillPillsSecondary = SKILLS_SECONDARY.map((s, i) => {
-    const delay = ((SKILLS_PRIMARY.length + i) * 0.04).toFixed(2);
-    return `<span class="skill-pill skill-pill--secondary fade-up" style="animation-delay:${delay}s">${s}</span>`;
+    const delay = ((SKILLS_PRIMARY.length + i) * 0.06).toFixed(2);
+    return `<span class="skill-pill skill-pill--secondary" style="animation-delay:${delay}s">${s}</span>`;
   }).join('');
 
   // ── Experience table rows ─────────────────────────────────────────────────
@@ -170,13 +187,20 @@ export function render() {
     </tr>
   `).join('');
 
-  // ── Stats ─────────────────────────────────────────────────────────────────
-  const statCells = STATS.map(({ number, label }) => `
-    <div class="stat fade-up">
-      <span class="stat__number">${number}</span>
-      <span class="stat__label">${label}</span>
-    </div>
-  `).join('');
+  // ── Stats — split into numeric + suffix for counter animation ────────────
+  const statCells = STATS.map(({ number, label }) => {
+    const match  = number.match(/^(\d+)(.*)$/);
+    const num    = match ? match[1] : number;
+    const suffix = match ? match[2] : '';
+    return `
+      <div class="stat scale-in">
+        <span class="stat__number">
+          <span class="stat-count" data-target="${num}">0</span>${suffix}
+        </span>
+        <span class="stat__label">${label}</span>
+      </div>
+    `;
+  }).join('');
 
   // ── What I Bring cards ────────────────────────────────────────────────────
   const wibCards = WHAT_I_BRING.map(({ icon, title, desc }) => `
@@ -227,24 +251,23 @@ export function render() {
 
           <div class="about-bio">
             <p class="fade-up" style="animation-delay:0s">
-              my name is Michael. i started tech at 15, not because someone pointed me toward it, but because i couldn't leave it alone.
-              by the time i finished the full-stack program at NIIT Port Harcourt, i'd already been deep in graphic design and web development for years.
-              the program didn't start me. it just gave structure to something already moving.
+              I started tech at 15, not because someone pointed me toward it, but because I couldn't leave it alone. Graphic design first, then web development, then the full stack program at NIIT Port Harcourt, which didn't start me so much as give structure to something already moving.
             </p>
             <p class="fade-up" style="margin-top: var(--space-md); animation-delay:0.1s">
-              i'm 20 now. i run Lymora, a startup i built from scratch alongside my blessed team, in the nigerian market, solving problems i watched go unsolved. i fund it through freelance. backend is where i'm most dangerous, but i've never handed off a frontend and called it done. i design it, build it, ship it. end to end.
-              that motion isn't accidental. i think differently about a product when i've touched every layer of it. the design decisions inform the engineering. the engineering exposes what the design got wrong. you can't fake that kind of understanding.
+              I'm 20 now. I run Lymora, a startup I built from scratch in the Nigerian market, solving problems I watched go unsolved, funded through freelance. Backend is where I'm most dangerous, but I've never handed off a frontend and called it done. I design it, build it, ship it.
             </p>
             <p class="fade-up" style="margin-top: var(--space-md); animation-delay:0.2s">
-            so basically, that's it. <br>
-            <b>all credit to GOD!</b>
+              That's not a workflow. It's how I think. The design decisions inform the engineering. The engineering exposes what the design got wrong. You can't fake that kind of understanding. You can't get it any other way.
+            </p>
+            <p class="fade-up" style="margin-top: var(--space-md); animation-delay:0.3s">
+              All credit to God.
             </p>
           </div>
 
           <!-- Skills -->
           <div style="margin-bottom: var(--space-lg); margin-top: var(--space-lg);">
             <p class="section-label fade-in">Skills</p>
-            <div class="skill-pills">
+            <div class="skill-pills skill-pills--animated" id="skill-pills-wrap">
               ${skillPillsPrimary}
               ${skillPillsSecondary}
             </div>
@@ -281,7 +304,7 @@ export function render() {
               aria-label="Michael Mgbah"
             ></video>
           </div>
-          <p class="about-portrait__caption">Michael Mgbah — Port Harcourt, NG</p>
+          <p class="about-portrait__caption">Michael Mgbah, Port Harcourt, NG</p>
         </div>
 
       </div>
@@ -291,7 +314,7 @@ export function render() {
         <p class="section-label fade-in">Philosophy</p>
         <p class="philosophy-block__quote">
           &ldquo;I&rsquo;ve never had the luxury of building the wrong thing twice.
-          No funding, no co-founder &mdash; just the problem, the code, and whatever
+          No funding, no co-founder. Just the problem, the code, and whatever
           time I have between classes and client work. That constraint taught me
           something: most software fails before the first line is written, because
           nobody sat with the problem long enough. I sit with it. I question every
@@ -300,7 +323,7 @@ export function render() {
       </div>
 
       <!-- Stats row -->
-      <div class="stats-row" aria-label="Statistics">
+      <div class="stats-row" id="about-stats" aria-label="Statistics">
         ${statCells}
       </div>
 
@@ -366,6 +389,7 @@ export function init() {
   const animatables = document.querySelectorAll(
     '[aria-label="About Michael Mgbah"] .fade-up, ' +
     '[aria-label="About Michael Mgbah"] .fade-in, ' +
+    '[aria-label="About Michael Mgbah"] .scale-in, ' +
     '.about-portrait.fade-in'
   );
 
@@ -382,6 +406,46 @@ export function init() {
   );
 
   animatables.forEach((el) => observer.observe(el));
+
+  // ── Skill pills staggered reveal ─────────────────────────────────────────
+  const skillsWrap = document.getElementById('skill-pills-wrap');
+  if (skillsWrap) {
+    const skillsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            skillsWrap.classList.add('is-revealed');
+            skillsObserver.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    skillsObserver.observe(skillsWrap);
+  }
+
+  // ── Stat counters ────────────────────────────────────────────────────────
+  const statsSection = document.getElementById('about-stats');
+  const countEls     = document.querySelectorAll('#about-stats .stat-count');
+  let   countersStarted = false;
+
+  if (statsSection && countEls.length) {
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !countersStarted) {
+            countersStarted = true;
+            countEls.forEach((el) => {
+              animateCounter(el, parseInt(el.dataset.target, 10));
+            });
+            counterObserver.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    counterObserver.observe(statsSection);
+  }
 
   // ── Experience role modals ─────────────────────────────────────────────────
   // Move the overlay to document.body so position:fixed works correctly —
