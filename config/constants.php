@@ -31,3 +31,5 @@ if (getenv('APP_ENV') === 'development') {
 }
 
 date_default_timezone_set('UTC');
+
+define('ASSET_VERSION', '1.0.2');

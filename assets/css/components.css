@@ -26,7 +26,7 @@
   align-items: center;
   gap: var(--space-sm);
   padding: 14px var(--space-lg);
-  font-family: 'DM Sans', 'Host Grotesk', sans-serif;
+  font-family: 'Host Grotesk', sans-serif;
   font-size: var(--text-sm);
   font-weight: 500;
   letter-spacing: 0.03em;
@@ -50,6 +50,17 @@
   background: rgba(255, 255, 255, 0.14);
   color: var(--color-text);
   border-color: rgba(255, 255, 255, 0.22);
+}
+
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: loader-spin 0.7s linear infinite;
+  flex-shrink: 0;
 }
 
 /* --------------------------------------------------------------------------
@@ -85,7 +96,6 @@
   background-position: center;
   opacity: 0;
   transition: opacity 1.5s ease;
-  will-change: opacity;
 }
 
 .hero__carousel-slide.is-active {
@@ -809,14 +819,6 @@
   display: none;
 }
 
-/* Placeholder hover brightens instead of un-greyscaling (no real image) */
-.project-card__placeholder {
-  transition: filter var(--transition-base);
-}
-
-.project-card:hover .project-card__placeholder {
-  filter: brightness(1.4);
-}
 
 /* Design card — distinct placeholder pattern */
 .design-card__placeholder {
@@ -856,12 +858,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1);
-  transition: filter 0.4s ease;
-}
-
-.client-card:hover img {
-  filter: grayscale(0);
 }
 
 @media (max-width: 479px) {
@@ -1705,7 +1701,6 @@ body.smartsupp-open #smartsupp-widget-container {
   display: flex;
   gap: var(--space-md);
   transition: transform var(--transition-base);
-  will-change: transform;
 }
 
 .testimonial-card {
@@ -2662,6 +2657,248 @@ body.smartsupp-open #smartsupp-widget-container {
   min-height: 280px;
 }
 
+/* Full-page lock — web2stack case study */
+.cs-locked-wrap {
+  position: relative;
+}
+
+.cs-page--locked {
+  filter: blur(12px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cs-locked-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  background: rgba(8, 8, 8, 0.65);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 100;
+}
+
+.cs-locked-badge {
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-card);
+  padding: 10px 24px;
+  border-radius: 999px;
+}
+
+.cs-locked-hint {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   Image Carousel (replaces 3-slot gallery grid)
+   -------------------------------------------------------------------------- */
+
+.cs-carousel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: var(--space-xl);
+  background: var(--color-bg-card);
+}
+
+.cs-carousel__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.cs-carousel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.cs-carousel__slide--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cs-carousel__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cs-carousel__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-dim);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+}
+
+.cs-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 10, 10, 0.72);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.cs-carousel__btn:hover {
+  background: rgba(24, 24, 24, 0.92);
+}
+
+.cs-carousel__btn--prev { left: 12px; }
+.cs-carousel__btn--next { right: 12px; }
+
+.cs-carousel__dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.cs-carousel__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s;
+}
+
+.cs-carousel__dot--active {
+  background: var(--color-text);
+}
+
+.cs-carousel--blurred {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cs-gallery-blur-wrap .cs-carousel {
+  margin-bottom: 0;
+}
+
+/* WIP blur — case study gallery */
+.cs-gallery-blur-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: var(--space-xl);
+}
+
+.cs-gallery-blur-wrap .cs-gallery {
+  margin-bottom: 0;
+}
+
+.cs-gallery--blurred {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.cs-gallery-wip-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.45);
+}
+
+.cs-gallery-wip-badge {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-card);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* WIP blur — project card image (web2stack on listing page) */
+.project-card__placeholder--blurred {
+  filter: blur(6px);
+}
+
+.project-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.45);
+}
+
+.project-card__wip-badge {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-card);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+[data-slug="web2stack"],
+[data-slug="webstarter-cli"] {
+  position: relative;
+}
+
+.project-card__star-badge {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
 /* --------------------------------------------------------------------------
    Overview + Problem
    -------------------------------------------------------------------------- */
@@ -3056,67 +3293,174 @@ body.smartsupp-open #smartsupp-widget-container {
 }
 
 /* --------------------------------------------------------------------------
-   Design Study — Layout Sections
+   Design Study — Editorial Layout
    -------------------------------------------------------------------------- */
 
-.ds-brief-outcome {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
-  margin-bottom: var(--space-2xl);
+/* Hero overrides */
+.ds-hero__category {
+  margin-bottom: var(--space-xs);
 }
 
-@media (max-width: 767px) {
-  .ds-brief-outcome { grid-template-columns: 1fr; }
-}
-
-.ds-brief p, .ds-outcome p {
+.ds-hero__meta {
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
-  line-height: 1.7;
-  font-size: var(--text-base);
+  letter-spacing: 0.06em;
+  margin-top: var(--space-sm);
 }
 
-.ds-process { margin-bottom: var(--space-2xl); }
-
-.ds-process__timeline {
-  display: flex;
-  gap: var(--space-lg);
-  margin-top: var(--space-lg);
+/* Full-width hero image */
+.ds-hero-image {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-xl);
+  background: var(--color-bg-card);
 }
 
-@media (max-width: 767px) {
-  .ds-process__timeline { flex-direction: column; }
+.ds-hero-image--blurred {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
 }
 
-.ds-phase {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  padding: var(--space-md);
-  border: 1px solid var(--color-border);
+.ds-hero-image__inner {
+  width: 100%;
+  height: 100%;
+}
+
+.ds-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
   border-radius: var(--radius);
 }
 
-.ds-phase__num {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  letter-spacing: 0.1em;
+.ds-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text-dim);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  min-height: 200px;
 }
 
-.ds-phase__title {
+/* Pull quote — brief */
+.ds-pull-quote {
+  margin: var(--space-2xl) 0;
+  padding: var(--space-lg) var(--space-xl);
+  border-left: 2px solid var(--color-border);
+}
+
+.ds-pull-quote__text {
+  font-size: clamp(var(--text-base), 2.2vw, var(--text-xl));
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Image duo */
+.ds-image-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+}
+
+.ds-image-duo__slot {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-bg-card);
+}
+
+.cs-page--soccer-flyers .ds-image-duo__slot {
+  aspect-ratio: 4 / 5;
+}
+
+@media (max-width: 480px) {
+  .ds-image-duo { grid-template-columns: 1fr; }
+}
+
+/* Process — vertical timeline */
+.ds-process {
+  margin-bottom: var(--space-2xl);
+}
+
+.ds-timeline {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-lg) 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-timeline__item {
+  display: flex;
+  gap: var(--space-md);
+  padding-bottom: var(--space-lg);
+  position: relative;
+}
+
+.ds-timeline__item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 24px;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border);
+}
+
+.ds-timeline__num {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  min-width: 28px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.ds-timeline__title {
   font-weight: 600;
   font-size: var(--text-sm);
+  margin-bottom: var(--space-xs);
 }
 
-.ds-phase__desc {
+.ds-timeline__desc {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
+/* Outcome callout card */
+.ds-outcome-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.ds-outcome-card p:last-child {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  font-size: var(--text-base);
+  margin-top: var(--space-sm);
+}
+
+/* Tools */
 .ds-tools { margin-bottom: var(--space-2xl); }
 
+/* Next design nav */
 .ds-next {
   display: flex;
   align-items: center;
@@ -3127,6 +3471,7 @@ body.smartsupp-open #smartsupp-widget-container {
   transition: background 0.2s ease;
   text-decoration: none;
 }
+
 .ds-next:hover { background: var(--color-surface); }
 .ds-next__label { font-size: var(--text-xs); color: var(--color-text-muted); letter-spacing: 0.05em; }
 .ds-next__name { font-size: clamp(var(--text-xl), 3vw, var(--text-2xl)); font-weight: 600; letter-spacing: -0.02em; }

@@ -1,9 +1,11 @@
 /**
- * designstudy.js — Design case study page
+ * designstudy.js — Design case study page (editorial layout)
  * Reusable page module — receives a slug, looks up from DESIGNS_DATA,
- * renders the full design case study layout for all designs.
- * Designs with caseStudyReady: false show an "In Development" notice and
- * a modal trigger button.
+ * renders the editorial case study layout for all design projects.
+ *
+ * Layout: Back nav → Hero → Full-width hero image → Pull quote (brief)
+ *         → Image duo → Vertical process timeline → Outcome card
+ *         → Tools → Next Design
  *
  * render(slug) — returns HTML string
  * init(slug)   — wires interactivity and scroll animations
@@ -13,17 +15,22 @@ import { DESIGNS_DATA } from '../data/projects.js';
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
-function gallerySlot(src, name, cls) {
+function imageSlot(src, name, cls) {
+  if (!src) {
+    return `<div class="${cls}"><div class="ds-img-placeholder">${name}</div></div>`;
+  }
   return `
     <div class="${cls}">
       <img
         src="${src}"
-        class="cs-gallery__img"
+        class="ds-img"
         alt="${name}"
         loading="lazy"
+        width="1600"
+        height="900"
         onerror="this.style.display='none';this.nextElementSibling.removeAttribute('hidden')"
       >
-      <div class="cs-gallery__placeholder" hidden>${name}</div>
+      <div class="ds-img-placeholder" hidden>${name}</div>
     </div>
   `;
 }
@@ -45,35 +52,38 @@ export function render(slug) {
   const design = DESIGNS_DATA.find(d => d.slug === slug);
   if (!design) return notFound(slug);
 
-  const { name, shortDesc, year, client, category, tools, brief, process, outcome, images, href, caseStudyReady } = design;
+  const { name, shortDesc, year, client, category, tools, brief, process, outcome, images, href } = design;
 
-  const metaChips = [year, client, category, tools.join(', ')]
-    .map(val => `<span class="cs-meta-chip">${val}</span>`)
-    .join('');
+  // Category label
+  const categoryLabels = {
+    'motion':      'Motion',
+    'branding':    'Branding',
+    'print':       'Print',
+    'ui-ux':       'UI/UX',
+    'graphics-ui': 'Graphics & UI',
+  };
+  const categoryLabel = categoryLabels[category] ?? (category.charAt(0).toUpperCase() + category.slice(1).replace('-', '/'));
 
-  const ctaLinks = [
-    href ? `<a href="${href}" class="btn btn-primary" target="_blank" rel="noopener">View Design &rarr;</a>` : '',
-    !caseStudyReady ? `<button class="btn btn-ghost cs-dev-modal-trigger">View Live &nearr;</button>` : '',
-  ].filter(Boolean).join('');
-
-  // Process phases
-  const phasesHTML = process.map((p, i) => `
-    <div class="ds-phase fade-up">
-      <span class="ds-phase__num">${String(i + 1).padStart(2, '0')}</span>
-      <p class="ds-phase__title">${p.phase}</p>
-      <p class="ds-phase__desc">${p.desc}</p>
-    </div>
+  // Process timeline
+  const timelineItems = process.map((p, i) => `
+    <li class="ds-timeline__item fade-up">
+      <span class="ds-timeline__num">${String(i + 1).padStart(2, '0')}</span>
+      <div>
+        <p class="ds-timeline__title">${p.phase}</p>
+        <p class="ds-timeline__desc">${p.desc}</p>
+      </div>
+    </li>
   `).join('');
 
   // Tools pills
   const toolPills = tools.map(t => `<span class="tag">${t}</span>`).join('');
 
-  // Next design
+  // Next design (cycles)
   const currentIndex = DESIGNS_DATA.findIndex(d => d.slug === slug);
   const nextDesign = DESIGNS_DATA[(currentIndex + 1) % DESIGNS_DATA.length];
 
   return `
-    <article class="page-container cs-page" aria-label="${name} Design Case Study">
+    <article class="page-container cs-page cs-page--${slug}" aria-label="${name} Design Case Study">
 
       <!-- ===== BACK NAV ===== -->
       <a href="/projects" class="cs-back">
@@ -86,49 +96,56 @@ export function render(slug) {
         <h1 class="cs-hero__name">${name}</h1>
         <p class="cs-hero__desc">${shortDesc}</p>
         <div class="cs-meta-strip">
-          ${metaChips}
+          <span class="cs-meta-chip">${year}</span>
+          <span class="cs-meta-chip">${categoryLabel}</span>
+          <span class="cs-meta-chip">${client}</span>
         </div>
-        ${ctaLinks ? `<div class="cs-hero__links">${ctaLinks}</div>` : ''}
-      </div>
-
-      <!-- ===== IN DEVELOPMENT NOTICE ===== -->
-      ${!caseStudyReady ? `
-      <div class="cs-dev-notice fade-up">
-        <i class="ph ph-wrench" aria-hidden="true"></i>
-        This design work is currently in progress. What you&rsquo;re seeing reflects work in progress.
-      </div>
-      ` : ''}
-
-      <!-- ===== IMAGE GALLERY ===== -->
-      <div class="cs-gallery fade-in">
-        ${gallerySlot(images[0], name, 'cs-gallery__main')}
-        ${gallerySlot(images[1], name, 'cs-gallery__secondary')}
-        ${gallerySlot(images[2], name, 'cs-gallery__secondary')}
-      </div>
-
-      <!-- ===== BRIEF + OUTCOME ===== -->
-      <div class="ds-brief-outcome">
-        <div class="ds-brief">
-          <p class="section-label fade-in">• The Brief</p>
-          <p class="fade-up">${brief}</p>
-        </div>
-        <div class="ds-outcome">
-          <p class="section-label fade-in">• How It Was Delivered</p>
-          <p class="fade-up">${outcome}</p>
+        <div class="cs-hero__links">
+          ${href
+            ? `<a href="${href}" class="btn btn-primary" target="_blank" rel="noopener">View Design &rarr;</a>`
+            : `<span class="btn btn-primary" style="opacity:0.35;cursor:default;" aria-disabled="true">View Design &rarr;</span>`
+          }
         </div>
       </div>
 
-      <!-- ===== PROCESS ===== -->
+      <!-- ===== HERO IMAGE (full width) ===== -->
+      ${images[0] ? `
+      <div class="ds-hero-image fade-in">
+        ${imageSlot(images[0], name, 'ds-hero-image__inner')}
+      </div>` : ''}
+
+      <!-- ===== PULL QUOTE (brief) ===== -->
+      <blockquote class="ds-pull-quote fade-up">
+        <p class="ds-pull-quote__text">&ldquo;${brief}&rdquo;</p>
+      </blockquote>
+
+      <!-- ===== IMAGE DUO ===== -->
+      ${images.length >= 2 ? `
+      <div class="ds-image-duo fade-up">
+        ${imageSlot(images[1], name, 'ds-image-duo__slot')}
+        ${images[2]
+          ? imageSlot(images[2], name, 'ds-image-duo__slot')
+          : `<div class="ds-image-duo__slot"><div class="ds-img-placeholder" aria-hidden="true">${name}</div></div>`
+        }
+      </div>` : ''}
+
+      <!-- ===== PROCESS TIMELINE ===== -->
       <div class="ds-process">
-        <p class="section-label fade-in">• Process</p>
-        <div class="ds-process__timeline">
-          ${phasesHTML}
-        </div>
+        <p class="section-label fade-in">&bull; Process</p>
+        <ol class="ds-timeline">
+          ${timelineItems}
+        </ol>
+      </div>
+
+      <!-- ===== OUTCOME CARD ===== -->
+      <div class="ds-outcome-card fade-up">
+        <p class="section-label">&bull; The Result</p>
+        <p>${outcome}</p>
       </div>
 
       <!-- ===== TOOLS ===== -->
-      <div class="ds-tools">
-        <p class="section-label fade-in">• Tools</p>
+      <div class="ds-tools fade-up">
+        <p class="section-label">&bull; Tools</p>
         <div class="project-card__tags" style="margin-top: var(--space-md);">
           ${toolPills}
         </div>
@@ -149,18 +166,12 @@ export function render(slug) {
 
 // ── Init ─────────────────────────────────────────────────────────────────────
 
-function initComingSoon() {
-  document.querySelector('.cs-dev-modal-trigger')
-    ?.addEventListener('click', () => window.openDevModal?.());
-}
-
 export function init(slug) {
   const design = DESIGNS_DATA.find(d => d.slug === slug);
   if (design) {
     document.title = `${design.name} | Michael Mgbah`;
   }
 
-  // Scroll entrance animations
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -173,9 +184,4 @@ export function init(slug) {
     { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
   );
   document.querySelectorAll('.cs-page .fade-up, .cs-page .fade-in').forEach(el => observer.observe(el));
-
-  // Wire modal trigger for in-development designs
-  if (!design || !design.caseStudyReady) {
-    initComingSoon();
-  }
 }

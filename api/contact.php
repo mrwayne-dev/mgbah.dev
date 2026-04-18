@@ -47,10 +47,38 @@ if (isEmpty($message)) {
 }
 
 // ── Send ────────────────────────────────────────────────────────────────────
+// Flush the HTTP response to the browser first, then send emails in the
+// background. SMTP latency (TLS handshake, auth, DATA transfer) can take
+// 5–60 seconds — the user should never wait for it.
+
+$responseJson = json_encode([
+    'status'  => 'success',
+    'message' => "Message sent. I'll get back to you shortly.",
+]);
+
+http_response_code(200);
+header('Content-Length: ' . strlen($responseJson));
+header('Connection: close');
+
+// Flush all output buffers so headers + body reach the browser
+while (ob_get_level()) ob_end_flush();
+echo $responseJson;
+flush();
+
+// PHP-FPM: close the HTTP connection and continue execution
+if (function_exists('fastcgi_finish_request')) {
+    fastcgi_finish_request();
+}
+
+// Allow script to keep running even if the client disconnects
+ignore_user_abort(true);
+set_time_limit(60);
+
 try {
-    sendMail($name, $email, $message);
-    sendAutoReply($name, $email);
-    jsonSuccess("Message sent. I'll get back to you shortly.");
+    $mail = createMailer();
+    sendAdminNotification($mail, $name, $email, $message);
+    sendAutoReply($mail, $name, $email);
+    $mail->smtpClose();
 } catch (\Exception $e) {
-    jsonError('Unable to send message. Please try again later.', 500);
+    error_log('[mgbah.dev] Contact email failed: ' . $e->getMessage());
 }

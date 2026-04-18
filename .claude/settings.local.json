@@ -12,7 +12,18 @@
       "Bash(curl -sL \"https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=700&q=85&fit=crop\" -o \"C:/Users/aleru/OneDrive/Desktop/mrwayne/web_dev/mgbah.dev/assets/images/rock-right.jpg\")",
       "WebFetch(domain:api.cal.com)",
       "Bash(python3 -c \":*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(node *)",
+      "Bash(awk -F. '{print $NF}')",
+      "Bash(xargs du *)",
+      "Bash(xargs ls *)",
+      "Bash(awk '{print $5, $9}')",
+      "Bash(sort -k5 -rh)",
+      "Bash(sudo apt-get *)",
+      "Bash(python3 -c \"from PIL import Image; print\\('pillow ok'\\)\")",
+      "Bash(python3 -c \"import cairosvg; print\\('cairosvg ok'\\)\")",
+      "Bash(python3 *)",
+      "Bash(grep *)"
     ]
   }
 }

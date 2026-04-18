@@ -11,20 +11,26 @@
 
 import { PROJECTS_DATA } from '../data/projects.js';
 
+const CATEGORY_LABELS = {
+  'platforms':   'Platforms',
+  'web-apps':    'Web Apps',
+  'open-source': 'Open Source',
+};
+
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
-function gallerySlot(src, name, cls) {
+function projectImage(src, name) {
   return `
-    <div class="${cls}">
-      <img
-        src="${src}"
-        class="cs-gallery__img"
-        alt="${name}"
-        loading="lazy"
-        onerror="this.style.display='none';this.nextElementSibling.removeAttribute('hidden')"
-      >
-      <div class="cs-gallery__placeholder" hidden>${name}</div>
-    </div>
+    <img
+      src="${src}"
+      class="cs-carousel__img"
+      alt="${name}"
+      loading="lazy"
+      width="1600"
+      height="900"
+      onerror="this.style.display='none';this.nextElementSibling.removeAttribute('hidden')"
+    >
+    <div class="cs-carousel__placeholder" hidden>${name}</div>
   `;
 }
 
@@ -69,7 +75,8 @@ export function render(slug) {
   }
 
   // Meta chips
-  const metaChips = [year, category, status, role]
+  const categoryLabel = CATEGORY_LABELS[category] || category;
+  const metaChips = [year, categoryLabel, status, role]
     .map(val => `<span class="cs-meta-chip">${val}</span>`)
     .join('');
 
@@ -153,7 +160,20 @@ export function render(slug) {
       </ol>
     ` : '';
 
-  return `
+  const currentIndex = PROJECTS_DATA.findIndex(p => p.slug === slug);
+  const nextProject  = PROJECTS_DATA[(currentIndex + 1) % PROJECTS_DATA.length];
+  const nextProjectNav = `
+    <!-- ===== NEXT PROJECT ===== -->
+    <a href="/projects/${nextProject.slug}" class="ds-next">
+      <div>
+        <p class="ds-next__label">Next Project</p>
+        <p class="ds-next__name">${nextProject.name}</p>
+      </div>
+      <span class="ds-next__arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  `;
+
+  const html = `
     <article class="page-container cs-page" aria-label="${name} Case Study">
 
       <!-- ===== BACK NAV ===== -->
@@ -180,12 +200,21 @@ export function render(slug) {
       </div>
       ` : ''}
 
-      <!-- ===== IMAGE GALLERY ===== -->
-      <div class="cs-gallery fade-in">
-        ${gallerySlot(images[0], name, 'cs-gallery__main')}
-        ${gallerySlot(images[1], name, 'cs-gallery__secondary')}
-        ${gallerySlot(images[2], name, 'cs-gallery__secondary')}
+      <!-- ===== IMAGE ===== -->
+      ${!caseStudyReady ? `
+      <div class="cs-gallery-blur-wrap">
+        <div class="cs-carousel cs-carousel--blurred fade-in">
+          ${projectImage(images[0], name)}
+        </div>
+        <div class="cs-gallery-wip-overlay">
+          <span class="cs-gallery-wip-badge">Alfred's gonna upload these soon!</span>
+        </div>
       </div>
+      ` : `
+      <div class="cs-carousel fade-in">
+        ${projectImage(images[0], name)}
+      </div>
+      `}
 
       <!-- ===== OVERVIEW + PROBLEM ===== -->
       <div class="cs-overview">
@@ -231,8 +260,27 @@ export function render(slug) {
       </section>
       ` : ''}
 
+      ${nextProjectNav}
+
     </article>
   `;
+
+  if (slug === 'web2stack') {
+    return `
+      <div class="cs-locked-wrap">
+        <div class="cs-page--locked" aria-hidden="true">${html}</div>
+        <div class="cs-locked-overlay" role="status" aria-label="Coming soon">
+          <p class="cs-locked-badge">Coming Soon</p>
+          <p class="cs-locked-hint">The Batcave isn&rsquo;t open yet.</p>
+        </div>
+      </div>
+      <div class="page-container" style="padding-top: 0; padding-bottom: 0;">
+        ${nextProjectNav}
+      </div>
+    `;
+  }
+
+  return html;
 }
 
 // ── Init ─────────────────────────────────────────────────────────────────────

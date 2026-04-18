@@ -14,28 +14,32 @@ const MARQUEE_ITEMS = [
 
 const PROJECTS = [
   {
-    name: 'Lymora Learn',
-    desc: 'AI exam prep platform. Analyses 10+ years of past questions, predicts likely topics, 100+ active users.',
-    tags: ['PHP', 'JavaScript', 'MySQL', 'Claude AI'],
-    href: '/lymora',
+    name:      'Lymora',
+    desc:      'Nigerian edtech startup. AI exam prep live, student housing in development. 200+ users. ₦650k+ revenue.',
+    tags:      ['EdTech', 'PropTech', 'PHP', 'Claude AI'],
+    href:      '/lymora',
+    thumbnail: '/assets/images/projects/lymora.svg',
   },
   {
-    name: 'Mock Investment Platform',
-    desc: 'Simulated forex and stock trading with real-time charting, virtual portfolios, and live P&L tracking.',
-    tags: ['PHP', 'Laravel', 'JavaScript', 'WebSockets'],
-    href: '/projects',
+    name:      'Mock Investment Platform',
+    desc:      'Simulated forex and stock trading with real-time charting, virtual portfolios, and live P&L tracking.',
+    tags:      ['PHP', 'Laravel', 'JavaScript', 'WebSockets'],
+    href:      '/projects',
+    thumbnail: '/assets/images/projects/investment.webp',
   },
   {
-    name: 'Logistics Tracking Platform',
-    desc: 'End-to-end shipment tracking, waybill generation, transit stage updates, and automated SMS notifications.',
-    tags: ['PHP', 'Laravel', 'MySQL', 'JavaScript'],
-    href: '/projects',
+    name:      'Logistics Tracking Platform',
+    desc:      'End-to-end shipment tracking, waybill generation, transit stage updates, and automated SMS notifications.',
+    tags:      ['PHP', 'Laravel', 'MySQL', 'JavaScript'],
+    href:      '/projects',
+    thumbnail: '/assets/images/projects/logistics.webp',
   },
   {
-    name: 'Laravel Audit Trail',
-    desc: 'Drop-in Composer package logging every Eloquent model mutation who changed what, when, and from which IP.',
-    tags: ['PHP', 'Laravel', 'Composer', 'MySQL'],
-    href: '/projects',
+    name:      'Laravel Audit Trail',
+    desc:      'Drop-in Composer package logging every Eloquent model mutation who changed what, when, and from which IP.',
+    tags:      ['PHP', 'Laravel', 'Composer', 'MySQL'],
+    href:      '/projects',
+    thumbnail: '/assets/images/projects/laravel-audit.svg',
   },
 ];
 
@@ -108,13 +112,16 @@ function marqueeTrack() {
   return `<div class="marquee__item">${items}</div>`;
 }
 
-function projectCard({ name, desc, tags, href }) {
+function projectCard({ name, desc, tags, href, thumbnail }) {
   const tagHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
   return `
     <article class="project-card fade-up">
       <a href="${href}" aria-label="View ${name}">
         <div class="project-card__image-wrap">
-          <div class="project-card__placeholder">Project</div>
+          ${thumbnail
+            ? `<img src="${thumbnail}" alt="${name} thumbnail" loading="lazy" width="1280" height="720">`
+            : `<div class="project-card__placeholder" aria-hidden="true">${name}</div>`
+          }
         </div>
         <div class="project-card__body">
           <h3 class="project-card__name">${name}</h3>
@@ -179,10 +186,10 @@ export function render() {
     <section class="hero" id="hero" aria-label="Hero">
       <!-- Background image carousel — slides crossfade, parallax applied to wrapper -->
       <div class="hero__bg" aria-hidden="true">
-        <div class="hero__carousel-slide is-active" style="background-image:url('/assets/images/profile/bgimage.png')"></div>
-        <div class="hero__carousel-slide" style="background-image:url('/assets/images/profile/carousel2.png')"></div>
-        <div class="hero__carousel-slide" style="background-image:url('/assets/images/profile/carousel3.png')"></div>
-        <div class="hero__carousel-slide" style="background-image:url('/assets/images/profile/carousel4.png')"></div>
+        <div class="hero__carousel-slide is-active" style="background-image:url('/assets/images/profile/bgimage.webp')"></div>
+        <div class="hero__carousel-slide" style="background-image:url('/assets/images/profile/carousel2.webp')"></div>
+        <div class="hero__carousel-slide" style="background-image:url('/assets/images/profile/carousel3.webp')"></div>
+        <div class="hero__carousel-slide" style="background-image:url('/assets/images/profile/carousel4.webp')"></div>
       </div>
       <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
@@ -237,15 +244,15 @@ export function render() {
           <div class="about-strip__text-col">
             <p class="section-label">• About</p>
             <p class="about-strip__text">
-              The boy is a 20 year old backend-leaning full-stack developer, running Lymora. the rest is whatever the work needs; 
-              graphics, video editing, whatever the moment calls for. i've never had to call for help on any of it. either way i'm just trying to have fun with whatever i touch.<br>
+              The boy is a 20 year old backend-leaning full-stack developer, running Lymora. the rest? <br> 
+              graphics, video editing, anything the moment calls for. i've figured most of it out along the way. either way i'm just trying to have fun with everything i touch.<br>
               <b>all credit to GOD!</b>
             </p>
             <a href="/about" class="link-arrow">More about me &rarr;</a>
           </div>
           <div class="about-strip__image-col">
             <div class="about-strip__image-frame">
-              <img src="/assets/images/profile/carousel2.png" alt="Michael Mgbah" loading="lazy">
+              <img src="/assets/images/profile/wayne.webp" alt="Michael Mgbah" loading="lazy" width="304" height="304">
             </div>
           </div>
         </div>
@@ -264,7 +271,7 @@ export function render() {
               Lymora is a Nigerian edtech startup. AI exam prep live, student housing
               in development. Built for RSU students. 200+ users. &#8358;650k+ revenue. Nine-person team.
             </p>
-            <a href="/lymora" class="btn btn-ghost">Learn about Lymora &rarr;</a>
+            <a href="/lymora" class="btn btn-ghost" style="margin-top: var(--space-lg);">Learn about Lymora &rarr;</a>
           </div>
           <div class="lymora-block__products">
             <div class="lymora-product">

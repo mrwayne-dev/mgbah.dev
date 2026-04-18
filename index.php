@@ -42,25 +42,41 @@ require_once __DIR__ . '/config/constants.php';
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon/android-chrome-512x512.png">
   <link rel="manifest" href="/assets/favicon/site.webmanifest">
 
-  <!-- Font Preloads -->
+  <!-- Font Preloads — Host Grotesk self-hosted -->
   <link rel="preload" href="/assets/fonts/HostGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/HostGrotesk-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Google Fonts — DM Sans (body/UI text) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
-
   <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/layout.css">
-  <link rel="stylesheet" href="/assets/css/components.css">
-  <link rel="stylesheet" href="/assets/css/animations.css">
+  <link rel="stylesheet" href="/assets/css/main.css?v=<?= ASSET_VERSION ?>">
+  <link rel="stylesheet" href="/assets/css/layout.css?v=<?= ASSET_VERSION ?>">
+  <link rel="stylesheet" href="/assets/css/components.css?v=<?= ASSET_VERSION ?>">
+  <link rel="stylesheet" href="/assets/css/animations.css?v=<?= ASSET_VERSION ?>">
 
   <!-- Phosphor Icons CDN -->
   <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+</head>
+<body>
 
-  <!-- Cal.com Embed -->
+  <!-- Film grain overlay — purely decorative, pointer-events: none -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav id="nav" aria-label="Main navigation"></nav>
+  <main id="app" role="main"></main>
+  <footer id="site-footer" aria-label="Site footer"></footer>
+  <div id="chat-widget" aria-label="WhatsApp chat widget"></div>
+
+  <!-- Expose PHP constants to JS -->
+  <script>
+    window.WHATSAPP_NUMBER = '<?= htmlspecialchars(WHATSAPP_NUMBER ?: '', ENT_QUOTES, 'UTF-8') ?>';
+  </script>
+
+  <!-- GSAP — deferred so it doesn't block render -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+
+  <!-- App Entry Point -->
+  <script type="module" src="/assets/js/app.js?v=<?= ASSET_VERSION ?>"></script>
+
+  <!-- Cal.com Embed — loaded after page content -->
   <script type="text/javascript">
     (function (C, A, L) {
       let p = function (a, ar) { a.q.push(ar); };
@@ -83,28 +99,6 @@ require_once __DIR__ . '/config/constants.php';
     })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "30min", { origin: "https://cal.com" });
   </script>
-</head>
-<body>
-
-  <!-- Film grain overlay — purely decorative, pointer-events: none -->
-  <div class="grain-overlay" aria-hidden="true"></div>
-
-  <nav id="nav" aria-label="Main navigation"></nav>
-  <main id="app" role="main"></main>
-  <footer id="site-footer" aria-label="Site footer"></footer>
-  <div id="chat-widget" aria-label="WhatsApp chat widget"></div>
-
-  <!-- Expose PHP constants to JS -->
-  <script>
-    window.WHATSAPP_NUMBER = '<?= htmlspecialchars(WHATSAPP_NUMBER ?: '', ENT_QUOTES, 'UTF-8') ?>';
-  </script>
-
-  <!-- CDN Libraries — must load before app.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-
-  <!-- App Entry Point -->
-  <script type="module" src="/assets/js/app.js"></script>
 
   <!-- In Development Modal — global overlay (desktop: centered card / mobile: bottom drawer) -->
   <div class="dev-modal-overlay" id="dev-modal-overlay" aria-hidden="true">
@@ -126,16 +120,30 @@ require_once __DIR__ . '/config/constants.php';
     </div>
   </div>
 
-  <!-- Smartsupp Live Chat (widget button hidden — driven by custom FAB) -->
+  <!-- Smartsupp Live Chat — loads on first interaction or after 4s, whichever comes first -->
   <script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '8604e1f3d52e82c8509be5f26cd8e291fe7cb0ed';
-    window.smartsupp||(function(d) {
-      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-      c.type='text/javascript';c.charset='utf-8';c.async=true;
-      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-    })(document);
+    (function() {
+      var loaded = false;
+      function loadSmartsupp() {
+        if (loaded) return;
+        loaded = true;
+        var _smartsupp = _smartsupp || {};
+        _smartsupp = { key: '8604e1f3d52e82c8509be5f26cd8e291fe7cb0ed' };
+        window.smartsupp||(function(d) {
+          var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+          s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+          c.type='text/javascript';c.charset='utf-8';c.async=true;
+          c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+        })(document);
+      }
+      var events = ['mousemove','keydown','touchstart','scroll','click'];
+      function onInteraction() {
+        loadSmartsupp();
+        events.forEach(function(e) { window.removeEventListener(e, onInteraction, {passive:true}); });
+      }
+      events.forEach(function(e) { window.addEventListener(e, onInteraction, {passive:true}); });
+      setTimeout(loadSmartsupp, 4000);
+    })();
   </script>
   <noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
 

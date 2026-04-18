@@ -16,12 +16,12 @@ const SKILLS_SECONDARY = [
 ];
 
 const EXPERIENCE = [
-  { role: 'Freelance Developer',       company: 'Freelance',          year: '2019 to Present', key: 'freelance'      },
+  { role: 'Director Development',       company: 'Zirostack',          year: 'Jan 2026 to Present',   key: 'zirostack'      },
+  { role: 'Intern Teacher',             company: 'NIIT Port Harcourt', year: 'Oct 2025 – Jan 2026',   key: 'niit'           },
+  { role: 'Video Editor',               company: 'Creedlance',         year: 'Early 2025',            key: 'creedlance'     },
+  { role: 'CEO & Lead Engineer',        company: 'Lymora',             year: 'Jan 2024 to Present',   key: 'lymora'         },
   { role: 'Freelance Graphic Designer', company: 'Freelance',          year: '2021 to Present', key: 'graphic-design' },
-  { role: 'CEO & Lead Engineer',        company: 'Lymora',             year: '2023 to Present', key: 'lymora'         },
-  { role: 'Video Editor',               company: 'Creedlance',         year: 'Early 2025',      key: 'creedlance'     },
-  { role: 'Intern Teacher',             company: 'NIIT Port Harcourt', year: 'Early 2025',      key: 'niit'           },
-  { role: 'Director Development',       company: 'Zirostack',          year: '2025 to Present', key: 'zirostack'      },
+  { role: 'Freelance Developer',        company: 'Freelance',          year: '2019 to Present', key: 'freelance'      },
 ];
 
 // Role detail content — one entry per EXPERIENCE key.
@@ -72,11 +72,11 @@ const STATS = [
 ];
 
 const CLIENTS = [
-  { name: 'Lymora',             image: '/assets/images/clients/lymora.png',     href: 'https://lymora.tech'    },
-  { name: 'NIIT Port Harcourt', image: '/assets/images/clients/niit.png',      href: 'https://niit.mgbah.dev'  },
-  { name: 'Zirostack',          image: '/assets/images/clients/zirostack.png',  href: 'https://zirostack.com'  },
-  { name: 'Creedlance',         image: '/assets/images/clients/creedlance.png', href: 'https://creedlance.com' },
-  { name: 'CyberCyn',         image: '/assets/images/clients/cybercyn.png', href: '/projects' },
+  { name: 'Lymora',             image: '/assets/images/clients/lymora.webp',     href: 'https://lymora.tech'    },
+  { name: 'NIIT Port Harcourt', image: '/assets/images/clients/niit.webp',      href: 'https://niit.mgbah.dev'  },
+  { name: 'Zirostack',          image: '/assets/images/clients/zirostack.webp',  href: 'https://zirostack.com'  },
+  { name: 'Creedlance',         image: '/assets/images/clients/creedlance.webp', href: 'https://creedlance.com' },
+  { name: 'CyberCyn', image: '/assets/images/clients/cybercyn.webp', href: '/projects' },
 ];
 
 const WHAT_I_BRING = [
@@ -91,29 +91,9 @@ const WHAT_I_BRING = [
     desc: "I built and fund Lymora myself. I know what it costs to ship slowly, and I know what it means to own an outcome. Not just a ticket.",
   },
   {
-    icon: 'ph-lightning',
-    title: 'Speed Without Shortcuts',
-    desc: 'Fast is not the same as rushed. I move quickly because I think clearly upfront. Architecture first, then execution.',
-  },
-  {
-    icon: 'ph-handshake',
-    title: 'Client-First Communication',
-    desc: 'I work with founders and small teams. I explain tradeoffs plainly, flag problems early, and never disappear mid-project.',
-  },
-  {
     icon: 'ph-code',
     title: 'Backend Depth',
     desc: 'PHP, Laravel, MySQL, REST APIs. Not just functional, but clean, maintainable, and built to last beyond the first deployment.',
-  },
-  {
-    icon: 'ph-palette',
-    title: 'Design Sensibility',
-    desc: "Five years of graphic design work means I don't just hand off to a designer. I think about how it looks, flows, and feels from the start.",
-  },
-  {
-    icon: 'ph-chart-line-up',
-    title: 'Product Intuition',
-    desc: "I've made product decisions under real constraints: users, revenue, and a team depending on the call. That sharpens your judgment fast.",
   },
   {
     icon: 'ph-lock-key',
@@ -122,9 +102,6 @@ const WHAT_I_BRING = [
   },
 ];
 
-/**
- * Animates a number from 0 to target over duration ms using rAF.
- */
 function animateCounter(el, target, duration = 1400) {
   const start = performance.now();
   function tick(now) {
@@ -137,25 +114,10 @@ function animateCounter(el, target, duration = 1400) {
   requestAnimationFrame(tick);
 }
 
-/**
- * Splits a heading into word-span elements for the stagger word-reveal animation.
- * Each word gets a <span class="hero__name--word"> with an inline animation-delay.
- */
-function splitIntoWordSpans(text, baseDelay = 0.1, stagger = 0.08) {
-  return text
-    .trim()
-    .split(' ')
-    .map((word, i) => {
-      const delay = (baseDelay + i * stagger).toFixed(2);
-      return `<span class="hero__name--word" style="animation-delay:${delay}s">${word}</span>`;
-    })
-    .join(' ');
-}
-
 function clientCard({ name, image, href }) {
   return `
     <a class="client-card" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${name}">
-      <img src="${image}" alt="${name}" loading="lazy">
+      <img src="${image}" alt="${name}" loading="lazy" width="120" height="40">
     </a>
   `;
 }
@@ -257,7 +219,7 @@ export function render() {
               I'm 20 now. I run Lymora, a startup I built from scratch in the Nigerian market, solving problems I watched go unsolved, funded through freelance. Backend is where I'm most dangerous, but I've never handed off a frontend and called it done. I design it, build it, ship it.
             </p>
             <p class="fade-up" style="margin-top: var(--space-md); animation-delay:0.2s">
-              That's not a workflow. It's how I think. The design decisions inform the engineering. The engineering exposes what the design got wrong. You can't fake that kind of understanding. You can't get it any other way.
+              That's not a workflow. It's how I think. The design decisions inform the engineering. The engineering exposes what the design got wrong and you can't fake that kind of understanding. You can't get it any other way.
             </p>
             <p class="fade-up" style="margin-top: var(--space-md); animation-delay:0.3s">
               All credit to God.
@@ -339,9 +301,6 @@ export function render() {
         <div class="what-i-bring__grid">
           ${wibCards}
         </div>
-        <div class="what-i-bring__cta fade-up">
-          <a href="/contact" class="link-arrow" style="font-size: var(--text-lg);">Work with me &rarr;</a>
-        </div>
       </section>
 
       <!-- Companies worked with -->
@@ -356,10 +315,16 @@ export function render() {
       </div>
 
       <!-- CTA -->
-      <div style="padding: var(--space-xl) 0 var(--space-2xl);" class="fade-up">
-        <a href="/contact" class="link-arrow" style="font-size: var(--text-lg);">
-          Work with me &rarr;
-        </a>
+      <div class="cta-banner-section fade-up" style="padding: var(--space-xl) 0 var(--space-2xl);">
+        <div class="cta-banner">
+          <div class="cta-banner__content">
+            <h2 class="cta-banner__heading">Check me out<br>on X.</h2>
+            <p class="cta-banner__sub">I post about building products, engineering, and the startup life.</p>
+            <div style="margin-top: var(--space-lg);">
+              <a href="https://x.com/_mgbah" class="btn btn-primary" target="_blank" rel="noopener">Follow @_mgbah &rarr;</a>
+            </div>
+          </div>
+        </div>
       </div>
 
     </article>

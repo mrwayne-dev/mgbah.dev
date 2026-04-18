@@ -153,12 +153,17 @@ export function render() {
 
       <!-- ===== CTA ===== -->
       <div
-        style="padding: var(--space-xl) 0 var(--space-2xl);"
+        style="padding: var(--space-xl) 0 var(--space-xl);"
         class="fade-up"
       >
         <a href="/contact" class="link-arrow" style="font-size: var(--text-lg);">
           Get in touch about Lymora &rarr;
         </a>
+      </div>
+
+      <!-- ===== BRAND IMAGE ===== -->
+      <div class="lymora-brand-image fade-in" style="margin: 0 0 var(--space-2xl); border-radius: 12px; overflow: hidden; border: 1px solid var(--color-border);">
+        <img src="/assets/images/lymora/lymora.webp" alt="Lymora" loading="lazy" style="width: 100%; display: block;">
       </div>
 
     </div>

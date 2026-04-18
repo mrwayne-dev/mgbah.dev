@@ -109,7 +109,7 @@ export function initFooter() {
 
     const submitBtn = form.querySelector('[type="submit"]');
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
+    submitBtn.innerHTML = '<span class="btn-spinner" aria-hidden="true"></span>Sending…';
 
     try {
       const res = await fetch('/api/contact.php', {
@@ -120,7 +120,7 @@ export function initFooter() {
 
       const json = await res.json();
 
-      if (json.success) {
+      if (json.status === 'success') {
         form.innerHTML = `<p class="footer__form-success">
           <i class="ph ph-check-circle"></i> Message sent. I'll be in touch soon.
         </p>`;

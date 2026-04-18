@@ -36,6 +36,21 @@ const PARTICLE_CONFIG = {
   background: { color: 'transparent' },
 };
 
+const TSPARTICLES_CDN = 'https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js';
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if (typeof tsParticles !== 'undefined') { resolve(); return; }
+    const existing = document.querySelector(`script[src="${src}"]`);
+    if (existing) { existing.addEventListener('load', resolve); existing.addEventListener('error', reject); return; }
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
 export async function initParticles() {
   // Skip on mobile — not visible at small sizes and expensive on low-end devices
   if (window.innerWidth < 768) return;
@@ -43,10 +58,8 @@ export async function initParticles() {
   const canvas = document.getElementById('hero-canvas');
   if (!canvas) return;
 
-  // tsParticles is loaded as a global from CDN
-  if (typeof tsParticles === 'undefined') return;
-
   try {
+    await loadScript(TSPARTICLES_CDN);
     _instance = await tsParticles.load('hero-canvas', PARTICLE_CONFIG);
     canvas.classList.add('is-loaded');
   } catch {

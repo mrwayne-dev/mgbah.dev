@@ -4,7 +4,6 @@
  */
 
 let loaderEl = null;
-let hideTimer = null;
 
 function getLoader() {
   if (!loaderEl) {
@@ -24,7 +23,6 @@ function getLoader() {
 }
 
 export function showLoader() {
-  clearTimeout(hideTimer);
   const el = getLoader();
   // Use rAF to ensure the element is in the DOM before adding the class
   requestAnimationFrame(() => el.classList.add('is-visible'));

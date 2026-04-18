@@ -15,6 +15,7 @@ const PROJECTS = [
     category:       'platforms',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: false,
+    thumbnail:      '/assets/images/projects/investment.webp',
   },
   {
     slug:           'logistics-tracking',
@@ -24,6 +25,7 @@ const PROJECTS = [
     category:       'platforms',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: false,
+    thumbnail:      '/assets/images/projects/logistics.webp',
   },
   {
     slug:           'escrow-payment-api',
@@ -33,15 +35,7 @@ const PROJECTS = [
     category:       'web-apps',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: false,
-  },
-  {
-    slug:           'exam-pattern-analyzer',
-    name:           'Exam Pattern Analyzer API',
-    desc:           'REST API that ingests past exam papers and surfaces topic frequency distributions, recurring question patterns, and predicted high-yield areas.',
-    tags:           ['PHP', 'Laravel', 'MySQL', 'REST'],
-    category:       'web-apps',
-    href:           'https://github.com/mrwayne-dev',
-    caseStudyReady: false,
+    thumbnail:      '/assets/images/projects/escrowlogo.webp',
   },
   {
     slug:           'webhook-tester',
@@ -51,6 +45,7 @@ const PROJECTS = [
     category:       'web-apps',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: false,
+    thumbnail:      '/assets/images/projects/webhook.webp',
   },
   {
     slug:           'sql-query-explainer',
@@ -60,15 +55,17 @@ const PROJECTS = [
     category:       'web-apps',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: false,
+    thumbnail:      '/assets/images/projects/sql.svg',
   },
   {
     slug:           'id-card-generator',
-    name:           'ID Card Generator',
-    desc:           'Web tool for generating printable institution ID cards from manual input or bulk CSV upload. Custom templates, photo upload, and PDF export.',
-    tags:           ['PHP', 'JavaScript', 'HTML Canvas', 'PDF'],
+    name:           'NIIT ID System',
+    desc:           'Web-based student ID card generation and verification system built for NIIT Port Harcourt. Admin dashboard, live card preview, QR verification, and PDF export via FPDF.',
+    tags:           ['PHP', 'MySQL', 'FPDF', 'QR Code'],
     category:       'web-apps',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: true,
+    thumbnail:      '/assets/images/projects/ID%20card.webp',
   },
   {
     slug:           'niit-website',
@@ -78,15 +75,7 @@ const PROJECTS = [
     category:       'web-apps',
     href:           'https://niit.mgbah.dev',
     caseStudyReady: true,
-  },
-  {
-    slug:           'portfolio-api',
-    name:           'Portfolio API',
-    desc:           'The PHP backend powering mgbah.dev. Contact form processing, rate limiting, email delivery via PHPMailer, and request validation.',
-    tags:           ['PHP', 'MySQL', 'PHPMailer', 'REST'],
-    category:       'web-apps',
-    href:           'https://github.com/mrwayne-dev',
-    caseStudyReady: false,
+    thumbnail:      '/assets/images/projects/niit.svg',
   },
   {
     slug:           'laravel-audit-trail',
@@ -96,6 +85,7 @@ const PROJECTS = [
     category:       'open-source',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: false,
+    thumbnail:      '/assets/images/projects/laravel-audit.svg',
   },
   {
     slug:           'php-response-formatter',
@@ -105,6 +95,7 @@ const PROJECTS = [
     category:       'open-source',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: false,
+    thumbnail:      '/assets/images/projects/php-response.svg',
   },
   {
     slug:           'api-key-manager',
@@ -114,24 +105,26 @@ const PROJECTS = [
     category:       'open-source',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: false,
+    thumbnail:      '/assets/images/projects/rate-limited.svg',
   },
   {
-    slug:           'laravel-cli-scaffolder',
-    name:           'Laravel CLI Scaffolder',
-    desc:           'Composer package and CLI tool that scaffolds an opinionated Laravel project structure: service layers, modules, and base classes in one command.',
-    tags:           ['PHP', 'Laravel', 'CLI', 'Composer'],
-    category:       'open-source',
+    slug:           'web2stack',
+    name:           'web2stack',
+    desc:           'CLI tool that transpiles any website URL into clean, framework-native source code. Multi-framework output (React, Vue, Next.js, Laravel Blade), DOM-level extraction, and animation preservation.',
+    tags:           ['Node.js', 'CLI', 'AI', 'Multi-Framework'],
+    category:       'platforms',
     href:           'https://github.com/mrwayne-dev',
     caseStudyReady: false,
   },
   {
     slug:           'webstarter-cli',
     name:           'create-php-starter',
-    desc:           'Node.js CLI tool (v1.1.2) that scaffolds complete PHP web application projects with complexity-aware scaffolding and optional auth, admin, PHPMailer, and Phosphor Icons.',
+    desc:           'Unified PHP + Laravel scaffolding CLI (v2.0.0). Two modes — Custom PHP (Vanilla, MVC, API) and Laravel — with optional Docker, CI, testing, and named presets.',
     tags:           ['Node.js', 'CLI', 'npm', 'PHP'],
     category:       'open-source',
-    href:           'https://github.com/mrwayne-dev/create-web-starter',
+    href:           'https://www.npmjs.com/package/create-php-starter',
     caseStudyReady: true,
+    thumbnail:      '/assets/images/projects/npm-create-php-starter.svg',
   },
 ];
 
@@ -148,12 +141,21 @@ function cardHTML(project) {
     .map(t => `<span class="tag">${t}</span>`)
     .join('');
 
-  const caseStudyLink = `<a
-    href="/projects/${project.slug}"
-    class="link-arrow"
-    style="font-size: var(--text-xs); letter-spacing: 0.04em;"
-    aria-label="View case study for ${project.name}"
-  >View Case Study &rarr;</a>`;
+  const isBlurred = project.slug === 'web2stack';
+  const isStarred = isBlurred || project.slug === 'webstarter-cli';
+
+  const caseStudyLink = isBlurred
+    ? `<span
+        class="link-arrow link-arrow--muted"
+        style="font-size: var(--text-xs); letter-spacing: 0.04em;"
+        aria-label="Case study coming soon for ${project.name}"
+      >Coming Soon</span>`
+    : `<a
+        href="/projects/${project.slug}"
+        class="link-arrow"
+        style="font-size: var(--text-xs); letter-spacing: 0.04em;"
+        aria-label="View case study for ${project.name}"
+      >View Case Study &rarr;</a>`;
 
   return `
     <article
@@ -162,10 +164,13 @@ function cardHTML(project) {
       data-slug="${project.slug}"
       data-ready="${project.caseStudyReady}"
     >
+      ${isStarred ? `<span class="project-card__star-badge" aria-label="Featured"><i class="ph ph-star" aria-hidden="true"></i></span>` : ''}
       <div class="project-card__image-wrap">
-        <div class="project-card__placeholder" aria-hidden="true">
-          ${project.name}
-        </div>
+        ${project.thumbnail
+          ? `<img src="${project.thumbnail}" alt="${project.name} thumbnail" loading="lazy" width="1280" height="720" class="${isBlurred ? 'project-card__placeholder--blurred' : ''}">`
+          : `<div class="project-card__placeholder${isBlurred ? ' project-card__placeholder--blurred' : ''}" aria-hidden="true">${project.name}</div>`
+        }
+        ${isBlurred ? `<div class="project-card__image-overlay"><span class="project-card__wip-badge">In Development</span></div>` : ''}
       </div>
       <div class="project-card__body">
         <h3 class="project-card__name">${project.name}</h3>
@@ -186,25 +191,21 @@ function designCardHTML(design) {
 
   const categoryPill = `<span class="tag">${design.category}</span>`;
 
-  const actionLink = design.caseStudyReady
-    ? `<a
-        href="/designs/${design.slug}"
-        class="link-arrow"
-        style="font-size: var(--text-xs); letter-spacing: 0.04em;"
-        aria-label="View case study for ${design.name}"
-      >View Case Study &rarr;</a>`
-    : `<span
-        class="link-arrow link-arrow--muted"
-        style="font-size: var(--text-xs); letter-spacing: 0.04em;"
-        aria-label="Case study coming soon for ${design.name}"
-      >Case Study Coming Soon</span>`;
+  const label = design.linkLabel ?? 'View Case Study';
+  const actionLink = `<a
+      href="/designs/${design.slug}"
+      class="link-arrow"
+      style="font-size: var(--text-xs); letter-spacing: 0.04em;"
+      aria-label="${label} for ${design.name}"
+    >${label} &rarr;</a>`;
 
   return `
     <article class="project-card design-card fade-up" data-slug="${design.slug}">
       <div class="project-card__image-wrap design-card__image-wrap">
-        <div class="project-card__placeholder design-card__placeholder" aria-hidden="true">
-          ${design.name}
-        </div>
+        ${design.thumbnail
+          ? `<img src="${design.thumbnail}" alt="${design.name} thumbnail" loading="lazy" width="1280" height="720">`
+          : `<div class="project-card__placeholder design-card__placeholder" aria-hidden="true">${design.name}</div>`
+        }
       </div>
       <div class="project-card__body">
         <h3 class="project-card__name">${design.name}</h3>
@@ -228,7 +229,7 @@ export function render() {
   `).join('');
 
   const cardsHTML   = PROJECTS.map(cardHTML).join('');
-  const designsHTML = DESIGNS_DATA.map(designCardHTML).join('');
+  const designsHTML = DESIGNS_DATA.filter(d => d.showOnProjects !== false).map(designCardHTML).join('');
 
   return `
     <section class="page-container" aria-label="Projects">
@@ -245,7 +246,7 @@ export function render() {
           style="font-size: var(--text-base); color: var(--color-text-muted); max-width: 520px;"
           class="fade-up"
         >
-          Five years of building. Thirteen projects worth showing.
+          Five years of building. Twelve projects worth showing.
         </p>
       </header>
 

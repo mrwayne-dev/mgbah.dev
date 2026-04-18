@@ -9,7 +9,7 @@
    -------------------------------------------------------------------------- */
 
 #app {
-  will-change: transform, opacity;
+  /* will-change removed — GSAP sets compositing hints only during active transitions */
 }
 
 /* --------------------------------------------------------------------------
@@ -204,22 +204,11 @@
   transform: translateY(-4px);
 }
 
-/* Image grayscale → colour — ready for when real images are added */
 .project-card__image-wrap img {
-  filter: grayscale(100%);
-  transition: filter 400ms ease, transform 400ms ease;
+  transition: transform 400ms ease;
 }
 .project-card:hover .project-card__image-wrap img {
-  filter: grayscale(0%);
   transform: scale(1.03);
-}
-
-/* Placeholder brightness shift — visible feedback with current placeholders */
-.project-card__placeholder {
-  transition: filter var(--transition-base);
-}
-.project-card:hover .project-card__placeholder {
-  filter: brightness(1.4);
 }
 
 /* --------------------------------------------------------------------------

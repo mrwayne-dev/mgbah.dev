@@ -268,7 +268,9 @@ export function init() {
 
   function setLoading(loading) {
     submitBtn.disabled = loading;
-    submitBtn.textContent = loading ? 'Sending…' : 'Send Message';
+    submitBtn.innerHTML = loading
+      ? '<span class="btn-spinner" aria-hidden="true"></span>Sending…'
+      : 'Send Message';
   }
 
   function showError(msg, fieldEl = null) {
