@@ -24,7 +24,23 @@
       "Bash(python3 -c \"import cairosvg; print\\('cairosvg ok'\\)\")",
       "Bash(python3 *)",
       "Bash(grep *)",
-      "Bash(chmod +x *)"
+      "Bash(chmod +x *)",
+      "Bash(npx lighthouse *)",
+      "Bash(php --version)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://mgbah.dev/)",
+      "Bash(npm list *)",
+      "Bash(npx --yes lighthouse --version)",
+      "Bash(npm install *)",
+      "Bash(php -S 127.0.0.1:9000 -t .)",
+      "Bash(echo \"PHP server PID: $!\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:9000/)",
+      "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-desktop.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --preset=desktop --quiet)",
+      "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-mobile.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --quiet)",
+      "Bash(bash *)",
+      "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-desktop2.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --preset=desktop --quiet)",
+      "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-mobile2.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --quiet)",
+      "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-desktop3.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --preset=desktop --quiet)",
+      "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-mobile3.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --quiet)"
     ]
   }
 }

@@ -10,7 +10,7 @@ const NAV_HTML = `
 
     <!-- Col 1: Logo — supports image, text, or both -->
     <a href="/" class="nav__logo" aria-label="mgbah.dev home">
-      <img class="nav__logo-img" src="/assets/images/profile/logo.svg" alt="mgbah.dev" aria-hidden="true" onerror="this.style.display='none'">
+      <img class="nav__logo-img" src="/assets/images/profile/logo.svg" alt="mgbah.dev" aria-hidden="true" width="22" height="26" onerror="this.style.display='none'">
       <span class="nav__logo-text">mgbah.</span>
     </a>
 

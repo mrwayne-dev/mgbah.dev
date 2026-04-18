@@ -127,8 +127,8 @@ require_once __DIR__ . '/config/constants.php';
       function loadSmartsupp() {
         if (loaded) return;
         loaded = true;
-        var _smartsupp = _smartsupp || {};
-        _smartsupp = { key: '8604e1f3d52e82c8509be5f26cd8e291fe7cb0ed' };
+        window._smartsupp = window._smartsupp || {};
+        window._smartsupp.key = '8604e1f3d52e82c8509be5f26cd8e291fe7cb0ed';
         window.smartsupp||(function(d) {
           var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
           s=d.getElementsByTagName('script')[0];c=d.createElement('script');

@@ -54,8 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 initNav();
 initChat();
-initFooter();
 initScrollAnimations();
+
+// Footer renders AFTER first route so it lands in its final position.
+// If initFooter runs before #app fills, the 1077px footer sits near the
+// top of the empty page and then gets shoved down 6643px by the content → CLS=1.
+window.addEventListener('routechange', () => initFooter(), { once: true });
 
 const router = new Router();
 router.init();
