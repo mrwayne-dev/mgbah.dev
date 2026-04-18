@@ -23,7 +23,8 @@
       "Bash(python3 -c \"from PIL import Image; print\\('pillow ok'\\)\")",
       "Bash(python3 -c \"import cairosvg; print\\('cairosvg ok'\\)\")",
       "Bash(python3 *)",
-      "Bash(grep *)"
+      "Bash(grep *)",
+      "Bash(chmod +x *)"
     ]
   }
 }

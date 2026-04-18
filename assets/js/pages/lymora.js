@@ -163,7 +163,7 @@ export function render() {
 
       <!-- ===== BRAND IMAGE ===== -->
       <div class="lymora-brand-image fade-in" style="margin: 0 0 var(--space-2xl); border-radius: 12px; overflow: hidden; border: 1px solid var(--color-border);">
-        <img src="/assets/images/lymora/lymora.webp" alt="Lymora" loading="lazy" style="width: 100%; display: block;">
+        <img src="/assets/images/lymora/lymora.webp" alt="Lymora" loading="lazy" width="1600" height="500" style="width: 100%; display: block; height: auto;">
       </div>
 
     </div>

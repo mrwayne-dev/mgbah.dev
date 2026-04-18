@@ -185,11 +185,12 @@ export function render() {
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero" aria-label="Hero">
       <!-- Background image carousel — slides crossfade, parallax applied to wrapper -->
+      <!-- Slides 2-4 have no background-image at mount; JS sets them lazily when first shown -->
       <div class="hero__bg" aria-hidden="true">
         <div class="hero__carousel-slide is-active" style="background-image:url('/assets/images/profile/bgimage.webp')"></div>
-        <div class="hero__carousel-slide" style="background-image:url('/assets/images/profile/carousel2.webp')"></div>
-        <div class="hero__carousel-slide" style="background-image:url('/assets/images/profile/carousel3.webp')"></div>
-        <div class="hero__carousel-slide" style="background-image:url('/assets/images/profile/carousel4.webp')"></div>
+        <div class="hero__carousel-slide" data-bg="/assets/images/profile/carousel2.webp"></div>
+        <div class="hero__carousel-slide" data-bg="/assets/images/profile/carousel3.webp"></div>
+        <div class="hero__carousel-slide" data-bg="/assets/images/profile/carousel4.webp"></div>
       </div>
       <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
@@ -371,12 +372,21 @@ export function init() {
   const slides = document.querySelectorAll('.hero__carousel-slide');
   if (slides.length > 1) {
     let current = 0;
-    const timer = setInterval(() => {
+
+    function activateSlide(index) {
+      const slide = slides[index];
+      // Lazy-set background-image from data-bg on first activation
+      if (slide.dataset.bg && !slide.style.backgroundImage) {
+        slide.style.backgroundImage = `url('${slide.dataset.bg}')`;
+      }
       slides[current].classList.remove('is-active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('is-active');
+      current = index;
+      slide.classList.add('is-active');
+    }
+
+    const timer = setInterval(() => {
+      activateSlide((current + 1) % slides.length);
     }, 5000);
-    // Clean up when navigating away (particles destroy already handles canvas)
     window.addEventListener('routechange', () => clearInterval(timer), { once: true });
   }
 

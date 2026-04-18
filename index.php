@@ -42,15 +42,15 @@ require_once __DIR__ . '/config/constants.php';
   <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon/android-chrome-512x512.png">
   <link rel="manifest" href="/assets/favicon/site.webmanifest">
 
+  <!-- LCP hero image preload — browser discovers it before JS runs -->
+  <link rel="preload" as="image" href="/assets/images/profile/bgimage.webp" fetchpriority="high">
+
   <!-- Font Preloads — Host Grotesk self-hosted -->
   <link rel="preload" href="/assets/fonts/HostGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/HostGrotesk-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="/assets/css/main.css?v=<?= ASSET_VERSION ?>">
-  <link rel="stylesheet" href="/assets/css/layout.css?v=<?= ASSET_VERSION ?>">
-  <link rel="stylesheet" href="/assets/css/components.css?v=<?= ASSET_VERSION ?>">
-  <link rel="stylesheet" href="/assets/css/animations.css?v=<?= ASSET_VERSION ?>">
+  <!-- CSS — single bundled file eliminates 3 extra render-blocking round trips -->
+  <link rel="stylesheet" href="/assets/css/bundle.css?v=<?= ASSET_VERSION ?>">
 
   <!-- Phosphor Icons CDN -->
   <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
