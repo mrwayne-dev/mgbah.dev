@@ -10,8 +10,6 @@ require_once __DIR__ . '/../config/constants.php';
 require_once __DIR__ . '/../includes/responses.php';
 require_once __DIR__ . '/../includes/helpers.php';
 require_once __DIR__ . '/../includes/rate_limit.php';
-require_once __DIR__ . '/../includes/mailer.php';
-require_once __DIR__ . '/email_templates.php';
 
 // ── Only accept POST ────────────────────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -73,6 +71,15 @@ if (function_exists('fastcgi_finish_request')) {
 // Allow script to keep running even if the client disconnects
 ignore_user_abort(true);
 set_time_limit(60);
+
+// Load mailer only after flush — a missing vendor/ causes fatal before response otherwise
+if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    error_log('[mgbah.dev] vendor/autoload.php missing — run composer install on production');
+    return;
+}
+
+require_once __DIR__ . '/../includes/mailer.php';
+require_once __DIR__ . '/email_templates.php';
 
 try {
     $mail = createMailer();
