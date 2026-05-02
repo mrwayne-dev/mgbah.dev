@@ -1601,6 +1601,19 @@ body.smartsupp-open #smartsupp-widget-container {
   }
 }
 
+.fab--left {
+  right: auto;
+  left: var(--space-md);
+  align-items: flex-start;
+}
+
+@media (min-width: 480px) {
+  .fab--left {
+    right: auto;
+    left: var(--space-xl);
+  }
+}
+
 /* Trigger button */
 .fab__trigger {
   width: 52px;

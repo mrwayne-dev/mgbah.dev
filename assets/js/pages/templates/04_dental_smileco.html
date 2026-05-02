@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Smile&Co Dental — Fix your smile, restore your confidence</title>
+<meta name="description" content="A premium dental practice in Lekki, Lagos. Bookings via WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', system-ui, sans-serif;
+    background: #FFFFFF;
+    color: #030303;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  :root {
+    --noir: #030303;
+    --burgundy: #963F36;
+    --burgundy-dark: #7d342c;
+    --cream: #FAF7F5;
+    --grey-blue: #F6F7F9;
+    --text-grey: #3B3B3B;
+    --whatsapp: #25D366;
+    --container: 1280px;
+    --space: clamp(70px, 10vw, 120px);
+  }
+
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+
+  h1, h2, h3, h4 {
+    font-family: 'Red Hat Display', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+  h1 { font-size: clamp(36px, 5vw, 56px); }
+  h2 { font-size: clamp(28px, 4vw, 44px); }
+  h3 { font-size: clamp(20px, 2.5vw, 28px); }
+
+  /* ---------- ANNOUNCEMENT BAR ---------- */
+  .announce {
+    background: var(--noir);
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .announce strong { color: var(--burgundy); }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position: sticky; top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #eee;
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 22px; font-family: 'Red Hat Display', sans-serif; }
+  .nav-logo-mark {
+    width: 28px; height: 28px;
+    background: var(--burgundy);
+    border-radius: 50%;
+    position: relative;
+  }
+  .nav-logo-mark::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px; height: 2px;
+    background: white;
+  }
+  .nav-logo-mark::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px; height: 14px;
+    background: white;
+  }
+  .nav-links {
+    display: flex; gap: 28px; align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .nav-link { color: var(--noir); transition: color 0.2s; }
+  .nav-link:hover { color: var(--burgundy); }
+  .nav-cta {
+    background: var(--burgundy);
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--burgundy-dark); }
+  .nav-burger { display: none; padding: 6px; flex-direction: column; gap: 4px; }
+  .nav-burger span { width: 22px; height: 2px; background: var(--noir); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    min-height: clamp(560px, 88vh, 760px);
+  }
+  .hero-text {
+    padding: 80px 56px;
+    display: flex; flex-direction: column; justify-content: center;
+    background: white;
+  }
+  .hero-text h1 { margin-bottom: 24px; }
+  .hero-text p {
+    color: var(--text-grey);
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
+  .hero-image {
+    background-image: url('https://images.unsplash.com/photo-1581585099522-f6ac2efe6217?w=1400&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+  }
+  .btn-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--burgundy);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+    align-self: flex-start;
+  }
+  .btn-pill:hover { background: var(--burgundy-dark); transform: translateY(-2px); }
+  .btn-pill-outline {
+    background: transparent;
+    color: var(--burgundy);
+    border: 2px solid var(--burgundy);
+  }
+  .btn-pill-outline:hover { background: var(--burgundy); color: white; }
+
+  /* Stats row */
+  .hero-stats {
+    display: flex; gap: 48px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid #eee;
+  }
+  .hero-stat-num {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--burgundy);
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .hero-stat-label {
+    font-size: 13px;
+    color: var(--text-grey);
+  }
+
+  /* ---------- SECTION HEADER ---------- */
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .section-overline {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--burgundy);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .section-head p {
+    color: var(--text-grey);
+    max-width: 580px;
+    margin: 16px auto 0;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ---------- SERVICES PRICING ---------- */
+  .services-pricing {
+    background: var(--cream);
+    padding: var(--space) 0;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .service-card {
+    background: white;
+    padding: 32px;
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  }
+  .service-card-duration {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--burgundy);
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .service-card h3 { margin-bottom: 12px; font-size: 22px; }
+  .service-card p {
+    font-size: 14px;
+    color: var(--text-grey);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .service-card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .service-card-price {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .service-card-price span { font-size: 12px; color: var(--text-grey); font-weight: 500; }
+  .btn-card {
+    background: var(--noir);
+    color: white;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .btn-card:hover { background: var(--burgundy); }
+
+  /* ---------- TREATMENTS ---------- */
+  .treatments {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .treatments-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .treatment-card {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+  .treatment-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .treatment-card:hover img { transform: scale(1.05); }
+  .treatment-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(3,3,3,0.85));
+  }
+  .treatment-card-text {
+    position: absolute;
+    bottom: 32px; left: 32px; right: 32px;
+    z-index: 2;
+    color: white;
+  }
+  .treatment-card-text h3 { font-size: 22px; margin-bottom: 4px; }
+  .treatment-card-text p { font-size: 14px; opacity: 0.9; }
+  .treatments-other {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .treatments-other h4 {
+    font-size: 16px;
+    color: var(--text-grey);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .treatments-other-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 32px;
+  }
+  .treatment-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 15px;
+    transition: padding 0.2s;
+    cursor: pointer;
+  }
+  .treatment-item:hover { padding-left: 8px; color: var(--burgundy); }
+  .treatment-item .arrow { color: var(--burgundy); }
+
+  /* ---------- BEFORE & AFTER ---------- */
+  .before-after {
+    background: var(--burgundy);
+    color: white;
+    padding: var(--space) 0;
+  }
+  .before-after .section-head .section-overline { color: rgba(255,255,255,0.85); }
+  .ba-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .ba-card {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .ba-card img { width: 100%; height: 100%; object-fit: cover; }
+  .ba-tag {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: white;
+    color: var(--burgundy);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .ba-caption {
+    text-align: center;
+    margin-bottom: 48px;
+    font-size: 14px;
+    opacity: 0.85;
+  }
+  .ba-caption strong { font-weight: 600; }
+
+  /* ---------- ABOUT / TESTIMONIAL ---------- */
+  .doctor {
+    padding-bottom: var(--space);
+    background: white;
+  }
+  .doctor-image {
+    width: 100%;
+    height: clamp(360px, 60vh, 600px);
+    background-image: url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+  }
+  .doctor-content {
+    padding: var(--space) 32px 0;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 48px;
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+  .doctor-content h2 { margin-bottom: 16px; }
+  .doctor-content > div:first-child p { color: var(--text-grey); font-size: 16px; line-height: 1.7; }
+  .doctor-quote {
+    background: var(--cream);
+    padding: 40px;
+    border-radius: 16px;
+    position: relative;
+  }
+  .doctor-quote-text {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    color: var(--noir);
+  }
+  .doctor-quote-author {
+    display: flex; align-items: center; gap: 16px;
+  }
+  .doctor-quote-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+  }
+  .doctor-quote-author strong { display: block; font-size: 15px; }
+  .doctor-quote-author span { font-size: 13px; color: var(--text-grey); }
+  .doctor-signature {
+    position: absolute;
+    bottom: 24px; right: 32px;
+    font-family: 'Red Hat Display', cursive;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--burgundy);
+    transform: rotate(-4deg);
+    opacity: 0.7;
+  }
+
+  /* ---------- BENEFITS ---------- */
+  .benefits {
+    background: var(--cream);
+    padding: var(--space) 0;
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .benefits-list h2 { margin-bottom: 32px; }
+  .benefit-item { padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .benefit-item:last-child { border-bottom: none; }
+  .benefit-item h4 { font-size: 18px; margin-bottom: 8px; }
+  .benefit-item p { font-size: 15px; color: var(--text-grey); line-height: 1.6; }
+  .benefits-image {
+    aspect-ratio: 4/5;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .benefits-image img { width: 100%; height: 100%; object-fit: cover; }
+  .benefits-cta {
+    text-align: center;
+    margin-top: 56px;
+    padding-top: 56px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+  .benefits-cta p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: var(--text-grey);
+  }
+
+  /* ---------- CONTACT / LOCATIONS ---------- */
+  .locations {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .location-card {
+    background: var(--grey-blue);
+    padding: 32px;
+    border-radius: 16px;
+  }
+  .location-card h4 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .location-card h4 svg { width: 20px; height: 20px; color: var(--burgundy); }
+  .location-card-row {
+    display: flex; justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .location-card-row:last-child { border-bottom: none; }
+  .location-card-row span:first-child { color: var(--text-grey); }
+  .location-card-row span:last-child { font-weight: 600; }
+  .location-photo {
+    width: 100%;
+    height: 320px;
+    background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    position: relative;
+  }
+  .location-photo-overlay {
+    position: absolute;
+    bottom: 24px; left: 24px; right: 24px;
+    background: white;
+    padding: 20px 24px;
+    border-radius: 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .location-photo-overlay h4 { font-size: 16px; margin-bottom: 4px; }
+  .location-photo-overlay span { font-size: 13px; color: var(--text-grey); }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    background: var(--noir);
+    color: white;
+    padding: 80px 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  .footer-brand h3 { font-size: 28px; margin-bottom: 16px; }
+  .footer-brand p { font-size: 14px; opacity: 0.7; line-height: 1.7; max-width: 320px; }
+  .footer-col h5 {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.6;
+    font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { font-size: 14px; margin-bottom: 8px; opacity: 0.85; }
+  .footer-col li a:hover { opacity: 1; color: var(--burgundy); }
+  .footer-newsletter input {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    padding: 14px 16px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .footer-newsletter input::placeholder { color: rgba(255,255,255,0.5); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    opacity: 0.6;
+  }
+
+  /* ---------- WHATSAPP FAB ---------- */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--whatsapp);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s;
+  }
+  .whatsapp-fab:hover { transform: scale(1.08); }
+  .whatsapp-fab svg { width: 32px; height: 32px; fill: white; }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0, 0, 1), transform 0.9s cubic-bezier(0.2, 0, 0, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Counter animation */
+  .counter { display: inline-block; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-image { min-height: 400px; order: -1; }
+    .hero-text { padding: 60px 32px; }
+    .doctor-content { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr; gap: 32px; }
+    .benefits-image { aspect-ratio: 16/10; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links .nav-link { display: none; }
+    .nav-burger { display: flex; }
+    .container { padding: 0 20px; }
+    .nav { padding: 12px 20px; }
+    .services-grid, .treatments-grid, .ba-pair, .locations-grid { grid-template-columns: 1fr; }
+    .doctor-content { grid-template-columns: 1fr; gap: 24px; }
+    .benefits-grid { grid-template-columns: 1fr; gap: 24px; }
+    .treatments-other-list { grid-template-columns: 1fr; gap: 12px; }
+    .location-photo { height: clamp(200px, 50vw, 300px); }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .whatsapp-fab { width: 54px; height: 54px; bottom: 18px; right: 18px; }
+    .whatsapp-fab svg { width: 28px; height: 28px; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">
+  Welcome <strong>New Patients</strong> — your first consultation is just ₦5,000. <a href="#book" style="text-decoration:underline;">Book today</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-mark"></span>
+    Smile&Co
+  </a>
+  <div class="nav-links">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#locations" class="nav-link">Locations</a>
+    <a href="#book" class="nav-cta">Book Appointment</a>
+    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h1>Fix your smile,<br/>restore your confidence.</h1>
+    <p>Lekki's most-trusted private dental practice. Same-day appointments, transparent pricing, and a team that genuinely listens before reaching for the drill.</p>
+    <a href="#book" class="btn-pill">Book an Appointment</a>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num"><span class="counter" data-target="2840">0</span>+</div>
+        <div class="hero-stat-label">Patients treated since 2018</div>
+      </div>
+      <div>
+        <div class="hero-stat-num"><span class="counter" data-target="98">0</span>%</div>
+        <div class="hero-stat-label">Patient satisfaction rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image"></div>
+</section>
+
+<!-- SERVICES PRICING -->
+<section class="services-pricing" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-overline">Featured Services</span>
+      <h2>Transparent pricing,<br/>real outcomes.</h2>
+      <p>No mystery quotes. Each procedure includes consultation, treatment, and aftercare — clearly priced before you book.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="service-card-duration">45–60 min</span>
+        <h3>Teeth Whitening</h3>
+        <p>In-clinic professional whitening. Visible results in a single session, with takeaway maintenance trays.</p>
+        <div class="service-card-footer">
+          <div class="service-card-price">₦55,000 <span>starts at</span></div>
+          <a href="#book" class="btn-card">Book Now</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-card-duration">60–90 min</span>
+        <h3>Scaling &amp; Polishing</h3>
+        <p>Deep clean for healthy gums and bright enamel. The single best appointment you can give yourself this year.</p>
+        <div class="service-card-footer">
+          <div class="service-card-price">₦25,000 <span>starts at</span></div>
+          <a href="#book" class="btn-card">Book Now</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-card-duration">12–18 months</span>
+        <h3>Braces &amp; Orthodontics</h3>
+        <p>Traditional and clear aligners. Free consultation includes a full bite assessment and treatment plan.</p>
+        <div class="service-card-footer">
+          <div class="service-card-price">₦450,000 <span>starts at</span></div>
+          <a href="#book" class="btn-card">Book Now</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="service-card-duration">2–4 sessions</span>
+        <h3>Dental Implants</h3>
+        <p>Premium-grade titanium implants with crown. Lifetime guarantee on the implant body, ten-year on the crown.</p>
+        <div class="service-card-footer">
+          <div class="service-card-price">₦650,000 <span>starts at</span></div>
+          <a href="#book" class="btn-card">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENTS -->
+<section class="treatments">
+  <div class="container">
+    <div class="section-head reveal" style="text-align: left; max-width: 720px;">
+      <span class="section-overline">All Treatments</span>
+      <h2>Select your treatment.</h2>
+      <p style="margin-left: 0;">From routine cleaning to complex restorations — every treatment delivered by our consultant team.</p>
+    </div>
+    <div class="treatments-grid reveal">
+      <div class="treatment-card">
+        <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=900&q=80&auto=format&fit=crop" alt="Wisdom extraction" loading="lazy"/>
+        <div class="treatment-card-text">
+          <h3>Wisdom Extraction</h3>
+          <p>Surgical and routine extractions, fully sedated.</p>
+        </div>
+      </div>
+      <div class="treatment-card">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=900&q=80&auto=format&fit=crop" alt="Tooth contouring" loading="lazy"/>
+        <div class="treatment-card-text">
+          <h3>Tooth Contouring</h3>
+          <p>Precise reshaping for an even, polished smile.</p>
+        </div>
+      </div>
+    </div>
+    <div class="treatments-other reveal">
+      <h4>Other treatments we offer</h4>
+      <div class="treatments-other-list">
+        <div class="treatment-item"><span>Root Canal Therapy</span><span class="arrow">→</span></div>
+        <div class="treatment-item"><span>Dental Crowns</span><span class="arrow">→</span></div>
+        <div class="treatment-item"><span>Veneers</span><span class="arrow">→</span></div>
+        <div class="treatment-item"><span>Bridges</span><span class="arrow">→</span></div>
+        <div class="treatment-item"><span>Pediatric Dentistry</span><span class="arrow">→</span></div>
+        <div class="treatment-item"><span>Smile Makeovers</span><span class="arrow">→</span></div>
+        <div class="treatment-item"><span>Emergency Dental Care</span><span class="arrow">→</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE & AFTER -->
+<section class="before-after">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-overline">Real Results</span>
+      <h2>Before &amp; after.</h2>
+      <p style="color: rgba(255,255,255,0.85);">Real patients, real outcomes. Photos shared with consent.</p>
+    </div>
+    <div class="reveal">
+      <div class="ba-pair">
+        <div class="ba-card"><div class="ba-tag">Before</div><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&q=80&auto=format&fit=crop" alt="Before" loading="lazy"/></div>
+        <div class="ba-card"><div class="ba-tag">After</div><img src="https://images.unsplash.com/photo-1581585099522-f6ac2efe6217?w=900&q=80&auto=format&fit=crop" alt="After" loading="lazy"/></div>
+      </div>
+      <p class="ba-caption"><strong>60-Minute Whitening</strong> · 4-shade improvement in a single session</p>
+      <div class="ba-pair">
+        <div class="ba-card"><div class="ba-tag">Before</div><img src="https://images.unsplash.com/photo-1616391182219-e080b4d1043a?w=900&q=80&auto=format&fit=crop" alt="Before" loading="lazy"/></div>
+        <div class="ba-card"><div class="ba-tag">After</div><img src="https://images.unsplash.com/photo-1559591937-abc9b4c8b785?w=900&q=80&auto=format&fit=crop" alt="After" loading="lazy"/></div>
+      </div>
+      <p class="ba-caption"><strong>Veneers · Upper Six</strong> · 3-week treatment cycle</p>
+      <div class="ba-pair">
+        <div class="ba-card"><div class="ba-tag">Before</div><img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=900&q=80&auto=format&fit=crop" alt="Before" loading="lazy"/></div>
+        <div class="ba-card"><div class="ba-tag">After</div><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=900&q=80&auto=format&fit=crop" alt="After" loading="lazy"/></div>
+      </div>
+      <p class="ba-caption"><strong>Orthodontic Treatment</strong> · 14 months</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTOR -->
+<section class="doctor" id="about">
+  <div class="doctor-image"></div>
+  <div class="doctor-content reveal">
+    <div>
+      <span class="section-overline">Meet Your Dentist</span>
+      <h2>Care that begins with listening.</h2>
+      <p>Dr. Tomi Adebayo trained at the University of Lagos College of Medicine and completed her cosmetic dentistry residency in London. She founded Smile&Co in 2018 with one rule: no patient leaves without understanding what was done and why.</p>
+    </div>
+    <div class="doctor-quote">
+      <p class="doctor-quote-text">"Smile&Co are the only clinic I've trusted in twenty years of living in Lagos. Dr. Adebayo's team explained every step of my implant — and the result is genuinely indistinguishable from my real teeth."</p>
+      <div class="doctor-quote-author">
+        <div class="doctor-quote-avatar" style="background-image: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=150&q=80&auto=format&fit=crop');"></div>
+        <div>
+          <strong>Mrs. Adaobi Onyemelukwe</strong>
+          <span>Patient · Lekki Phase 1</span>
+        </div>
+      </div>
+      <div class="doctor-signature">Dr. Tomi A.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="container">
+    <div class="benefits-grid">
+      <div class="benefits-list reveal">
+        <span class="section-overline">Why Smile&Co</span>
+        <h2>Precision dentistry<br/>for lasting results.</h2>
+        <div style="margin-top: 32px;">
+          <div class="benefit-item">
+            <h4>Smile with confidence</h4>
+            <p>Every treatment is photo-documented and explained. You'll know exactly what's happening at every step.</p>
+          </div>
+          <div class="benefit-item">
+            <h4>Family-friendly clinic</h4>
+            <p>Pediatric specialists, gentle scheduling for nervous patients, and weekend appointments for busy professionals.</p>
+          </div>
+          <div class="benefit-item">
+            <h4>Personalised care plans</h4>
+            <p>No upselling. Your plan is built around your actual needs, your timeline, and your budget — including instalment options.</p>
+          </div>
+        </div>
+      </div>
+      <div class="benefits-image reveal">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80&auto=format&fit=crop" alt="Smile&Co clinic" loading="lazy"/>
+      </div>
+    </div>
+    <div class="benefits-cta reveal">
+      <p>Curious about a procedure or pricing? Just ask.</p>
+      <a href="#book" class="btn-pill">Reserve Your Spot Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations" id="locations">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-overline">Visit Us</span>
+      <h2>Two Lekki locations.</h2>
+    </div>
+    <div class="locations-grid reveal">
+      <div class="location-card">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Opening Hours
+        </h4>
+        <div class="location-card-row"><span>Monday – Friday</span><span>8:00am – 7:00pm</span></div>
+        <div class="location-card-row"><span>Saturday</span><span>9:00am – 4:00pm</span></div>
+        <div class="location-card-row"><span>Sunday</span><span>Emergencies only</span></div>
+      </div>
+      <div class="location-card">
+        <h4>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Lekki Phase 1 (Main)
+        </h4>
+        <div class="location-card-row"><span>Address</span><span>22 Admiralty Way</span></div>
+        <div class="location-card-row"><span>Phone</span><span><a href="tel:+2348012345678">+234 801 234 5678</a></span></div>
+        <div class="location-card-row"><span>Email</span><span>lekki@smileco.ng</span></div>
+      </div>
+    </div>
+    <div class="location-photo reveal">
+      <div class="location-photo-overlay">
+        <div>
+          <h4>Lekki Phase 2 (Branch)</h4>
+          <span>15 Chevron Drive · Open Mon–Sat</span>
+        </div>
+        <a href="tel:+2348087654321" class="btn-pill" style="padding: 12px 24px; font-size: 12px;">Call Branch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="book">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Smile&Co</h3>
+        <p>Premium dental care in Lekki. We believe in honest pricing, gentle treatment, and the kind of clinic where you actually want to come back.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#">Whitening</a></li>
+          <li><a href="#">Orthodontics</a></li>
+          <li><a href="#">Implants</a></li>
+          <li><a href="#">Pediatric</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Hours</h5>
+        <ul>
+          <li>Mon–Fri: 8am – 7pm</li>
+          <li>Sat: 9am – 4pm</li>
+          <li>Sun: Emergencies</li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <h5>Stay in touch</h5>
+        <ul>
+          <li>WhatsApp updates on offers and new treatments.</li>
+        </ul>
+        <input type="tel" placeholder="WhatsApp number" />
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Smile&Co Dental. MDCN Reg: ABC/12345/26.</span>
+      <div>Paystack · Flutterwave · NHIS Accepted · Instalments Available</div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/2348012345678?text=Hi%20Smile%26Co%2C%20I%27d%20like%20to%20book%20an%20appointment" class="whatsapp-fab" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+</a>
+
+<script>
+  // Reveal-on-scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+
+        // Counter animation
+        entry.target.querySelectorAll('.counter').forEach(counter => {
+          if (counter.dataset.animated) return;
+          counter.dataset.animated = '1';
+          const target = parseInt(counter.dataset.target);
+          const duration = 1800;
+          const start = performance.now();
+          function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = Math.floor(target * eased).toLocaleString();
+            if (progress < 1) requestAnimationFrame(step);
+            else counter.textContent = target.toLocaleString();
+          }
+          requestAnimationFrame(step);
+        });
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Also watch hero stats which aren't .reveal
+  document.querySelectorAll('.hero-stats').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

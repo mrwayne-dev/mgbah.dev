@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adamasingba &amp; Co — Strategic legal counsel for Nigerian business</title>
+<meta name="description" content="A Lagos-based corporate law firm. Consultations via WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', system-ui, sans-serif;
+    background: #FFFFFF;
+    color: #000;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  :root {
+    --crimson: #830000;
+    --crimson-dark: #6e0000;
+    --black: #000;
+    --near-black: #141413;
+    --grey: #696969;
+    --light-grey: #DEDEDE;
+    --warm-bg: #FAF9F5;
+    --whatsapp: #25D366;
+    --container: 1200px;
+    --space: clamp(80px, 11vw, 140px);
+  }
+
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+
+  h1, h2, h3 { font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(36px, 5vw, 56px); }
+  h2 { font-size: clamp(28px, 4vw, 44px); }
+  h3 { font-size: clamp(20px, 2.5vw, 28px); }
+  .crimson-word { color: var(--crimson); }
+  .label-overline {
+    font-size: 13px;
+    color: var(--crimson);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--light-grey);
+    padding: 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo-mark {
+    width: 36px; height: 36px;
+    border: 2px solid var(--crimson);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--crimson);
+    letter-spacing: 0;
+  }
+  .nav-actions {
+    display: flex; align-items: center; gap: 16px;
+  }
+  .nav-phone {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--near-black);
+  }
+  .nav-phone svg { width: 16px; height: 16px; }
+  .nav-burger {
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 6px;
+  }
+  .nav-burger span {
+    width: 22px; height: 2px;
+    background: var(--black);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 100px 0 80px;
+    background: #fff;
+  }
+  .hero-text { max-width: 900px; }
+  .hero h1 { margin-bottom: 28px; }
+  .hero p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--grey);
+    max-width: 620px;
+    margin-bottom: 36px;
+  }
+
+  /* CTA Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 32px;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: var(--crimson); color: white; }
+  .btn-primary:hover { background: var(--crimson-dark); }
+  .btn-outline {
+    background: transparent;
+    color: var(--black);
+    border: 1.5px solid var(--black);
+  }
+  .btn-outline:hover { background: var(--black); color: white; }
+  .btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* Hero stats */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--light-grey);
+  }
+  .hero-stat {
+    padding: 0 32px 0 0;
+    border-right: 1px solid var(--light-grey);
+  }
+  .hero-stat:last-child { border-right: none; padding-right: 0; padding-left: 32px; }
+  .hero-stat:nth-child(2) { padding-left: 32px; }
+  .hero-stat-num {
+    font-size: clamp(42px, 5vw, 60px);
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .hero-stat-label {
+    font-size: 13px;
+    color: var(--grey);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- HERO IMAGE ---------- */
+  .hero-image {
+    width: 100%;
+    height: clamp(360px, 55vh, 600px);
+    background-image: url('https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    filter: sepia(0.2) saturate(0.95);
+  }
+
+  /* ---------- TRUSTED BY (LOGO STRIP) ---------- */
+  .trusted {
+    background: var(--crimson);
+    color: white;
+    padding: 60px 32px;
+    overflow: hidden;
+  }
+  .trusted-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+  .trusted-label {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0.85;
+  }
+  .trusted-logos {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    flex-wrap: wrap;
+    font-family: 'Manrope', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    opacity: 0.95;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about {
+    padding: var(--space) 0;
+    background: white;
+    text-align: center;
+  }
+  .about-content { max-width: 760px; margin: 0 auto; }
+  .about h2 { margin-bottom: 32px; }
+  .about p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--grey);
+    margin-bottom: 20px;
+  }
+  .about-cta { margin-top: 40px; }
+
+  /* ---------- VALUE PROPS GRID ---------- */
+  .values {
+    background: var(--warm-bg);
+    padding: var(--space) 0;
+  }
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--light-grey);
+  }
+  .value-cell {
+    padding: 64px 48px;
+    text-align: center;
+    border-right: 1px solid var(--light-grey);
+    border-bottom: 1px solid var(--light-grey);
+  }
+  .value-cell:nth-child(2n) { border-right: none; }
+  .value-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .value-cell-icon {
+    width: 48px; height: 48px;
+    margin: 0 auto 24px;
+    color: var(--crimson);
+    stroke-width: 1.5;
+  }
+  .value-cell h4 {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--near-black);
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  /* ---------- ATTORNEY SPOTLIGHT ---------- */
+  .attorney {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+  .attorney-image {
+    background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+  }
+  .attorney-text {
+    background: white;
+    padding: var(--space) 56px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .attorney-quote {
+    font-size: clamp(22px, 2.6vw, 32px);
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--near-black);
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+  .attorney-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .attorney-title {
+    color: var(--crimson);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---------- PRACTICE AREAS ---------- */
+  .practice {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .practice-header { text-align: center; margin-bottom: 64px; }
+  .practice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--light-grey);
+  }
+  .practice-item {
+    padding: 40px 32px;
+    border-bottom: 1px solid var(--light-grey);
+    border-right: 1px solid var(--light-grey);
+    transition: background 0.2s ease;
+    cursor: pointer;
+  }
+  .practice-item:nth-child(2n) { border-right: none; }
+  .practice-item:hover { background: var(--warm-bg); }
+  .practice-num {
+    font-size: 13px;
+    color: var(--crimson);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .practice-item h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: var(--near-black);
+  }
+  .practice-item p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--grey);
+    margin-bottom: 16px;
+  }
+  .practice-link {
+    color: var(--crimson);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--crimson);
+    padding-bottom: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ---------- CTA SECTION ---------- */
+  .cta-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+  }
+  .cta-text {
+    background: white;
+    padding: var(--space) 56px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .cta-text h2 { margin-bottom: 20px; }
+  .cta-text p {
+    color: var(--grey);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 460px;
+  }
+  .cta-image {
+    background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .testimonials-header { text-align: center; margin-bottom: 64px; }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .testimonial-card {
+    background: white;
+    padding: 40px;
+    border: 1px solid var(--light-grey);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 6px 24px rgba(0,0,0,0.04);
+  }
+  .testimonial-mark {
+    font-size: 56px;
+    color: var(--crimson);
+    line-height: 1;
+    margin-bottom: 16px;
+    font-family: serif;
+  }
+  .testimonial-card p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--near-black);
+    margin-bottom: 32px;
+  }
+  .testimonial-author {
+    display: flex; align-items: center; gap: 16px;
+  }
+  .testimonial-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background-size: cover; background-position: center;
+    flex-shrink: 0;
+  }
+  .testimonial-author strong { display: block; font-size: 15px; margin-bottom: 2px; }
+  .testimonial-author span { color: var(--crimson); font-size: 13px; letter-spacing: 0.03em; }
+
+  /* ---------- FAQ ---------- */
+  .faq {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .faq-header { text-align: center; margin-bottom: 56px; }
+  .faq-list { max-width: 880px; margin: 0 auto; }
+  .faq-item {
+    border-bottom: 1px solid var(--light-grey);
+    padding: 24px 0;
+    cursor: pointer;
+  }
+  .faq-question {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 20px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .faq-icon {
+    width: 24px; height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.4s ease;
+    color: var(--grey);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-answer { max-height: 200px; margin-top: 16px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact {
+    background: var(--crimson);
+    color: white;
+    padding: var(--space) 0;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .contact h2 { margin-bottom: 16px; }
+  .contact > .container > .contact-grid > div:first-child > .label-overline { color: rgba(255,255,255,0.7); }
+  .contact p { opacity: 0.9; line-height: 1.7; max-width: 460px; }
+  .contact-form {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .contact-input {
+    background: rgba(255,255,255,0.1);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 16px 20px;
+    font-family: inherit;
+    font-size: 15px;
+    border-radius: 0;
+  }
+  .contact-input::placeholder { color: rgba(255,255,255,0.6); }
+  .contact-input:focus { outline: none; border-color: white; background: rgba(255,255,255,0.15); }
+  .contact-form .btn {
+    background: white; color: var(--crimson);
+    align-self: flex-start;
+  }
+  .contact-form .btn:hover { background: rgba(255,255,255,0.9); }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    background: white;
+    padding: 80px 0 24px;
+  }
+  .footer-tagline {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 400;
+    margin-bottom: 64px;
+    letter-spacing: -0.02em;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 80px;
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--light-grey);
+  }
+  .footer-col h5 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--grey);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 8px; font-size: 14px; }
+  .footer-col li a:hover { color: var(--crimson); }
+  .footer-bar {
+    background: var(--black);
+    color: white;
+    padding: 24px 32px;
+    margin: 0 -32px -24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+  }
+  .footer-bar-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-bar-logo .nav-logo-mark { border-color: white; color: white; }
+  .footer-socials { display: flex; gap: 12px; }
+  .footer-socials a {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    transition: background 0.2s;
+  }
+  .footer-socials a:hover { background: var(--crimson); }
+
+  /* ---------- WHATSAPP FAB ---------- */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--whatsapp);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s;
+  }
+  .whatsapp-fab:hover { transform: scale(1.08); }
+  .whatsapp-fab svg { width: 32px; height: 32px; fill: white; }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0, 0, 1), transform 0.9s cubic-bezier(0.2, 0, 0, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    .attorney { grid-template-columns: 1fr; }
+    .attorney-image { min-height: 400px; }
+    .attorney-text { padding: 80px 32px; }
+    .cta-section { grid-template-columns: 1fr; }
+    .cta-image { min-height: 360px; order: -1; }
+    .cta-text { padding: 80px 32px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 768px) {
+    .nav-phone { display: none; }
+    .nav { padding: 14px 20px; }
+    .container { padding: 0 20px; }
+    .hero { padding: 60px 0; }
+    .hero-stats {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .hero-stat {
+      padding: 24px 0 !important;
+      border-right: none !important;
+      border-bottom: 1px solid var(--light-grey);
+    }
+    .hero-stat:last-child { border-bottom: none; }
+    .values-grid { grid-template-columns: 1fr; }
+    .value-cell { border-right: none; padding: 48px 24px; }
+    .value-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--light-grey); }
+    .value-cell:last-child { border-bottom: none; }
+    .attorney { grid-template-columns: 1fr; min-height: unset; }
+    .attorney-image { min-height: 300px; }
+    .practice-grid { grid-template-columns: 1fr; }
+    .practice-item { border-right: none; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial-card { padding: 24px; }
+    .footer-bar { flex-direction: column; align-items: flex-start; }
+    .whatsapp-fab { width: 54px; height: 54px; bottom: 18px; right: 18px; }
+    .whatsapp-fab svg { width: 28px; height: 28px; }
+  }
+  @media (max-width: 640px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-mark">A&C</span>
+    Adamasingba
+  </a>
+  <div class="nav-actions">
+    <a href="tel:+2348012345678" class="nav-phone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      +234 801 234 5678
+    </a>
+    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-text">
+      <h1>Strategic <span class="crimson-word">Legal Counsel</span><br/>for Nigerian Business.</h1>
+      <p>For over two decades, Adamasingba &amp; Co has guided founders, family-owned businesses, and listed corporates through Nigeria's most consequential legal moments — quietly, decisively, and on time.</p>
+      <div class="btn-group">
+        <a href="#consultation" class="btn btn-primary">Request Consultation</a>
+        <a href="#practice" class="btn btn-outline">See Practice Areas</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">22</div>
+        <div class="hero-stat-label">Years of Practice</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">340+</div>
+        <div class="hero-stat-label">Clients Retained</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">98%</div>
+        <div class="hero-stat-label">Cases Won or Settled</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HERO IMAGE -->
+<div class="hero-image"></div>
+
+<!-- TRUSTED BY -->
+<section class="trusted">
+  <div class="trusted-inner">
+    <div class="trusted-label">They have trusted us</div>
+    <div class="trusted-logos">
+      <span>Eko Capital</span>
+      <span>Lagos Ventures</span>
+      <span>Marina Holdings</span>
+      <span>Northstar Energy</span>
+      <span>Trident Bank</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-content reveal">
+      <span class="label-overline">About Us</span>
+      <h2>Considered counsel.<br/><span class="crimson-word">Personal service.</span></h2>
+      <p>We are a Lagos-based corporate law firm built on a simple principle: every client deserves the same care whether they are a fund manager closing a hundred-million-naira deal or a family planning their estate.</p>
+      <p>Our partners have argued at the Supreme Court, advised the Securities and Exchange Commission, and structured cross-border transactions across West Africa. What we are most known for, however, is returning calls.</p>
+      <div class="about-cta">
+        <a href="#about-full" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE PROPS -->
+<section class="values">
+  <div class="container">
+    <div class="values-grid reveal">
+      <div class="value-cell">
+        <svg class="value-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+        <h4>Practical legal solutions tailored to each client's situation.</h4>
+      </div>
+      <div class="value-cell">
+        <svg class="value-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <h4>Clear communication at every stage of every matter.</h4>
+      </div>
+      <div class="value-cell">
+        <svg class="value-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h4>An experienced team with a proven record across courts and boardrooms.</h4>
+      </div>
+      <div class="value-cell">
+        <svg class="value-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        <h4>Confidentiality protected at the highest professional standard.</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATTORNEY SPOTLIGHT -->
+<section class="attorney">
+  <div class="attorney-image"></div>
+  <div class="attorney-text">
+    <div class="reveal">
+      <span class="label-overline">Senior Partner</span>
+      <p class="attorney-quote">"Good lawyering is not about volume of words. It is about knowing exactly which words matter — and which fights are worth our client's time."</p>
+      <div class="attorney-name">Funke Adamasingba, SAN</div>
+      <div class="attorney-title">Senior Partner · Commercial Litigation</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE AREAS -->
+<section class="practice" id="practice">
+  <div class="container">
+    <div class="practice-header reveal">
+      <span class="label-overline">Practice Areas</span>
+      <h2>Specialised counsel<br/>across <span class="crimson-word">six core areas.</span></h2>
+    </div>
+    <div class="practice-grid reveal">
+      <div class="practice-item">
+        <div class="practice-num">/01</div>
+        <h3>Corporate &amp; Commercial</h3>
+        <p>Company formation, CAC filings, shareholder agreements, M&amp;A advisory, and ongoing corporate governance for SMEs and scaling businesses.</p>
+        <a href="#" class="practice-link">See Details →</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">/02</div>
+        <h3>Land &amp; Property</h3>
+        <p>Title verification, deed of assignment, governor's consent, land disputes, and real estate transaction structuring across Lagos and Abuja.</p>
+        <a href="#" class="practice-link">See Details →</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">/03</div>
+        <h3>Commercial Litigation</h3>
+        <p>Breach of contract, commercial debt recovery, banking disputes, and Federal High Court representation. Twenty-plus years of trial experience.</p>
+        <a href="#" class="practice-link">See Details →</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">/04</div>
+        <h3>Family &amp; Estate</h3>
+        <p>Wills, probate, divorce, child custody, and estate planning under Nigerian statute. Handled with discretion and care for sensitive family matters.</p>
+        <a href="#" class="practice-link">See Details →</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">/05</div>
+        <h3>Notarial Services</h3>
+        <p>Notary public services, document authentication, oaths, and apostille assistance for cross-border documents. Same-day appointments available.</p>
+        <a href="#" class="practice-link">See Details →</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-num">/06</div>
+        <h3>Regulatory &amp; Compliance</h3>
+        <p>SEC, NDPR, CBN, and FIRS compliance for fintech, banking, and listed companies. Risk-mapping and ongoing regulatory advisory retainers.</p>
+        <a href="#" class="practice-link">See Details →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="cta-text">
+    <div class="reveal">
+      <span class="label-overline">For Every Client</span>
+      <h2>Everyone who walks through our door <span class="crimson-word">is important.</span></h2>
+      <p>From a first-time founder filing CAC to a multinational structuring a joint venture — every matter receives the same diligence, the same strategy, and the same partner-led attention.</p>
+      <a href="#consultation" class="btn btn-primary">Request Consultation</a>
+    </div>
+  </div>
+  <div class="cta-image"></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <span class="label-overline">Client Voices</span>
+      <h2>Stories of <span class="crimson-word">resolution.</span></h2>
+    </div>
+    <div class="testimonials-grid reveal">
+      <div class="testimonial-card">
+        <div class="testimonial-mark">"</div>
+        <p>Funke and her team handled a complex shareholder dispute that had been stalled for two years. They closed it in eleven weeks — clean, settled, signed.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80&auto=format&fit=crop');"></div>
+          <div>
+            <strong>Adaeze Okafor</strong>
+            <span>MD, Northstar Energy Ltd</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-mark">"</div>
+        <p>The most responsive Nigerian firm I've worked with. Calls returned same day, drafts delivered ahead of deadline. Worth every kobo of the retainer.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80&auto=format&fit=crop');"></div>
+          <div>
+            <strong>Emeka Nwosu</strong>
+            <span>Founder, Marina Capital</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-mark">"</div>
+        <p>I came in with a messy estate situation. They walked me through it step by step, no jargon, no surprises. My family is at peace.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&q=80&auto=format&fit=crop');"></div>
+          <div>
+            <strong>Mrs Chinwe Adeyemi</strong>
+            <span>Family Estate Client</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-mark">"</div>
+        <p>We retained Adamasingba for our Series A. They negotiated terms that protected the founders without scaring our investor. That balance is rare.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80&auto=format&fit=crop');"></div>
+          <div>
+            <strong>Tunde Bakare</strong>
+            <span>CEO, Trident Fintech</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="faq-header reveal">
+      <span class="label-overline">Frequently Asked</span>
+      <h2>The questions <span class="crimson-word">we hear most.</span></h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How much does a consultation cost?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="faq-answer">Initial consultations are ₦25,000 for thirty minutes, applied as credit toward any retainer. We are transparent about pricing because trust starts there.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do you handle matters outside Lagos?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="faq-answer">Yes. We hold practice rights nationwide and have appeared at courts in Abuja, Port Harcourt, Kano, and the Supreme Court. Most client meetings are now hybrid.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How quickly can you take on urgent matters?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="faq-answer">For genuine emergencies — injunctions, interim relief, time-bound filings — we can mobilise within twenty-four hours. WhatsApp our duty partner directly.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do you offer monthly retainers for small businesses?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="faq-answer">Yes. Our SME retainer starts at ₦150,000/month and includes contract review, regulatory monitoring, and a monthly check-in call. Designed for founders who don't want to think about legal until they need to.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="consultation">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="label-overline">Have a question?</span>
+        <h2>Let us reach you.</h2>
+        <p>Send us a brief description of your matter — by email, WhatsApp, or the form. We respond within one business day, often the same hour.</p>
+      </div>
+      <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Thank you. We will be in touch shortly.');">
+        <input type="text" class="contact-input" placeholder="Your full name" required/>
+        <input type="email" class="contact-input" placeholder="Email address" required/>
+        <input type="tel" class="contact-input" placeholder="Phone (WhatsApp preferred)" required/>
+        <textarea class="contact-input" rows="3" placeholder="Briefly describe your matter"></textarea>
+        <button type="submit" class="btn">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-tagline">Considered.<br/>Discreet.<br/><span class="crimson-word">Respected.</span></div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Adamasingba &amp; Co</h5>
+        <p style="font-size: 14px; line-height: 1.7; color: var(--grey);">8th Floor, Marina Plaza<br/>22 Marina, Lagos Island<br/>Lagos, Nigeria</p>
+        <p style="font-size: 14px; margin-top: 16px;"><a href="tel:+2348012345678">+234 801 234 5678</a><br/><a href="mailto:counsel@adamasingba.law">counsel@adamasingba.law</a></p>
+      </div>
+      <div class="footer-col">
+        <h5>Practice</h5>
+        <ul>
+          <li><a href="#">Corporate</a></li>
+          <li><a href="#">Property</a></li>
+          <li><a href="#">Litigation</a></li>
+          <li><a href="#">Family &amp; Estate</a></li>
+          <li><a href="#">Notary</a></li>
+          <li><a href="#">Regulatory</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Firm</h5>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Insights</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Memberships</h5>
+        <ul>
+          <li>Nigerian Bar Association</li>
+          <li>SAN — Senior Advocate of Nigeria</li>
+          <li>Section on Business Law (NBA)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="footer-bar-logo">
+        <span class="nav-logo-mark" style="border-color:white;color:white;">A&amp;C</span>
+        <span>© 2026 Adamasingba &amp; Co. RC. 1234567.</span>
+      </div>
+      <div class="footer-socials">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="Instagram">ig</a>
+        <a href="#" aria-label="WhatsApp">wa</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/2348012345678?text=Hi%2C%20I%27d%20like%20to%20speak%20to%20a%20lawyer%20at%20Adamasingba%20%26%20Co" class="whatsapp-fab" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+</a>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Reveal-on-scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

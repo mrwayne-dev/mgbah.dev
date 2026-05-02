@@ -40,7 +40,8 @@
       "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-desktop2.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --preset=desktop --quiet)",
       "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-mobile2.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --quiet)",
       "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-desktop3.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --preset=desktop --quiet)",
-      "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-mobile3.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --quiet)"
+      "Bash(lighthouse http://127.0.0.1:9000/ --output=json --output-path=/tmp/lh-mobile3.json '--chrome-flags=--headless --no-sandbox --disable-dev-shm-usage' --quiet)",
+      "Bash(chmod 644 /home/mrwayne/Documents/wayne/web_dev/mgbah.dev/assets/js/pages/templates/*.html)"
     ]
   }
 }

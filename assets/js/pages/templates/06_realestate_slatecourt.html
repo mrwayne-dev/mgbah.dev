@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Slatecourt — Premium living spaces across Lagos</title>
+<meta name="description" content="Premium residential and commercial properties across Lagos, Abuja, and Port Harcourt. Inspections via WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #FFFFFF;
+    color: #101E21;
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  :root {
+    --noir: #101E21;
+    --lime: #E1F89B;
+    --lime-dark: #c4dc7e;
+    --light: #F0F4F5;
+    --grey: #6A787B;
+    --whatsapp: #25D366;
+    --container: 1280px;
+    --space: clamp(80px, 11vw, 140px);
+  }
+
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+
+  h1, h2, h3 {
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+  h1 { font-size: clamp(48px, 8vw, 96px); }
+  h2 { font-size: clamp(36px, 5vw, 72px); }
+  h3 { font-size: clamp(22px, 3vw, 32px); }
+
+  .label-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--light);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--noir);
+  }
+  .label-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--lime);
+    border-radius: 50%;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position: sticky; top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(16,30,33,0.08);
+    padding: 16px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+  }
+  .logo-mark {
+    width: 28px; height: 28px;
+    background: var(--noir);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px;
+    width: 16px; height: 12px;
+    background: var(--lime);
+    border-radius: 2px;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 32px;
+    font-size: 15px;
+  }
+  .nav-link { font-weight: 500; transition: color 0.2s; }
+  .nav-link:hover { color: var(--grey); }
+  .btn-pill-lime {
+    background: var(--lime);
+    color: var(--noir);
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-pill-lime:hover { background: var(--lime-dark); transform: translateY(-1px); }
+  .btn-pill-light {
+    background: var(--light);
+    color: var(--noir);
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  .btn-pill-light:hover { background: #e3eaeb; }
+  .btn-pill-dark {
+    background: var(--noir);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-pill-dark:hover { background: #1c2e32; transform: translateY(-1px); }
+  .btn-pill-white {
+    background: white;
+    color: var(--noir);
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-pill-white .arrow {
+    width: 22px; height: 22px;
+    background: var(--lime);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--noir);
+    font-size: 14px;
+  }
+  .nav-burger { display: none; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    height: 88vh;
+    min-height: 640px;
+    background-image: url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 32px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(16,30,33,0.4) 0%, rgba(16,30,33,0.65) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    width: 100%;
+    align-items: flex-start;
+  }
+  .hero-card {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 16px;
+    padding: 24px;
+    color: white;
+  }
+  .hero-card-play {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: white;
+    color: var(--noir);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .hero-card-play::after {
+    content: '';
+    border-style: solid;
+    border-width: 6px 0 6px 9px;
+    border-color: transparent transparent transparent var(--noir);
+    margin-left: 2px;
+  }
+  .hero-card h4 { font-size: 20px; font-weight: 500; margin-bottom: 6px; }
+  .hero-card p { font-size: 13px; opacity: 0.85; }
+  .hero-bottom {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: end;
+  }
+  .hero-bottom h1 { line-height: 1.05; }
+  .hero-bottom-cta { margin-top: 24px; }
+  .hero-bottom-text {
+    text-align: right;
+    max-width: 380px;
+    margin-left: auto;
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.92;
+  }
+
+  /* ---------- BRAND STATEMENT ---------- */
+  .brand-statement {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .brand-statement p {
+    max-width: 720px;
+    font-size: clamp(20px, 2.4vw, 28px);
+    line-height: 1.4;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .brand-statement .icon-house {
+    display: inline-block;
+    width: 24px; height: 24px;
+    vertical-align: middle;
+    margin: 0 4px;
+  }
+
+  /* ---------- WIDE FEATURE ---------- */
+  .wide-image {
+    width: 100%;
+    height: clamp(360px, 60vh, 600px);
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats {
+    background: white;
+    padding: var(--space) 0;
+    border-top: 1px solid rgba(16,30,33,0.1);
+  }
+  .stats-label {
+    font-size: 13px;
+    color: var(--grey);
+    letter-spacing: 0.05em;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .stat-num {
+    font-size: clamp(64px, 10vw, 144px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .stat-num span { color: var(--grey); }
+  .stat-label {
+    font-size: 17px;
+    color: var(--grey);
+    max-width: 320px;
+  }
+
+  /* ---------- LISTINGS ---------- */
+  .listings {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .listings-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: end;
+    margin-bottom: 48px;
+  }
+  .listings-header h2 .muted { color: var(--grey); display: block; }
+  .listings-header-right { display: flex; justify-content: flex-end; align-items: center; }
+  .listings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .listing-card {
+    background: white;
+    border: 1px solid rgba(16,30,33,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .listing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(16,30,33,0.08);
+  }
+  .listing-image {
+    position: relative;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+  }
+  .listing-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .listing-card:hover .listing-image img { transform: scale(1.04); }
+  .listing-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: white;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .listing-arrow {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 40px; height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .listing-arrow:hover { background: var(--lime); transform: rotate(-15deg); }
+  .listing-body { padding: 24px; }
+  .listing-body h3 { font-size: 24px; margin-bottom: 8px; font-weight: 500; }
+  .listing-body p { font-size: 14px; color: var(--grey); margin-bottom: 20px; }
+  .listing-price-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px;
+  }
+  .listing-price {
+    background: var(--lime);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .listing-address {
+    font-size: 13px;
+    color: var(--grey);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .listing-meta {
+    display: flex; gap: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(16,30,33,0.08);
+    font-size: 13px;
+    color: var(--grey);
+  }
+  .listing-meta span { display: flex; align-items: center; gap: 6px; }
+  .listing-meta svg { width: 14px; height: 14px; }
+
+  /* ---------- SERVICES ---------- */
+  .services {
+    background: var(--light);
+    padding: var(--space) 0;
+  }
+  .services-header { margin-bottom: 56px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .service-card {
+    background: var(--lime);
+    padding: 40px;
+    border-radius: 16px;
+  }
+  .service-card-icon {
+    width: 56px; height: 56px;
+    background: var(--noir);
+    color: var(--lime);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+  }
+  .service-card-icon svg { width: 28px; height: 28px; }
+  .service-card h3 { font-size: 24px; margin-bottom: 12px; font-weight: 600; letter-spacing: -0.02em; }
+  .service-card p { font-size: 14px; color: var(--noir); opacity: 0.85; line-height: 1.6; }
+
+  /* ---------- BETTER COMFORT (kinetic typography) ---------- */
+  .kinetic {
+    background: white;
+    padding: var(--space) 0 0;
+  }
+  .kinetic-word {
+    text-align: center;
+    font-size: clamp(60px, 14vw, 220px);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    color: var(--noir);
+    padding: 32px 0;
+  }
+  .kinetic-image {
+    width: 100%;
+    height: clamp(300px, 55vh, 540px);
+    background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+  }
+  .kinetic-word.outline {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--noir);
+  }
+
+  /* ---------- TESTIMONIAL ---------- */
+  .testimonial {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .testimonial-text {
+    border-left: 4px solid var(--lime);
+    padding-left: 32px;
+  }
+  .testimonial-quote {
+    font-size: clamp(22px, 2.6vw, 32px);
+    line-height: 1.4;
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+  .testimonial-author {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+  .testimonial-author strong { display: block; font-size: 15px; }
+  .testimonial-author span { font-size: 13px; color: var(--grey); }
+  .testimonial-counter { font-size: 14px; color: var(--grey); }
+  .testimonial-image {
+    aspect-ratio: 4/5;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .testimonial-image img { width: 100%; height: 100%; object-fit: cover; }
+  .testimonial-controls {
+    display: flex; gap: 12px;
+    margin-top: 32px;
+  }
+  .testi-arrow {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(16,30,33,0.2);
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .testi-arrow:hover { background: var(--lime); }
+  .testi-arrow svg { width: 16px; height: 16px; }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .process {
+    background: white;
+    padding: var(--space) 0;
+  }
+  .process-header { margin-bottom: 56px; max-width: 720px; }
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .process-card {
+    background: var(--light);
+    border-radius: 16px;
+    padding: 40px;
+  }
+  .process-num {
+    font-size: 14px;
+    color: var(--grey);
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  .process-card h3 { font-size: 26px; margin-bottom: 12px; font-weight: 500; }
+  .process-card p { font-size: 15px; color: var(--grey); line-height: 1.6; }
+  .process-card--wide { grid-column: span 2; max-width: 50%; }
+
+  /* ---------- ABOUT MISSION ---------- */
+  .mission {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .mission-card {
+    background: var(--noir);
+    color: white;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .mission-image {
+    width: 100%;
+    aspect-ratio: 21/9;
+    background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+  }
+  .mission-content { padding: 64px; }
+  .mission-content .label-tag { background: rgba(255,255,255,0.1); color: white; }
+  .mission-content .label-tag::before { background: var(--lime); }
+  .mission-content h2 { color: white; margin: 16px 0 24px; }
+  .mission-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    opacity: 0.85;
+    margin-bottom: 32px;
+    max-width: 560px;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq {
+    padding: var(--space) 0;
+    background: white;
+  }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+  }
+  .faq-list .faq-item {
+    background: var(--light);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .faq-question {
+    padding: 24px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px;
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .faq-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: white;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--lime); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 28px;
+    color: var(--grey);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-answer { max-height: 240px; padding: 0 28px 24px; }
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-banner {
+    margin: 0 32px;
+    padding: var(--space) 32px;
+    border-radius: 24px;
+    background:
+      linear-gradient(180deg, rgba(16,30,33,0.55), rgba(16,30,33,0.85)),
+      url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1920&q=85&auto=format&fit=crop') center/cover;
+    color: white;
+    text-align: center;
+    margin-bottom: var(--space);
+  }
+  .cta-banner h2 { margin-bottom: 32px; max-width: 720px; margin-left: auto; margin-right: auto; }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    background: var(--noir);
+    color: white;
+    padding: 80px 0 32px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 48px;
+  }
+  .footer-brand-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 16px;
+    color: white;
+  }
+  .footer-brand-logo .logo-mark { background: white; }
+  .footer-brand-logo .logo-mark::after { background: var(--lime); }
+  .footer-brand p { opacity: 0.7; max-width: 320px; margin-bottom: 24px; line-height: 1.7; }
+  .footer-newsletter {
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end;
+  }
+  .footer-newsletter h4 { font-size: 22px; margin-bottom: 16px; font-weight: 500; }
+  .footer-newsletter-form {
+    display: flex; gap: 8px;
+    width: 100%;
+    max-width: 420px;
+  }
+  .footer-newsletter-form input {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    padding: 14px 20px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 14px;
+  }
+  .footer-newsletter-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .footer-newsletter-form button {
+    background: var(--lime);
+    color: var(--noir);
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  .footer-col h5 {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.5;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { font-size: 14px; margin-bottom: 8px; opacity: 0.85; }
+  .footer-col li a:hover { color: var(--lime); }
+  .footer-col p { font-size: 14px; opacity: 0.7; line-height: 1.7; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    opacity: 0.6;
+  }
+
+  /* ---------- WHATSAPP FAB ---------- */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--whatsapp);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s;
+  }
+  .whatsapp-fab:hover { transform: scale(1.08); }
+  .whatsapp-fab svg { width: 32px; height: 32px; fill: white; }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0, 0, 1), transform 0.9s cubic-bezier(0.2, 0, 0, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .counter { display: inline-block; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    .nav-links .nav-link { display: none; }
+    .nav-burger { display: flex; flex-direction: column; gap: 4px; padding: 8px; }
+    .nav-burger span { width: 22px; height: 2px; background: var(--noir); }
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-card { max-width: 320px; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 16px; }
+    .hero-bottom-text { text-align: left; max-width: none; margin-left: 0; }
+    .stats-grid { grid-template-columns: 1fr; gap: 32px; }
+    .listings-header { grid-template-columns: 1fr; gap: 16px; }
+    .listings-header-right { justify-content: flex-start; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; gap: 32px; }
+    .testimonial-image { aspect-ratio: 16/10; max-width: 480px; }
+    .process-grid { grid-template-columns: 1fr; }
+    .mission-content { padding: 48px 32px; }
+    .faq-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-newsletter { align-items: flex-start; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .nav { padding: 12px 20px; }
+    .hero-content { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .listings-header { grid-template-columns: 1fr; gap: 32px; }
+    .listings-grid { grid-template-columns: 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; gap: 32px; }
+    .faq-grid { grid-template-columns: 1fr; gap: 32px; }
+    .mission-image { aspect-ratio: 4/3; }
+    .process-card--wide { grid-column: span 1; max-width: none; }
+    .cta-banner { margin: 0 20px var(--space); padding: 60px 24px; border-radius: 16px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; }
+    .footer-newsletter-form { flex-direction: column; }
+    .footer-newsletter-form button { width: 100%; }
+    .whatsapp-fab { width: 54px; height: 54px; bottom: 18px; right: 18px; }
+    .whatsapp-fab svg { width: 28px; height: 28px; }
+  }
+  @media (max-width: 640px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="logo">
+    <span class="logo-mark"></span>
+    Slatecourt
+  </a>
+  <div class="nav-links">
+    <a href="#" class="nav-link">Properties</a>
+    <a href="#" class="nav-link">Services</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-link">Insights</a>
+    <a href="#listings" class="btn-pill-lime">Find a Property →</a>
+    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div></div>
+    <div class="hero-card reveal">
+      <div class="hero-card-play"></div>
+      <h4>Discover</h4>
+      <p>Luxury apartments, family homes, premium commercial addresses.</p>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div>
+      <h1>Premium living spaces<br/>across Lagos.</h1>
+      <div class="hero-bottom-cta">
+        <a href="#listings" class="btn-pill-white">Browse Properties <span class="arrow">→</span></a>
+      </div>
+    </div>
+    <p class="hero-bottom-text">Discover a new standard of property in Nigeria — from elegant Ikoyi residences to premium commercial addresses across Lagos, Abuja, and Port Harcourt.</p>
+  </div>
+</section>
+
+<!-- BRAND STATEMENT -->
+<section class="brand-statement">
+  <div class="container">
+    <p class="reveal">At Slatecourt, we are redefining real estate in Nigeria. Every property in our portfolio is verified, professionally managed, and chosen for the way it actually feels to live in — not just the number of bedrooms on the listing.</p>
+  </div>
+</section>
+
+<!-- WIDE FEATURE -->
+<div class="wide-image" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1920&q=85&auto=format&fit=crop');"></div>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-label">Track record</div>
+    <div class="stats-grid">
+      <div class="reveal">
+        <div class="stat-num"><span class="counter" data-target="320">0</span><span>+</span></div>
+        <div class="stat-label">Residences leased &amp; sold across Lagos &amp; Abuja</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-num"><span class="counter" data-target="48">0</span><span>+</span></div>
+        <div class="stat-label">Premium commercial addresses placed nationwide</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTINGS -->
+<section class="listings" id="listings">
+  <div class="container">
+    <div class="listings-header reveal">
+      <h2>The future of finding<br/><span class="muted">and living.</span></h2>
+      <div class="listings-header-right">
+        <a href="#" class="btn-pill-light">All Properties →</a>
+      </div>
+    </div>
+    <div class="listings-grid reveal">
+
+      <div class="listing-card">
+        <div class="listing-image">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80&auto=format&fit=crop" alt="Property"/>
+          <div class="listing-badge">For Sale</div>
+          <a href="#" class="listing-arrow" aria-label="View"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+        <div class="listing-body">
+          <h3>The Ikoyi Tower</h3>
+          <p>Riverside elegance in every detail.</p>
+          <div class="listing-price-row">
+            <span class="listing-price">₦480M</span>
+            <span class="listing-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13M9 21v-7h6v7"/></svg>
+              Ikoyi, Lagos
+            </span>
+          </div>
+          <div class="listing-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 17h20v3H2zM2 11h20v6H2zM5 11V8a3 3 0 013-3h8a3 3 0 013 3v3"/></svg> 4 Beds</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10V6a3 3 0 013-3h3v17H6a3 3 0 01-3-3v-1zM21 10v6a3 3 0 01-3 3h-3V3h3a3 3 0 013 3v4zM3 10h18"/></svg> 3 Baths</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> 320 sqm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-image">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&auto=format&fit=crop" alt="Property"/>
+          <div class="listing-badge">For Rent</div>
+          <a href="#" class="listing-arrow" aria-label="View"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+        <div class="listing-body">
+          <h3>Banana Island Villa</h3>
+          <p>Slatecourt living in every detail.</p>
+          <div class="listing-price-row">
+            <span class="listing-price">₦18M / yr</span>
+            <span class="listing-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13M9 21v-7h6v7"/></svg>
+              Banana Island
+            </span>
+          </div>
+          <div class="listing-meta">
+            <span>5 Beds</span>
+            <span>5 Baths</span>
+            <span>520 sqm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-image">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80&auto=format&fit=crop" alt="Property"/>
+          <div class="listing-badge">For Sale</div>
+          <a href="#" class="listing-arrow" aria-label="View"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+        <div class="listing-body">
+          <h3>Lekki Penthouse</h3>
+          <p>An ocean view across two terraces.</p>
+          <div class="listing-price-row">
+            <span class="listing-price">₦265M</span>
+            <span class="listing-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13M9 21v-7h6v7"/></svg>
+              Lekki Phase 1
+            </span>
+          </div>
+          <div class="listing-meta">
+            <span>3 Beds</span>
+            <span>3 Baths</span>
+            <span>240 sqm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="listing-card">
+        <div class="listing-image">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80&auto=format&fit=crop" alt="Property"/>
+          <div class="listing-badge">For Lease</div>
+          <a href="#" class="listing-arrow" aria-label="View"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+        </div>
+        <div class="listing-body">
+          <h3>Marina Office Floor</h3>
+          <p>Premium commercial address, Lagos Island.</p>
+          <div class="listing-price-row">
+            <span class="listing-price">₦42M / yr</span>
+            <span class="listing-address">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13M9 21v-7h6v7"/></svg>
+              Marina, Lagos
+            </span>
+          </div>
+          <div class="listing-meta">
+            <span>Open plan</span>
+            <span>2 Suites</span>
+            <span>800 sqm</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="label-tag">What we do</span>
+      <h2 style="margin-top: 16px;">Every step,<br/>handled.</h2>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13M9 21v-7h6v7"/></svg>
+        </div>
+        <h3>Residential Sales &amp; Lettings</h3>
+        <p>From Ikoyi flats to Banana Island villas — verified listings, transparent pricing, professional handover.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 21V9h6v12M3 9h18"/></svg>
+        </div>
+        <h3>Commercial Real Estate</h3>
+        <p>Office floors, retail spaces, and prestige business addresses. We negotiate the lease, your team moves in.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <h3>Property Management</h3>
+        <p>For diaspora landlords and busy investors — maintenance, tenancy, and reporting handled monthly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KINETIC TYPOGRAPHY -->
+<section class="kinetic">
+  <div class="kinetic-word reveal">Better</div>
+  <div class="kinetic-image"></div>
+  <div class="kinetic-word outline reveal">comfort.</div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <div class="container">
+    <div class="testimonial-grid reveal">
+      <div class="testimonial-text">
+        <p class="testimonial-quote">"I'd been let down by three other agents before Slatecourt. They moved fast, vetted properly, and I closed on my Lekki home four weeks after our first call."</p>
+        <div class="testimonial-author">
+          <div>
+            <strong>Tunde Bakare</strong>
+            <span>Investor · Lekki Phase 1</span>
+          </div>
+          <div class="testimonial-counter">01 / 03</div>
+        </div>
+        <div class="testimonial-controls">
+          <button class="testi-arrow" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="testi-arrow" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+      <div class="testimonial-image">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=80&auto=format&fit=crop" alt="Client"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="process">
+  <div class="container">
+    <div class="process-header reveal">
+      <span class="label-tag">How it works</span>
+      <h2 style="margin-top: 16px;">Finding home<br/>should feel simple.</h2>
+    </div>
+    <div class="process-grid reveal">
+      <div class="process-card">
+        <div class="process-num">Step 01</div>
+        <h3>Tell us what you're looking for.</h3>
+        <p>A 10-minute WhatsApp brief about your budget, location, and lifestyle. We'll come back with a curated short-list.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-num">Step 02</div>
+        <h3>Explore tailored options.</h3>
+        <p>Inspect 3–5 properties handpicked for you — virtually or in person. No time wasted, no pressure.</p>
+      </div>
+      <div class="process-card process-card--wide">
+        <div class="process-num">Step 03</div>
+        <h3>Secure the right fit.</h3>
+        <p>We handle title verification, drafting, and handover end-to-end. You move in with paperwork done right.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="container">
+    <div class="mission-card reveal">
+      <div class="mission-image"></div>
+      <div class="mission-content">
+        <span class="label-tag">Built around people</span>
+        <h2>Find clarity and confidence in every decision.</h2>
+        <p>Real estate in Nigeria has too often meant uncertainty — about title, value, or whether the property even exists. Slatecourt was built to remove that. Every listing on our platform is physically verified, legally vetted, and professionally photographed.</p>
+        <a href="#listings" class="btn-pill-white">Browse Properties <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="reveal">
+        <span class="label-tag">FAQs</span>
+        <h2 style="margin-top: 16px;">Frequently<br/>asked questions.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do you verify your listings?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+          </div>
+          <div class="faq-answer">Every property is physically inspected, the title is searched at the Land Registry, and we confirm the seller or landlord's authority before listing. We do not list properties we have not personally vetted.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do you handle diaspora clients?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+          </div>
+          <div class="faq-answer">Yes — about 40% of our clients live abroad. We handle virtual tours, video walkthroughs, secure deposit collection via Paystack, and end-to-end purchase or rental on your behalf.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What is your commission structure?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+          </div>
+          <div class="faq-answer">For sales: 5% on the agreed sale price. For lettings: one month's rent, capped at 10% of annual rent. No hidden fees, no agency fee on top of the holding deposit.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can you manage my property if I'm abroad?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+          </div>
+          <div class="faq-answer">Yes. Our property management package starts at ₦180,000/month and covers tenant vetting, rent collection, monthly reporting, maintenance coordination, and an annual property inspection.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What payment methods do you accept?</span>
+            <div class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+          </div>
+          <div class="faq-answer">Bank transfer (NGN, USD, GBP), Paystack, Flutterwave, and escrow for high-value transactions. We do not accept cash.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner reveal">
+  <span class="label-tag" style="background: rgba(255,255,255,0.15); color: white;">Ready to begin?</span>
+  <h2 style="margin-top: 16px;">Your Lagos address awaits.</h2>
+  <a href="https://wa.me/2348012345678?text=Hi%20Slatecourt%2C%20I%27m%20interested%20in%20a%20property" class="btn-pill-white">Chat on WhatsApp <span class="arrow">→</span></a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="footer-brand-logo">
+          <span class="logo-mark"></span>
+          Slatecourt
+        </a>
+        <p>Verified property, professionally handled — across Lagos, Abuja, and Port Harcourt.</p>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Stay in the loop</h4>
+        <form class="footer-newsletter-form" onsubmit="event.preventDefault(); alert('Thanks — we will be in touch.');">
+          <input type="email" placeholder="Email address" required/>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Head Office</h5>
+        <p>15 Akin Adesola Street<br/>Victoria Island, Lagos<br/>Nigeria</p>
+        <p style="margin-top: 12px;"><a href="tel:+2348012345678">+234 801 234 5678</a><br/>hello@slatecourt.ng</p>
+      </div>
+      <div class="footer-col">
+        <h5>Properties</h5>
+        <ul>
+          <li><a href="#">For Sale</a></li>
+          <li><a href="#">For Rent</a></li>
+          <li><a href="#">Commercial</a></li>
+          <li><a href="#">Land</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Insights</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Slatecourt Realty. RC. 4567890.</span>
+      <span>NIESV registered · ECOWAS Realtors member</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/2348012345678?text=Hi%20Slatecourt%2C%20I%27m%20interested%20in%20a%20property" class="whatsapp-fab" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+</a>
+
+<script>
+  // FAQ
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Reveal + counters
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        entry.target.querySelectorAll('.counter').forEach(counter => {
+          if (counter.dataset.animated) return;
+          counter.dataset.animated = '1';
+          const target = parseInt(counter.dataset.target);
+          const duration = 1800;
+          const start = performance.now();
+          (function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = Math.floor(target * eased);
+            if (progress < 1) requestAnimationFrame(step);
+            else counter.textContent = target;
+          })(performance.now());
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

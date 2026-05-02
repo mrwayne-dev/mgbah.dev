@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maison Eko — Where dreams meet the beauty of Lagos</title>
+<meta name="description" content="A boutique luxury collection of three properties across Lagos. Bookings via WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #EDE9E4;
+    color: #14140F;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  :root {
+    --parchment: #EDE9E4;
+    --parchment-warm: #E1D8CC;
+    --espresso: #170F0B;
+    --ink: #14140F;
+    --whatsapp: #25D366;
+    --container: 1280px;
+    --space: clamp(80px, 12vw, 160px);
+  }
+
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+  .container-wide { max-width: 1440px; margin: 0 auto; padding: 0 32px; }
+
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
+  .italic { font-style: italic; }
+
+  h1, h2, h3, h4 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  h1 { font-size: clamp(56px, 10vw, 120px); }
+  h2 { font-size: clamp(40px, 7vw, 80px); }
+  h3 { font-size: clamp(28px, 4vw, 48px); }
+
+  .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink);
+    opacity: 0.7;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease, padding 0.3s ease;
+  }
+  .nav.scrolled {
+    background: rgba(237, 233, 228, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 16px 32px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+  }
+  .nav-logo-mark { width: 22px; height: 22px; flex-shrink: 0; }
+  .nav-burger {
+    display: flex; flex-direction: column; gap: 5px;
+    padding: 8px;
+  }
+  .nav-burger span {
+    width: 22px; height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.3s ease;
+  }
+  .nav.hero-mode { color: var(--parchment); }
+  .nav.hero-mode .nav-logo { color: var(--parchment); }
+  .nav.hero-mode .nav-burger span { background: var(--parchment); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+    color: var(--parchment);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(23, 15, 11, 0.3) 0%, rgba(23, 15, 11, 0.1) 40%, rgba(23, 15, 11, 0.5) 100%);
+  }
+  .hero-mid {
+    position: relative; z-index: 2;
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 32px;
+    text-align: center;
+  }
+  .hero-mid p {
+    max-width: 560px;
+    font-size: clamp(15px, 1.6vw, 18px);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+  }
+  .hero-bottom {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 16px 60px;
+    animation: fadeUp 1.4s 0.3s cubic-bezier(0.2, 0, 0, 1) both;
+  }
+  .hero-wordmark {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(64px, 18vw, 280px);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    color: var(--parchment);
+    text-transform: uppercase;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.2, 0, 0, 1), transform 1.2s cubic-bezier(0.2, 0, 0, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---------- WELCOME ---------- */
+  .welcome {
+    padding: var(--space) 0;
+    text-align: center;
+    position: relative;
+  }
+  .welcome-watermark {
+    position: absolute;
+    top: 50%; right: -10%;
+    transform: translateY(-50%);
+    width: 420px; height: 420px;
+    border: 1px solid rgba(20, 20, 15, 0.08);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .welcome-watermark::before {
+    content: '';
+    position: absolute; inset: 60px;
+    border: 1px solid rgba(20, 20, 15, 0.06);
+    border-radius: 50%;
+  }
+  .welcome h2 { margin-bottom: 32px; }
+  .welcome h2 span { display: block; }
+  .welcome p {
+    max-width: 580px;
+    margin: 0 auto 36px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(20, 20, 15, 0.7);
+  }
+  .text-link {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 4px;
+    transition: opacity 0.2s;
+  }
+  .text-link:hover { opacity: 0.6; }
+
+  /* ---------- WIDE FEATURE IMAGE ---------- */
+  .wide-feature {
+    width: 92%;
+    margin: 0 auto var(--space);
+  }
+  .wide-feature img {
+    width: 100%;
+    aspect-ratio: 21/9;
+    object-fit: cover;
+  }
+
+  /* ---------- PROPERTY ROWS ---------- */
+  .properties { padding-bottom: var(--space); }
+  .property {
+    padding: 80px 0;
+    border-bottom: 1px solid rgba(20, 20, 15, 0.1);
+    position: relative;
+  }
+  .property:last-child { border-bottom: none; }
+  .property-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+  .property-row.reverse { grid-template-columns: 1fr 1.2fr; }
+  .property-row.reverse .property-text { order: 2; }
+  .property-row.reverse .property-image { order: 1; }
+  .property-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(80px, 14vw, 200px);
+    line-height: 1;
+    color: rgba(20, 20, 15, 0.08);
+    margin-bottom: -40px;
+    letter-spacing: -0.04em;
+  }
+  .property-text h3 { margin-bottom: 20px; }
+  .property-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(20, 20, 15, 0.75);
+    margin-bottom: 28px;
+    max-width: 480px;
+  }
+  .property-image {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+  }
+  .property-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease; }
+  .property:hover .property-image img { transform: scale(1.04); }
+
+  /* ---------- SERVICES ---------- */
+  .services {
+    padding: var(--space) 0;
+    text-align: center;
+  }
+  .services h2 { margin-bottom: 80px; }
+  .service-row {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 48px;
+    align-items: center;
+    padding: 56px 0;
+    border-top: 1px solid rgba(20, 20, 15, 0.12);
+    text-align: left;
+  }
+  .service-row:last-child { border-bottom: 1px solid rgba(20, 20, 15, 0.12); }
+  .service-text { padding: 0 24px; }
+  .service-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    margin-bottom: 16px;
+    opacity: 0.4;
+  }
+  .service-text h3 { margin-bottom: 16px; }
+  .service-text p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(20, 20, 15, 0.7);
+    max-width: 380px;
+  }
+  .service-image {
+    aspect-ratio: 5/3;
+    overflow: hidden;
+  }
+  .service-image img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---------- MORE THAN STAY ---------- */
+  .more-than {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    background-image: url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--parchment);
+    text-align: center;
+    padding: 80px 24px;
+  }
+  .more-than::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(23, 15, 11, 0.45);
+  }
+  .more-than-content { position: relative; z-index: 2; }
+  .more-than-words {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(48px, 10vw, 140px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .more-than-words span {
+    display: block;
+    transform: translateX(0);
+  }
+  .more-than-words span:nth-child(1) { transform: translateX(-30px); }
+  .more-than-words span:nth-child(2) { transform: translateX(20px); }
+  .more-than-words span:nth-child(3) { transform: translateX(-10px); font-style: italic; }
+  .more-than p {
+    max-width: 520px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ---------- ACTIVITIES ---------- */
+  .activities { padding: var(--space) 0; }
+  .activities-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .activities-image { aspect-ratio: 1/1; overflow: hidden; }
+  .activities-image img { width: 100%; height: 100%; object-fit: cover; }
+  .activities-list h2 { margin-bottom: 32px; }
+  .activity-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(20, 20, 15, 0.12);
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(24px, 3vw, 40px);
+    transition: padding 0.3s ease;
+    cursor: pointer;
+  }
+  .activity-item:hover { padding-left: 12px; }
+  .activity-item:first-child { border-top: 1px solid rgba(20, 20, 15, 0.12); }
+  .activity-item .arrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+  .activity-item:hover .arrow { transform: translateX(8px); }
+  .activities-cta { margin-top: 40px; }
+  .activities-cta p { font-size: 15px; line-height: 1.6; max-width: 380px; margin-bottom: 16px; opacity: 0.7; }
+
+  /* ---------- PLANNED FOR YOU ---------- */
+  .planned {
+    position: relative;
+    min-height: 70vh;
+    background-image: url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1920&q=85&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--parchment);
+    text-align: center;
+    padding: 120px 24px;
+  }
+  .planned::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(23, 15, 11, 0.35) 0%, rgba(23, 15, 11, 0.6) 100%);
+  }
+  .planned-content { position: relative; z-index: 2; max-width: 720px; }
+  .planned h2 {
+    margin-bottom: 24px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .planned h2 span { display: block; }
+  .planned h2 span:last-child { font-style: italic; }
+  .planned p {
+    margin-bottom: 36px;
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.95;
+  }
+
+  /* ---------- TESTIMONIALS STRIP ---------- */
+  .trust-strip {
+    padding: 80px 0;
+    text-align: center;
+    border-top: 1px solid rgba(20, 20, 15, 0.1);
+  }
+  .trust-strip-label { margin-bottom: 32px; }
+  .trust-strip-row {
+    display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 48px 64px;
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    color: rgba(20, 20, 15, 0.5);
+    letter-spacing: 0.04em;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    background: var(--espresso);
+    color: var(--parchment);
+    padding: var(--space) 0 32px;
+  }
+  .footer-top {
+    text-align: center;
+    margin-bottom: 80px;
+    padding: 0 24px;
+  }
+  .footer-logo {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+  .footer-tagline {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(28px, 4vw, 56px);
+    line-height: 1.1;
+    margin: 0 auto 40px;
+    max-width: 720px;
+  }
+  .footer-tagline span { font-style: italic; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding: 0 24px;
+    margin-bottom: 64px;
+  }
+  .footer-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0.6;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li {
+    margin-bottom: 10px;
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .footer-col li:hover { opacity: 1; }
+  .footer-col p { font-size: 14px; line-height: 1.7; opacity: 0.75; }
+  .footer-col p a { display: block; margin-top: 4px; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    padding: 32px 24px 0;
+    border-top: 1px solid rgba(237, 233, 228, 0.15);
+    font-size: 13px;
+    opacity: 0.6;
+  }
+  .footer-socials { display: flex; gap: 24px; }
+
+  /* ---------- WHATSAPP FAB ---------- */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--whatsapp);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s;
+  }
+  .whatsapp-fab:hover { transform: scale(1.08); }
+  .whatsapp-fab svg { width: 32px; height: 32px; fill: white; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 1024px) {
+    .property-row, .property-row.reverse { grid-template-columns: 1fr; gap: 32px; }
+    .property-row.reverse .property-text { order: 1; }
+    .property-row.reverse .property-image { order: 2; }
+    .activities-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .welcome-watermark { display: none; }
+  }
+  @media (max-width: 768px) {
+    .nav { padding: 18px 20px; }
+    .nav.scrolled { padding: 12px 20px; }
+    .nav-logo { font-size: 18px; }
+    .container, .container-wide { padding: 0 20px; }
+    .property-row, .property-row.reverse { grid-template-columns: 1fr; gap: 32px; }
+    .service-row { grid-template-columns: 1fr; gap: 24px; }
+    .service-text { padding: 0; }
+    .activities-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .trust-strip-row { gap: 24px 32px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .more-than-words span:nth-child(1),
+    .more-than-words span:nth-child(2),
+    .more-than-words span:nth-child(3) { transform: translateX(0); }
+    .whatsapp-fab { width: 54px; height: 54px; bottom: 18px; right: 18px; }
+    .whatsapp-fab svg { width: 28px; height: 28px; }
+  }
+  @media (max-width: 640px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav hero-mode" id="nav">
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
+    </svg>
+    Maison Eko
+  </a>
+  <button class="nav-burger" aria-label="Menu"><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-mid">
+    <p>Three storied addresses across Lagos. One quiet philosophy: the best stays are the ones that feel like coming home.</p>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-wordmark">Maison<br/>Eko</div>
+  </div>
+</section>
+
+<!-- WELCOME -->
+<section class="welcome">
+  <div class="welcome-watermark"></div>
+  <div class="container">
+    <span class="label reveal">/ Welcome</span>
+    <h2 class="reveal" style="margin-top: 16px;">
+      <span>Welcome to Maison Eko</span>
+      <span>Your elegant retreat</span>
+      <span class="italic">in the heart of Lagos</span>
+    </h2>
+    <p class="reveal">Three boutique properties across Ikoyi, Victoria Island, and Lekki. Each one designed to feel less like a hotel and more like the home of a well-travelled friend.</p>
+    <a href="#about" class="text-link reveal">More About Us</a>
+  </div>
+</section>
+
+<!-- WIDE FEATURE IMAGE -->
+<div class="wide-feature reveal">
+  <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1920&q=85&auto=format&fit=crop" alt="Maison Eko property" loading="lazy"/>
+</div>
+
+<!-- PROPERTIES -->
+<section class="properties">
+  <div class="container">
+    <div class="property reveal">
+      <div class="property-num">01</div>
+      <div class="property-row">
+        <div class="property-text">
+          <span class="label">/ Ikoyi</span>
+          <h3 style="margin-top: 16px;">Maison Eko<br/><span class="italic">Old Ikoyi</span></h3>
+          <p>A reimagined 1960s residence on Bourdillon Road. Eight suites, a lap pool, and a garden bar that opens at sunset. Built for guests who want Lagos at arm's length and silence at the door.</p>
+          <a href="#ikoyi" class="text-link">Learn More</a>
+        </div>
+        <div class="property-image">
+          <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=80&auto=format&fit=crop" alt="Old Ikoyi" loading="lazy"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="property reveal">
+      <div class="property-num">02</div>
+      <div class="property-row reverse">
+        <div class="property-text">
+          <span class="label">/ Victoria Island</span>
+          <h3 style="margin-top: 16px;">Maison Eko<br/><span class="italic">Marina</span></h3>
+          <p>Twelve suites in a quiet enclave of VI, two streets back from the lagoon. The address business travellers ask for by name when they want the meeting closed before breakfast.</p>
+          <a href="#vi" class="text-link">Learn More</a>
+        </div>
+        <div class="property-image">
+          <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=80&auto=format&fit=crop" alt="Marina" loading="lazy"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="property reveal">
+      <div class="property-num">03</div>
+      <div class="property-row">
+        <div class="property-text">
+          <span class="label">/ Lekki Phase 1</span>
+          <h3 style="margin-top: 16px;">Maison Eko<br/><span class="italic">Coast</span></h3>
+          <p>Six oceanfront villas behind a private gate. Designed for long stays, family getaways, and the kind of weekend you don't want to end. Personal chef and concierge included.</p>
+          <a href="#lekki" class="text-link">Learn More</a>
+        </div>
+        <div class="property-image">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80&auto=format&fit=crop" alt="Coast" loading="lazy"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <span class="label reveal">/ Services</span>
+    <h2 class="reveal" style="margin-top: 16px;">Personalized<br/><span class="italic">Services</span></h2>
+
+    <div class="service-row reveal">
+      <div class="service-text">
+        <div class="service-num">01</div>
+        <h3>Private Chef</h3>
+        <p>Our resident chef builds menus around what you love. Tell us your favourite meal — even if it's nothing on a tasting menu. We'll find a way.</p>
+      </div>
+      <div class="service-image">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80&auto=format&fit=crop" alt="Private chef" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-text">
+        <div class="service-num">02</div>
+        <h3>VIP Airport Transfer</h3>
+        <p>Black SUV from Murtala Muhammed International, on time, every time. Lagos traffic is not your problem.</p>
+      </div>
+      <div class="service-image">
+        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1200&q=80&auto=format&fit=crop" alt="Airport transfer" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-text">
+        <div class="service-num">03</div>
+        <h3>Personal Concierge</h3>
+        <p>Restaurant reservations, art gallery openings, salon visits, last-minute flights. One WhatsApp number. No hold music.</p>
+      </div>
+      <div class="service-image">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80&auto=format&fit=crop" alt="Concierge" loading="lazy"/>
+      </div>
+    </div>
+
+    <div class="service-row reveal">
+      <div class="service-text">
+        <div class="service-num">04</div>
+        <h3>In-Suite Spa</h3>
+        <p>Massage, facials, and post-flight recovery treatments delivered to your suite. Sundays, late evenings, before a wedding — whenever you actually need it.</p>
+      </div>
+      <div class="service-image">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80&auto=format&fit=crop" alt="In-suite spa" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MORE THAN STAY -->
+<section class="more-than">
+  <div class="more-than-content reveal">
+    <div class="more-than-words">
+      <span>More</span>
+      <span>than</span>
+      <span>a stay</span>
+    </div>
+    <p>At Maison Eko, every detail is designed to make you feel at home — with the energy of Lagos just beyond your door.</p>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities">
+  <div class="container">
+    <div class="activities-wrap">
+      <div class="activities-image reveal">
+        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1200&q=80&auto=format&fit=crop" alt="Activities" loading="lazy"/>
+      </div>
+      <div class="activities-list reveal">
+        <span class="label">/ Experiences</span>
+        <h2 style="margin-top: 16px;">Curated<br/><span class="italic">for you</span></h2>
+        <div style="margin-top: 32px;">
+          <div class="activity-item"><span>Private Yacht Days</span><span class="arrow">→</span></div>
+          <div class="activity-item"><span>Lagos Art Gallery Tour</span><span class="arrow">→</span></div>
+          <div class="activity-item"><span>In-Suite Spa</span><span class="arrow">→</span></div>
+          <div class="activity-item"><span>Lekki Beach Picnic</span><span class="arrow">→</span></div>
+          <div class="activity-item"><span>Personal Shopping</span><span class="arrow">→</span></div>
+          <div class="activity-item"><span>Chauffeured City Tour</span><span class="arrow">→</span></div>
+          <div class="activity-item"><span>Rooftop Dinner Setup</span><span class="arrow">→</span></div>
+        </div>
+        <div class="activities-cta">
+          <p>Have something else in mind? Tell us what your perfect day looks like — we build it.</p>
+          <a href="#experiences" class="text-link">View All Experiences</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANNED FOR YOU -->
+<section class="planned" id="book">
+  <div class="planned-content reveal">
+    <span class="label" style="color: var(--parchment); opacity: 0.7;">/ Reserve</span>
+    <h2 style="margin-top: 16px;">
+      <span>Planned</span>
+      <span>for you</span>
+    </h2>
+    <p>Every moment curated, every experience unforgettable — leave the planning to us.</p>
+    <a href="https://wa.me/2348012345678?text=Hi%20Maison%20Eko%2C%20I%27d%20like%20to%20reserve%20a%20stay" class="text-link" style="border-color: var(--parchment);">Reserve via WhatsApp</a>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="trust-strip">
+  <span class="label trust-strip-label reveal">/ As featured in</span>
+  <div class="trust-strip-row reveal">
+    <span>Vanguard</span>
+    <span>Guardian Life</span>
+    <span>ThisDay Style</span>
+    <span>BellaNaija</span>
+    <span>Conde Nast Traveller</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-logo">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/>
+      </svg>
+      Maison Eko
+    </div>
+    <div class="footer-tagline">
+      <span>The address you tell</span> your friends about.
+    </div>
+  </div>
+
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>/ Visit</h4>
+      <p>
+        Maison Eko Old Ikoyi<br/>
+        14 Bourdillon Road<br/>
+        Ikoyi, Lagos<br/>
+        <a href="tel:+2348012345678">+234 801 234 5678</a>
+        <a href="mailto:hello@maisoneko.com">hello@maisoneko.com</a>
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>/ Properties</h4>
+      <ul>
+        <li>Old Ikoyi</li>
+        <li>Marina</li>
+        <li>Coast</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>/ Services</h4>
+      <ul>
+        <li>Private Chef</li>
+        <li>Concierge</li>
+        <li>Spa</li>
+        <li>Events</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>/ Payments</h4>
+      <ul>
+        <li>Paystack</li>
+        <li>Flutterwave</li>
+        <li>Bank Transfer</li>
+        <li>All Cards</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Maison Eko. Crafted in Lagos.</span>
+    <div class="footer-socials">
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FAB -->
+<a href="https://wa.me/2348012345678?text=Hi%20Maison%20Eko%2C%20I%27d%20like%20to%20enquire%20about%20a%20stay" class="whatsapp-fab" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+</a>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  const heroHeight = window.innerHeight;
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    if (scrolled > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
+    if (scrolled > heroHeight - 100) nav.classList.remove('hero-mode'); else nav.classList.add('hero-mode');
+  });
+
+  // Reveal-on-scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

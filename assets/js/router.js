@@ -8,23 +8,25 @@ import { destroyParticles } from './components/particles.js';
 import { showLoader, hideLoader } from './components/loader.js';
 
 const META = {
-  '/':         { title: 'Michael Mgbah, Backend Developer & Entrepreneur', desc: 'CEO of Lymora. Building products that solve real problems.' },
-  '/about':    { title: 'About',    desc: 'The story behind the developer.' },
-  '/projects': { title: 'Projects', desc: 'Selected work in web development and product.' },
-  '/services': { title: 'Services', desc: 'Backend development, API design, database architecture, and product consulting.' },
-  '/lymora':   { title: 'Lymora',   desc: 'The company I built. Academic operating system.' },
-  '/contact':  { title: 'Contact',  desc: 'Book a call or send a message.' },
+  '/':           { title: 'Michael Mgbah, Backend Developer & Entrepreneur', desc: 'CEO of Lymora. Building products that solve real problems.' },
+  '/about':      { title: 'About',     desc: 'The story behind the developer.' },
+  '/projects':   { title: 'Projects',  desc: 'Selected work in web development and product.' },
+  '/services':   { title: 'Services',  desc: 'Backend development, API design, database architecture, and product consulting.' },
+  '/lymora':     { title: 'Lymora',    desc: 'The company I built. Academic operating system.' },
+  '/contact':    { title: 'Contact',   desc: 'Book a call or send a message.' },
+  '/templates':  { title: 'Templates', desc: 'Bespoke landing page templates for different industries.' },
 };
 
 export class Router {
   constructor() {
     this.routes = {
-      '/':         () => import('./pages/home.js'),
-      '/about':    () => import('./pages/about.js'),
-      '/projects': () => import('./pages/projects.js'),
-      '/services': () => import('./pages/services.js'),
-      '/lymora':   () => import('./pages/lymora.js'),
-      '/contact':  () => import('./pages/contact.js'),
+      '/':           () => import('./pages/home.js'),
+      '/about':      () => import('./pages/about.js'),
+      '/projects':   () => import('./pages/projects.js'),
+      '/services':   () => import('./pages/services.js'),
+      '/lymora':     () => import('./pages/lymora.js'),
+      '/contact':    () => import('./pages/contact.js'),
+      '/templates':  () => import('./pages/templates.js'),
     };
 
     this._firstLoad = true;
@@ -63,6 +65,16 @@ export class Router {
       const slug = normPath.split('/')[2];
       route = () =>
         import('./pages/designstudy.js').then(mod => ({
+          render: () => mod.render(slug),
+          init:   () => mod.init(slug),
+        }));
+    }
+
+    // Dynamic template viewer routes: /templates/:slug
+    if (!route && /^\/templates\/[^/]+$/.test(normPath)) {
+      const slug = normPath.split('/')[2];
+      route = () =>
+        import('./pages/templateview.js').then(mod => ({
           render: () => mod.render(slug),
           init:   () => mod.init(slug),
         }));
@@ -146,6 +158,12 @@ export class Router {
       document.title = 'Design | Michael Mgbah';
       const desc = document.querySelector('meta[name="description"]');
       if (desc) desc.setAttribute('content', 'Design case study by Michael Mgbah');
+      return;
+    }
+    if (/^\/templates\/[^/]+$/.test(path)) {
+      document.title = 'Template | Michael Mgbah';
+      const desc = document.querySelector('meta[name="description"]');
+      if (desc) desc.setAttribute('content', 'Website template by Michael Mgbah');
       return;
     }
     const meta = META[path] || META['/'];
