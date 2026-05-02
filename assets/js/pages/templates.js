@@ -37,6 +37,44 @@ export function render() {
 
     </section>
 
+    <section style="border-top:1px solid var(--color-border);padding:var(--space-xl) 0 var(--space-2xl);" aria-label="Beyond the landing page">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(var(--space-xl),6vw,var(--space-2xl));align-items:start;">
+
+          <div>
+            <p class="section-label fade-up">• Beyond the landing page</p>
+            <h2 style="font-size:clamp(var(--text-xl),3vw,var(--text-3xl));font-weight:400;letter-spacing:-0.03em;line-height:1.15;margin-bottom:var(--space-lg);" class="fade-up">The design is<br>the front door.</h2>
+            <p class="text-muted fade-up" style="font-size:var(--text-base);line-height:1.75;margin-bottom:var(--space-md);">
+              Every template here can be built as a complete business system, engineered specifically for the industry it serves. The landing page is how your customers find you. What sits behind it is how your business actually runs.
+            </p>
+            <p class="text-muted fade-up" style="font-size:var(--text-base);line-height:1.75;margin-bottom:var(--space-lg);">
+              Booking engines, automated client workflows, payment processing, admin dashboards — all designed around the niche. Not generic software with your logo on it. Built for your operation, from scratch.
+            </p>
+            <a href="/contact" class="link-arrow fade-up" style="font-size:var(--text-sm);letter-spacing:0.04em;">Discuss your build &rarr;</a>
+          </div>
+
+          <div class="fade-up" style="display:flex;flex-direction:column;border-top:1px solid var(--color-border);">
+            ${[
+              ['Booking & Scheduling',       'Online appointment flows, real-time availability, automated confirmations, and calendar sync.'],
+              ['Automated Communications',   'WhatsApp, SMS, and email workflows that fire on client actions — bookings, reminders, follow-ups.'],
+              ['Payments & Invoicing',        'End-to-end payment collection, instalment plans, invoice generation, and Paystack / Flutterwave integration.'],
+              ['Admin & Management Dashboards', 'Custom back-office interfaces built for your team\'s workflow — not an off-the-shelf CMS dropped in.'],
+              ['CRM & Lead Management',       'Capture, qualify, and follow up on every enquiry automatically. No lead goes cold.'],
+            ].map(([title, desc]) => `
+              <div style="padding:var(--space-md) 0;border-bottom:1px solid var(--color-border);display:flex;gap:var(--space-md);align-items:baseline;">
+                <i class="ph ph-arrow-right" style="font-size:var(--text-xs);color:var(--color-text-dim);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>
+                <div>
+                  <p style="font-size:var(--text-sm);font-weight:600;margin-bottom:4px;color:var(--color-text);">${title}</p>
+                  <p class="text-muted" style="font-size:var(--text-sm);line-height:1.65;">${desc}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <section class="cta-banner-section" aria-label="Call to action">
       <div class="container">
         <div class="cta-banner fade-up">
