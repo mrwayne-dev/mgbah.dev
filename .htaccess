@@ -10,6 +10,11 @@ RewriteBase /
 RewriteRule ^templates/([a-z0-9-]+)/preview$ /api/template-view.php?slug=$1 [QSA,L]
 
 # -----------------------------------------------------------------------
+# Standalone pages — clean URLs for HTML files in assets/js/pages/
+# -----------------------------------------------------------------------
+RewriteRule ^wayne-tactic/?$ /assets/js/pages/wayne-tactic.html [L]
+
+# -----------------------------------------------------------------------
 # SPA Routing — route all non-file, non-directory requests to index.php
 # -----------------------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
