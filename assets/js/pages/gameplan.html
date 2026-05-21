@@ -1,0 +1,3012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0A0B0A">
+<title>Game Plan, CSC FC vs Cyper Reapers | Wayne Tactic</title>
+<meta name="description" content="Match-specific game plan for CSC FC vs Cyper Reapers, Wayne Tactic applied. Bait the press, attack the high line, win the energy battle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+body { min-height: 100vh; line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; overflow-x: hidden; }
+img, svg { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+::selection { background: var(--accent); color: var(--bg); }
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  --bg: #0A0B0A;
+  --bg-2: #101211;
+  --surface: #14171A;
+  --surface-2: #1A1E22;
+  --surface-3: #22272C;
+  --border: #262B30;
+  --border-soft: #1E2227;
+  --border-strong: #353B41;
+
+  --text: #F2F2EE;
+  --text-2: #B7BBBE;
+  --text-3: #7A7F84;
+  --text-4: #4F5459;
+
+  --accent: #D8FF3C;
+  --accent-soft: rgba(216, 255, 60, 0.12);
+  --accent-line: rgba(216, 255, 60, 0.35);
+  --warn: #FF6B3A;
+  --warn-soft: rgba(255, 107, 58, 0.12);
+  --info: #6CC5FF;
+  --info-soft: rgba(108, 197, 255, 0.10);
+
+  --pitch-grass: #15211B;
+  --pitch-grass-2: #182621;
+  --pitch-line: rgba(242, 242, 238, 0.28);
+  --pitch-line-soft: rgba(242, 242, 238, 0.14);
+
+  --player-home: var(--accent);
+  --player-home-text: #0A0B0A;
+  --player-opp: #FF6B3A;
+  --player-opp-text: #0A0B0A;
+
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --container: 1280px;
+  --container-wide: 1440px;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.02) inset;
+  --shadow-2: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03) inset;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 0.9375rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.375rem;
+  --fs-2xl: 1.75rem;
+  --fs-3xl: 2.25rem;
+  --fs-4xl: clamp(2.5rem, 6vw, 4rem);
+  --fs-5xl: clamp(3rem, 9vw, 6.5rem);
+  --fs-6xl: clamp(3.5rem, 13vw, 9.5rem);
+}
+@media (min-width: 768px) {
+  :root {
+    --fs-base: 1rem;
+    --fs-md: 1.0625rem;
+    --fs-lg: 1.25rem;
+    --fs-xl: 1.5rem;
+    --fs-2xl: 2rem;
+    --fs-3xl: 2.75rem;
+  }
+}
+
+/* ============================================================
+   BODY / TYPE
+   ============================================================ */
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  background-image:
+    radial-gradient(1200px 600px at 80% -10%, rgba(216, 255, 60, 0.04), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(255, 107, 58, 0.03), transparent 60%);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+main, header, footer { position: relative; z-index: 1; }
+
+.font-display { font-family: var(--font-display); font-feature-settings: "ss01", "ss02"; letter-spacing: -0.02em; }
+.font-mono { font-family: var(--font-mono); }
+
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; color: var(--text); }
+h1 { font-size: var(--fs-5xl); font-weight: 700; letter-spacing: -0.04em; }
+h2 { font-size: var(--fs-4xl); font-weight: 600; letter-spacing: -0.03em; line-height: 1.02; }
+h3 { font-size: var(--fs-2xl); font-weight: 600; line-height: 1.15; }
+h4 { font-size: var(--fs-xl); font-weight: 600; line-height: 1.2; }
+p { color: var(--text-2); line-height: 1.6; }
+
+.accent { color: var(--accent); }
+.warn-text { color: var(--warn); }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+.eyebrow .num { color: var(--accent); font-weight: 600; }
+
+.lead { font-size: var(--fs-lg); color: var(--text); line-height: 1.5; max-width: 60ch; font-weight: 300; }
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 1.25rem; }
+.container-wide { width: 100%; max-width: var(--container-wide); margin: 0 auto; padding: 0 1.25rem; }
+@media (min-width: 768px) { .container, .container-wide { padding: 0 2rem; } }
+@media (min-width: 1280px) { .container, .container-wide { padding: 0 3rem; } }
+
+section { padding: var(--space-xl) 0; position: relative; }
+@media (min-width: 768px) { section { padding: var(--space-2xl) 0; } }
+section + section { border-top: 1px solid var(--border-soft); }
+
+.section-head { margin-bottom: var(--space-lg); }
+.section-head .title { margin-top: 0.75rem; }
+.section-head .desc { margin-top: 1rem; max-width: 60ch; }
+.section-head.split { display: grid; grid-template-columns: 1fr; gap: 1.25rem; align-items: end; }
+@media (min-width: 900px) { .section-head.split { grid-template-columns: 1.2fr 1fr; gap: 2.5rem; } }
+@media (min-width: 768px) { .section-head { margin-bottom: var(--space-xl); } }
+
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: 1fr; }
+.grid-3 { grid-template-columns: 1fr; }
+@media (min-width: 640px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background: rgba(10, 11, 10, 0.85);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--border-soft);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 60px;
+  padding: 0 1.25rem;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+}
+@media (min-width: 768px) { .nav-inner { padding: 0 2rem; height: 68px; } }
+@media (min-width: 1280px) { .nav-inner { padding: 0 3rem; } }
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: var(--fs-md);
+}
+.brand-mark {
+  width: 28px; height: 28px;
+  display: inline-grid;
+  place-items: center;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+}
+.brand small {
+  display: none;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-left: 0.5rem;
+}
+@media (min-width: 768px) { .brand small { display: inline; } }
+
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: color 160ms ease, background 160ms ease;
+}
+.nav-links a:hover { color: var(--text); background: var(--surface); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.back-link {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  margin-left: 0.5rem;
+  font-weight: 600;
+}
+.nav-links a.back-link:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+@media (min-width: 1100px) { .nav-links { display: inline-flex; } }
+
+.nav-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.nav-toggle:hover { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+.nav-toggle.open { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+@media (min-width: 1100px) { .nav-toggle { display: none; } }
+
+.mobile-menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(14, 16, 14, 0.98), rgba(10, 11, 10, 0.97));
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  backdrop-filter: blur(24px) saturate(140%);
+  border-top: 1px solid var(--border-soft);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  padding: 1.5rem 1.25rem 2rem;
+  overflow-y: auto;
+  transform: translateY(-12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 220ms ease, transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1), visibility 220ms;
+}
+@media (min-width: 768px) { .mobile-menu { top: 68px; } }
+.mobile-menu.open { opacity: 1; transform: translateY(0); visibility: visible; }
+.mobile-backdrop {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 11, 10, 0.55);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 220ms ease, visibility 220ms;
+}
+@media (min-width: 768px) { .mobile-backdrop { top: 68px; } }
+.mobile-backdrop.open { opacity: 1; visibility: visible; }
+.mobile-menu ol { list-style: none; counter-reset: m; }
+.mobile-menu li { counter-increment: m; border-bottom: 1px solid var(--border-soft); }
+.mobile-menu a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.mobile-menu a::before {
+  content: counter(m, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-4);
+  letter-spacing: 0.1em;
+}
+.mobile-menu .back-li {
+  margin-top: 1rem;
+  border-bottom: none;
+}
+.mobile-menu .back-li a {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: var(--font-display);
+}
+.mobile-menu .back-li a::before { display: none; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: 5rem 0 3rem;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-soft);
+}
+@media (min-width: 768px) { .hero { padding: 7rem 0 5rem; } }
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 75%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 0.65rem;
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.tag.accent { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-line); }
+.tag.warn { background: var(--warn-soft); color: var(--warn); border-color: rgba(255,107,58,0.3); }
+.tag.dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+.hero-title {
+  font-size: var(--fs-6xl);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  margin-top: 0.5rem;
+}
+.hero-title .stroke {
+  -webkit-text-stroke: 1.5px var(--text);
+  color: transparent;
+  font-weight: 600;
+  font-style: italic;
+}
+.hero-title .accent { color: var(--accent); }
+.hero-title .slash { color: var(--text-4); font-weight: 300; margin: 0 0.05em; }
+.hero-title .small-label {
+  font-family: var(--font-mono);
+  font-size: 0.18em;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  display: inline-block;
+  margin: 0.5em 0 0.2em;
+}
+
+.hero-sub {
+  margin-top: 1.5rem;
+  max-width: 56ch;
+  font-size: var(--fs-lg);
+  color: var(--text-2);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.hero-quote {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text);
+  max-width: 60ch;
+  line-height: 1.45;
+  border-radius: 0 8px 8px 0;
+}
+
+.hero-stats {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+@media (min-width: 768px) { .hero-stats { grid-template-columns: repeat(4, 1fr); } }
+.hero-stat {
+  padding: 1.25rem 1rem 1.25rem 0;
+  border-right: 1px solid var(--border-soft);
+}
+.hero-stat:last-child { border-right: none; }
+@media (max-width: 767px) {
+  .hero-stat:nth-child(2n) { border-right: none; }
+  .hero-stat:nth-child(-n+2) { border-bottom: 1px solid var(--border-soft); }
+}
+.hero-stat .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+}
+.hero-stat .value {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 0.4rem;
+  color: var(--text);
+}
+.hero-stat .value .accent { color: var(--accent); }
+.hero-stat .sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  margin-top: 0.2rem;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+  transition: border-color 200ms ease;
+}
+.card:hover { border-color: var(--border-strong); }
+@media (min-width: 768px) { .card { padding: 1.75rem; } }
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.card-head .num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-4);
+  letter-spacing: 0.1em;
+}
+.card-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.15;
+}
+.card-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin-top: 0.4rem;
+}
+.card-body p { color: var(--text-2); font-size: var(--fs-base); line-height: 1.6; }
+.card-body p + p { margin-top: 0.75rem; }
+.card-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.card-body ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+.card-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* Two-col card grid */
+.cards-2 { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 800px) { .cards-2 { grid-template-columns: repeat(2, 1fr); } }
+
+/* ============================================================
+   PITCH (SVG)
+   ============================================================ */
+.pitch-wrap {
+  position: relative;
+  background: var(--pitch-grass);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  overflow: hidden;
+}
+.pitch-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg,
+      transparent 0,
+      transparent 9.09%,
+      rgba(0,0,0,0.08) 9.09%,
+      rgba(0,0,0,0.08) 18.18%);
+  pointer-events: none;
+  opacity: 0.6;
+}
+.pitch {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+.pitch-line { fill: none; stroke: var(--pitch-line); stroke-width: 0.25; }
+.pitch-line-soft { fill: none; stroke: var(--pitch-line-soft); stroke-width: 0.2; }
+.pitch-spot { fill: var(--pitch-line); }
+.pitch-zone {
+  fill: var(--accent);
+  fill-opacity: 0.07;
+  stroke: var(--accent);
+  stroke-opacity: 0.3;
+  stroke-width: 0.15;
+  stroke-dasharray: 0.6 0.4;
+}
+.pitch-arrow { fill: none; stroke: var(--accent); stroke-width: 0.35; stroke-linecap: round; stroke-linejoin: round; }
+.pitch-arrow.warn { stroke: var(--warn); }
+.pitch-arrow.dashed { stroke-dasharray: 0.6 0.6; }
+
+.player-token { cursor: default; }
+.player-circle {
+  fill: var(--accent);
+  stroke: var(--bg);
+  stroke-width: 0.2;
+  filter: drop-shadow(0 0.5px 1px rgba(0,0,0,0.5));
+}
+.player-circle.opp { fill: var(--warn); }
+.player-circle.ghost {
+  fill: var(--surface-2);
+  stroke: var(--accent);
+  stroke-width: 0.18;
+  stroke-dasharray: 0.5 0.4;
+}
+.player-num {
+  fill: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 1.6px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+.player-label {
+  fill: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.5px;
+  font-weight: 500;
+  text-anchor: middle;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+.player-label.tiny {
+  font-size: 1.3px;
+  fill: var(--text-2);
+}
+.lane-label {
+  fill: var(--text-3);
+  font-family: var(--font-mono);
+  font-size: 1.4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-anchor: middle;
+  pointer-events: none;
+}
+.zone-label {
+  fill: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 1.6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
+.compass {
+  fill: var(--text-4);
+  font-family: var(--font-mono);
+  font-size: 1.4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.pitch-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+  padding: 0 0.5rem;
+}
+.pitch-caption .title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  color: var(--text);
+}
+.pitch-caption .meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.05em;
+}
+.pitch-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+}
+.pitch-legend .item { display: inline-flex; align-items: center; gap: 0.35rem; }
+.pitch-legend .swatch {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--accent);
+  border: 1px solid var(--bg);
+}
+.pitch-legend .swatch.opp { background: var(--warn); }
+.pitch-legend .swatch.ghost { background: transparent; border: 1px dashed var(--accent); }
+.pitch-legend .swatch.line { width: 18px; height: 2px; border-radius: 0; background: var(--accent); border: none; }
+.pitch-legend .swatch.line.warn { background: var(--warn); }
+
+.pitch-mini { aspect-ratio: 105 / 68; }
+
+/* ============================================================
+   SHAPE TOGGLE
+   ============================================================ */
+.shape-toggle {
+  display: inline-flex;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 2px;
+}
+.shape-toggle button {
+  padding: 0.55rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  border-radius: 999px;
+  transition: background 200ms ease, color 200ms ease;
+}
+.shape-toggle button.active {
+  background: var(--accent);
+  color: var(--bg);
+}
+.shape-toggle button:not(.active):hover { color: var(--text); }
+
+.pitch-stage { position: relative; }
+.pitch-frame { display: none; animation: fadeUp 360ms cubic-bezier(0.2, 0.6, 0.2, 1); }
+.pitch-frame.active { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.shape-info {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 768px) { .shape-info { grid-template-columns: 1fr 1fr 1fr; } }
+.shape-info .info-block {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+.shape-info .info-block .k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+}
+.shape-info .info-block .v {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 0.25rem;
+}
+
+/* ============================================================
+   RULES / KEY POINTS
+   ============================================================ */
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface);
+}
+@media (min-width: 700px) { .rules-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .rules-grid.three { grid-template-columns: repeat(3, 1fr); } }
+.rule {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background 240ms ease;
+}
+.rule:hover { background: var(--surface-2); }
+@media (max-width: 699px) { .rule { border-right: none; } }
+@media (min-width: 700px) and (max-width: 1099px) {
+  .rules-grid:not(.three) .rule:nth-child(2n) { border-right: none; }
+  .rules-grid.three .rule:nth-child(2n) { border-right: none; }
+}
+@media (min-width: 1100px) {
+  .rules-grid.three .rule:nth-child(3n) { border-right: none; }
+}
+.rule-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+.rule-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+.rule-body {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   PATTERNS
+   ============================================================ */
+.patterns-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 900px) { .patterns-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.pattern-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.pattern-card .pitch-wrap { border-radius: 0; border: none; border-bottom: 1px solid var(--border); }
+.pattern-meta {
+  padding: 1.25rem 1.5rem 0.5rem;
+}
+.pattern-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.pattern-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0.25rem 1.5rem 0.25rem;
+}
+.pattern-trigger {
+  margin: 0 1.5rem 1rem;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.pattern-trigger b {
+  color: var(--warn);
+  font-weight: 500;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-right: 0.4rem;
+}
+.pattern-steps {
+  list-style: none;
+  margin: 0 1.5rem 1.5rem;
+  counter-reset: step;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.pattern-steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2rem;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.pattern-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.pattern-note {
+  margin: 0 1.5rem 1.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--warn-soft);
+  border-left: 2px solid var(--warn);
+  border-radius: 0 6px 6px 0;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.pattern-note b { color: var(--warn); font-weight: 500; }
+
+/* ============================================================
+   LINEUP TABLE
+   ============================================================ */
+.lineup-table {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+/* Mobile, card-style row, pos/name/role stacked next to the number */
+.lineup-row {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  grid-template-areas:
+    "num pos"
+    "num name"
+    "num role";
+  column-gap: 0.85rem;
+  row-gap: 0.1rem;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.lineup-row:last-child { border-bottom: none; }
+.lineup-row.head { display: none; }
+.lineup-num {
+  grid-area: num;
+  align-self: center;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent);
+  font-size: var(--fs-lg);
+}
+.lineup-pos {
+  grid-area: pos;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.lineup-name {
+  grid-area: name;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-md);
+  color: var(--text);
+  line-height: 1.2;
+}
+.lineup-role {
+  grid-area: role;
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.45;
+  padding-top: 0.3rem;
+}
+/* Tablet+, restore the 4-column table */
+@media (min-width: 768px) {
+  .lineup-row {
+    grid-template-columns: 50px 0.8fr 1fr 1.4fr;
+    grid-template-areas: none;
+    column-gap: 1rem;
+    row-gap: 0;
+    padding: 1rem 1.5rem;
+    align-items: center;
+  }
+  .lineup-num, .lineup-pos, .lineup-name, .lineup-role {
+    grid-area: auto;
+    align-self: auto;
+    padding-top: 0;
+  }
+  .lineup-num { font-size: var(--fs-md); }
+  .lineup-pos { font-size: 11px; letter-spacing: 0.08em; }
+  .lineup-role { font-size: var(--fs-sm); line-height: 1.55; }
+  .lineup-row.head {
+    display: grid;
+    background: var(--bg-2);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+  }
+}
+
+/* ============================================================
+   PLAYER BRIEF CARDS
+   ============================================================ */
+.briefs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 700px) { .briefs-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .briefs-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.brief-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  transition: border-color 200ms ease;
+}
+.brief-card:hover { border-color: var(--border-strong); }
+.brief-card .head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.brief-card .avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.brief-card .name {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+.brief-card .pos {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin-top: 0.15rem;
+}
+.brief-card .body {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   ENERGY TWO-COL
+   ============================================================ */
+.energy-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 800px) { .energy-grid { grid-template-columns: 1fr 1fr; } }
+
+.energy-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+.energy-card.do { border-left: 3px solid var(--accent); }
+.energy-card.dont { border-left: 3px solid var(--warn); }
+.energy-card .label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+.energy-card.do .label { color: var(--accent); }
+.energy-card.dont .label { color: var(--warn); }
+.energy-card h4 {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+}
+.energy-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.energy-card ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.energy-card.do ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0; top: 0;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-weight: 700;
+}
+.energy-card.dont ul li::before {
+  content: '✕';
+  position: absolute;
+  left: 0; top: 0;
+  font-family: var(--font-mono);
+  color: var(--warn);
+  font-weight: 700;
+}
+
+/* ============================================================
+   SUMMARY
+   ============================================================ */
+.summary-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.summary-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+@media (min-width: 700px) { .summary-row { grid-template-columns: 200px 1fr; gap: 2rem; padding: 1.5rem 1.75rem; } }
+.summary-row:last-child { border-bottom: none; }
+.summary-row .key {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+  font-weight: 500;
+  align-self: start;
+  padding-top: 0.15rem;
+}
+.summary-row .val {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.5;
+}
+.summary-row .val em {
+  font-style: italic;
+  color: var(--text-3);
+  font-weight: 300;
+  display: block;
+  margin-top: 0.35rem;
+  font-size: var(--fs-sm);
+}
+
+/* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms cubic-bezier(0.2, 0.7, 0.3, 1), transform 700ms cubic-bezier(0.2, 0.7, 0.3, 1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  border-top: 1px solid var(--border-soft);
+  padding: 3rem 0;
+  margin-top: 3rem;
+}
+footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+footer .meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+footer .meta .accent { color: var(--accent); font-weight: 600; }
+footer .glyph svg { opacity: 0.6; }
+footer .back-to-tactic {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  transition: background 200ms ease;
+}
+footer .back-to-tactic:hover { background: var(--accent); color: var(--bg); }
+
+/* ============================================================
+   PHASES (intro)
+   ============================================================ */
+.phases-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 800px) { .phases-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.phase-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.phase-card .phase-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.phase-card .phase-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0.5rem 0 0.75rem;
+  color: var(--text);
+}
+.phase-card .phase-title .accent { color: var(--accent); }
+.phase-card p { font-size: var(--fs-base); color: var(--text-2); line-height: 1.5; }
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@media print {
+  .nav, .mobile-menu, .mobile-backdrop, .nav-toggle, .shape-toggle { display: none; }
+  body { background: white; color: black; }
+  section { page-break-inside: avoid; }
+  .pitch-frame { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="/wayne-tactic" class="brand" aria-label="Wayne Tactic home">
+      <span class="brand-mark">W</span>
+      <span>Wayne Tactic</span>
+      <small>Game Plan · vs Cyper Reapers</small>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#system">System</a>
+      <a href="#shapes">Shapes</a>
+      <a href="#opposition">Opposition</a>
+      <a href="#phases">Phases</a>
+      <a href="#buildup">Build-Up</a>
+      <a href="#patterns">Patterns</a>
+      <a href="#defending">Defending</a>
+      <a href="#energy">Energy</a>
+      <a href="#briefs">Briefs</a>
+      <a href="#summary">Summary</a>
+      <a href="/wayne-tactic" class="back-link">← Tactic</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <ol>
+    <li><a href="#system">The System</a></li>
+    <li><a href="#shapes">The Two Shapes</a></li>
+    <li><a href="#opposition">Opposition Profile</a></li>
+    <li><a href="#phases">The Three Phases</a></li>
+    <li><a href="#buildup">Build-Up &amp; The Bait</a></li>
+    <li><a href="#overload">Right-Side 2v1</a></li>
+    <li><a href="#patterns">Attacking Patterns</a></li>
+    <li><a href="#defending">How We Defend</a></li>
+    <li><a href="#energy">Energy Plan</a></li>
+    <li><a href="#scenarios">In-Match Scenarios</a></li>
+    <li><a href="#briefs">Player Briefs</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li class="back-li"><a href="/wayne-tactic">← Back to Wayne Tactic</a></li>
+  </ol>
+</div>
+
+<main id="top">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="container-wide">
+    <div class="hero-meta">
+      <span class="tag dot accent">Match · v1.0</span>
+      <span class="tag">Nacos Super League</span>
+      <span class="tag">Year 3 vs Year 2</span>
+      <span class="tag warn">Etienne starts at RB</span>
+    </div>
+    <h1 class="hero-title font-display">
+      Game Plan
+      <br>
+      <span class="small-label">CSC FC</span>
+      <span class="slash">vs</span>
+      <span class="accent">Cyper Reapers</span>
+    </h1>
+    <p class="hero-sub">
+      The Wayne Tactic, applied to this match. Same 4-4-2 / 3-2-5 system. New opponent. Bait their press, attack the space behind their high line, win the energy battle.
+    </p>
+    <div class="hero-quote">
+      "They are <em>not</em> better than us. Trust the system. Conserve our energy. Take our chances."
+    </div>
+    <div class="hero-stats" role="list">
+      <div class="hero-stat" role="listitem">
+        <div class="label">In possession</div>
+        <div class="value"><span class="accent">3</span>&minus;2&minus;5</div>
+        <div class="sub">Front 5 attack</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="label">Out of possession</div>
+        <div class="value">4&minus;4&minus;2</div>
+        <div class="sub">Mid-block</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="label">Key threat</div>
+        <div class="value"><span class="accent">L</span>W &middot; 10</div>
+        <div class="sub">Reuben &amp; Etienne</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="label">Patterns</div>
+        <div class="value"><span class="accent">4</span></div>
+        <div class="sub">A · B · C · D</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 01, THE SYSTEM
+     ============================================================ -->
+<section id="system">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">01</span> The System</span>
+        <h2 class="title">Same system. <span class="accent">Different personnel.</span></h2>
+      </div>
+      <p class="desc">
+        On the team-sheet we are 4-4-2. On the ball we become 3-2-5. The transformation runs through two moves, just like always, one back-line player tucks to make a back 3, and one full-back pushes high into the front 5. The tactic doesn't change for any opponent. Personnel does.
+      </p>
+    </div>
+
+    <div class="rules-grid three reveal">
+      <div class="rule">
+        <div class="rule-num">CHANGE 01</div>
+        <div class="rule-title">Mill is out. Etienne starts RB.</div>
+        <div class="rule-body">Etienne takes Mill's role. In possession he tucks to become the right of the back 3. Out of possession he is our right-back. Same job, different player.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">CHANGE 02</div>
+        <div class="rule-title">Kennedy starts LCB.</div>
+        <div class="rule-body">Kennedy comes into the back line as left centre-back. He stays as LCB in both shapes.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">CHANGE 03</div>
+        <div class="rule-title">Goody still pushes high.</div>
+        <div class="rule-body">Same as always, Goody pushes from LB into the front 5 in possession. He is our left-side weapon and the 2v1 partner with Bobby against their weakest flank.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 02, STARTING XI
+     ============================================================ -->
+<section id="lineup">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">02</span> Starting XI</span>
+        <h2 class="title">Eleven players. <span class="accent">Two roles each.</span></h2>
+      </div>
+      <p class="desc">
+        Each player has a role out of possession (their formation slot) and a role in possession (where they move to in the 3-2-5). The transition between those roles, in either direction, is the system in action.
+      </p>
+    </div>
+
+    <div class="lineup-table reveal">
+      <div class="lineup-row head">
+        <div>#</div>
+        <div>Out of possession</div>
+        <div>Player</div>
+        <div>In possession</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">1</div>
+        <div class="lineup-pos">GK</div>
+        <div class="lineup-name">Destiny</div>
+        <div class="lineup-role">Deep build-up. Splits wide with Gabi to bait the press.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">2</div>
+        <div class="lineup-pos">RB</div>
+        <div class="lineup-name">Etienne</div>
+        <div class="lineup-role">Tucks to become RCB of the back 3. Mill's old job.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">5</div>
+        <div class="lineup-pos">RCB</div>
+        <div class="lineup-name">Gabi</div>
+        <div class="lineup-role">Becomes the CCB. Holds the ball. Baits the press.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">4</div>
+        <div class="lineup-pos">LCB</div>
+        <div class="lineup-name">Kennedy</div>
+        <div class="lineup-role">Stays as LCB. The safe reset option on the left.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">3</div>
+        <div class="lineup-pos">LB</div>
+        <div class="lineup-name">Goodluck</div>
+        <div class="lineup-role">Pushes very high. Joins the front 5. 2v1 with Bobby.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">6</div>
+        <div class="lineup-pos">DM · L</div>
+        <div class="lineup-name">Ibiso</div>
+        <div class="lineup-role">The collector. Drops between the lines. Connects.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">8</div>
+        <div class="lineup-pos">DM · R</div>
+        <div class="lineup-name">Reuben</div>
+        <div class="lineup-role">The screen. Never past halfway. Covers everything.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">11</div>
+        <div class="lineup-pos">RW</div>
+        <div class="lineup-name">Jobi</div>
+        <div class="lineup-role">Stays wide. Channel runs behind their LB.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">10</div>
+        <div class="lineup-pos">R AM</div>
+        <div class="lineup-name">Rex</div>
+        <div class="lineup-role">Right half-space. Drops between lines. The switch player.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">9</div>
+        <div class="lineup-pos">L AM</div>
+        <div class="lineup-name">Fortune</div>
+        <div class="lineup-role">Shadow 9 / left half-space. Bounces. Late box arrivals.</div>
+      </div>
+      <div class="lineup-row">
+        <div class="lineup-num">7</div>
+        <div class="lineup-pos">LW</div>
+        <div class="lineup-name">Bobby</div>
+        <div class="lineup-role">Stays wide left. The runner in behind. Our counter threat.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 03, THE TWO SHAPES
+     ============================================================ -->
+<section id="shapes">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">03</span> The Two Shapes</span>
+        <h2 class="title">In possession. <span class="accent">Out of possession.</span> Same eleven.</h2>
+      </div>
+      <p class="desc">
+        For this match, <strong>Etienne tucks</strong> as the right of the back 3 (Mill's role) and <strong>Goody pushes high</strong> from left-back into the front 5. Kennedy is the LCB throughout. Toggle between the two shapes below.
+      </p>
+    </div>
+
+    <div class="reveal" style="display:flex;justify-content:flex-end;margin-bottom:1rem;">
+      <div class="shape-toggle" role="tablist" aria-label="Shape toggle">
+        <button class="active" data-shape="ip" role="tab" aria-selected="true">In Possession · 3-2-5</button>
+        <button data-shape="oop" role="tab" aria-selected="false">Out of Possession · 4-4-2</button>
+      </div>
+    </div>
+
+    <div class="pitch-stage reveal">
+
+      <!-- ============== IP 3-2-5 ============== -->
+      <div class="pitch-frame active" id="frame-ip" role="tabpanel">
+        <div class="pitch-wrap">
+          <svg class="pitch" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="3-2-5 in possession shape">
+            <defs>
+              <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/>
+              </marker>
+              <marker id="arrowhead-warn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--warn)"/>
+              </marker>
+            </defs>
+
+            <!-- Lane dividers -->
+            <g opacity="0.7">
+              <line class="pitch-line-soft" x1="0" y1="13.6" x2="105" y2="13.6" stroke-dasharray="0.4 0.6"/>
+              <line class="pitch-line-soft" x1="0" y1="27.2" x2="105" y2="27.2" stroke-dasharray="0.4 0.6"/>
+              <line class="pitch-line-soft" x1="0" y1="40.8" x2="105" y2="40.8" stroke-dasharray="0.4 0.6"/>
+              <line class="pitch-line-soft" x1="0" y1="54.4" x2="105" y2="54.4" stroke-dasharray="0.4 0.6"/>
+            </g>
+
+            <!-- Pitch markings -->
+            <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
+            <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
+            <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
+            <circle class="pitch-spot" cx="52.5" cy="34" r="0.3"/>
+            <rect class="pitch-line" x="0.2" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="0.2" y="24.84" width="5.3" height="18.32"/>
+            <circle class="pitch-spot" cx="11" cy="34" r="0.3"/>
+            <path class="pitch-line" d="M 16.5 26.69 A 9.15 9.15 0 0 1 16.5 41.31"/>
+            <rect class="pitch-line" x="88.5" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="99.5" y="24.84" width="5.3" height="18.32"/>
+            <circle class="pitch-spot" cx="94" cy="34" r="0.3"/>
+            <path class="pitch-line" d="M 88.5 26.69 A 9.15 9.15 0 0 0 88.5 41.31"/>
+            <line class="pitch-line" x1="0" y1="30.34" x2="0" y2="37.66" stroke-width="0.5"/>
+            <line class="pitch-line" x1="105" y1="30.34" x2="105" y2="37.66" stroke-width="0.5"/>
+
+            <!-- Lane labels (top edge) -->
+            <g>
+              <text class="lane-label" x="6.8" y="3">L CHANNEL</text>
+              <text class="lane-label" x="20.4" y="3">L HALF-SPACE</text>
+              <text class="lane-label" x="34" y="3">CENTRE</text>
+              <text class="lane-label" x="47.6" y="3">R HALF-SPACE</text>
+              <text class="lane-label" x="61.2" y="3">R CHANNEL</text>
+            </g>
+
+            <text class="compass" x="52.5" y="66.5" text-anchor="middle">ATTACK →</text>
+
+            <!-- Transformation arrows -->
+            <!-- Etienne tucks from RB -->
+            <path class="pitch-arrow dashed" d="M 24 55 Q 23 53 22 51" marker-end="url(#arrowhead)"/>
+            <!-- Goody pushes high from LB -->
+            <path class="pitch-arrow dashed" d="M 24 12 Q 50 14 76 19" marker-end="url(#arrowhead)"/>
+
+            <!-- GK -->
+            <g class="player-token">
+              <circle class="player-circle" cx="5" cy="34" r="2.4"/>
+              <text class="player-num" x="5" y="34">1</text>
+              <text class="player-label" x="5" y="39.5">DESTINY</text>
+            </g>
+
+            <!-- Back 3 -->
+            <g class="player-token">
+              <circle class="player-circle" cx="22" cy="18" r="2.4"/>
+              <text class="player-num" x="22" y="18">4</text>
+              <text class="player-label" x="22" y="23.5">KENNEDY</text>
+              <text class="player-label tiny" x="22" y="26">LCB</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="24" cy="34" r="2.4"/>
+              <text class="player-num" x="24" y="34">5</text>
+              <text class="player-label" x="24" y="39.5">GABI</text>
+              <text class="player-label tiny" x="24" y="42">CCB</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="22" cy="50" r="2.4"/>
+              <text class="player-num" x="22" y="50">2</text>
+              <text class="player-label" x="22" y="55.5">ETIENNE</text>
+              <text class="player-label tiny" x="22" y="58">RCB · tucked</text>
+            </g>
+
+            <!-- Double pivot -->
+            <g class="player-token">
+              <circle class="player-circle" cx="44" cy="28" r="2.4"/>
+              <text class="player-num" x="44" y="28">6</text>
+              <text class="player-label" x="44" y="22.5">IBISO</text>
+              <text class="player-label tiny" x="44" y="25">DM · collector · L</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="40" cy="40" r="2.4"/>
+              <text class="player-num" x="40" y="40">8</text>
+              <text class="player-label" x="40" y="45.5">REUBEN</text>
+              <text class="player-label tiny" x="40" y="48">DM · screen · R</text>
+            </g>
+
+            <!-- Front 5 -->
+            <g class="player-token">
+              <circle class="player-circle" cx="76" cy="7" r="2.4"/>
+              <text class="player-num" x="76" y="7">7</text>
+              <text class="player-label" x="76" y="12.5">BOBBY</text>
+              <text class="player-label tiny" x="76" y="15">LW · width</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="78" cy="20" r="2.4"/>
+              <text class="player-num" x="78" y="20">3</text>
+              <text class="player-label" x="78" y="14.5">GOODY</text>
+              <text class="player-label tiny" x="78" y="17">advanced from LB</text>
+            </g>
+            <!-- 9 free slot -->
+            <g class="player-token">
+              <circle class="player-circle ghost" cx="86" cy="34" r="2.4"/>
+              <text class="player-num" x="86" y="34" style="fill:var(--accent)">9</text>
+              <text class="player-label" x="86" y="39.5">9 · FREE</text>
+              <text class="player-label tiny" x="86" y="42">rotational</text>
+            </g>
+            <!-- Fortune shadow ST -->
+            <g class="player-token">
+              <circle class="player-circle" cx="74" cy="34" r="2.4"/>
+              <text class="player-num" x="74" y="34">9</text>
+              <text class="player-label" x="74" y="29">FORTUNE</text>
+              <text class="player-label tiny" x="74" y="31.5">shadow ST</text>
+            </g>
+            <path class="pitch-arrow dashed" d="M 76.5 34 Q 80 34 83.5 34" style="opacity:0.6"/>
+            <g class="player-token">
+              <circle class="player-circle" cx="78" cy="48" r="2.4"/>
+              <text class="player-num" x="78" y="48">10</text>
+              <text class="player-label" x="78" y="53.5">REX</text>
+              <text class="player-label tiny" x="78" y="56">R half-space</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="76" cy="61" r="2.4"/>
+              <text class="player-num" x="76" y="61">11</text>
+              <text class="player-label" x="76" y="55.5">JOBI</text>
+              <text class="player-label tiny" x="76" y="58">RW · direct</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="pitch-caption">
+          <div>
+            <div class="title">In Possession · 3-2-5</div>
+            <div class="meta">All five vertical lanes occupied. Back 3 + double pivot + front 5.</div>
+          </div>
+          <div class="pitch-legend">
+            <span class="item"><span class="swatch"></span> Player</span>
+            <span class="item"><span class="swatch ghost"></span> Free slot</span>
+            <span class="item"><span class="swatch line"></span> Transformation movement</span>
+          </div>
+        </div>
+
+        <div class="shape-info">
+          <div class="info-block">
+            <div class="k">Manufactured by</div>
+            <div class="v"><strong>Etienne tucks</strong> from RB to make the back 3. <strong>Goody pushes</strong> from LB into the front 5.</div>
+          </div>
+          <div class="info-block">
+            <div class="k">Screen (right of pivot)</div>
+            <div class="v"><strong>Reuben</strong>, never advances past halfway. Insurance for everything Goody and Ibiso do.</div>
+          </div>
+          <div class="info-block">
+            <div class="k">Connector (left of pivot)</div>
+            <div class="v"><strong>Ibiso</strong>, the progressive DM. Drops between lines. Covers Goody's vacated zone.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============== OOP 4-4-2 ============== -->
+      <div class="pitch-frame" id="frame-oop" role="tabpanel">
+        <div class="pitch-wrap">
+          <svg class="pitch" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="4-4-2 mid-block out of possession">
+
+            <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
+            <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
+            <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
+            <circle class="pitch-spot" cx="52.5" cy="34" r="0.3"/>
+            <rect class="pitch-line" x="0.2" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="0.2" y="24.84" width="5.3" height="18.32"/>
+            <circle class="pitch-spot" cx="11" cy="34" r="0.3"/>
+            <path class="pitch-line" d="M 16.5 26.69 A 9.15 9.15 0 0 1 16.5 41.31"/>
+            <rect class="pitch-line" x="88.5" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="99.5" y="24.84" width="5.3" height="18.32"/>
+            <circle class="pitch-spot" cx="94" cy="34" r="0.3"/>
+            <path class="pitch-line" d="M 88.5 26.69 A 9.15 9.15 0 0 0 88.5 41.31"/>
+            <line class="pitch-line" x1="0" y1="30.34" x2="0" y2="37.66" stroke-width="0.5"/>
+            <line class="pitch-line" x1="105" y1="30.34" x2="105" y2="37.66" stroke-width="0.5"/>
+
+            <!-- Compact block zone -->
+            <rect class="pitch-zone" x="18" y="8" width="38" height="52" rx="1.5"/>
+            <text class="zone-label" x="37" y="6">COMPACT BLOCK · ≤10m line gaps</text>
+
+            <text class="compass" x="52.5" y="66.5" text-anchor="middle">← OPP ATTACKS</text>
+
+            <!-- Recovery arrow Goody back to LB -->
+            <path class="pitch-arrow warn dashed" d="M 78 20 Q 50 14 24 12" marker-end="url(#arrowhead-warn)"/>
+            <text class="zone-label" x="50" y="9" style="fill:var(--warn);font-size:1.4px">RECOVERY: Goody → LB</text>
+
+            <!-- GK -->
+            <g class="player-token">
+              <circle class="player-circle" cx="5" cy="34" r="2.4"/>
+              <text class="player-num" x="5" y="34">1</text>
+            </g>
+
+            <!-- Back 4 -->
+            <g class="player-token">
+              <circle class="player-circle" cx="24" cy="12" r="2.4"/>
+              <text class="player-num" x="24" y="12">3</text>
+              <text class="player-label" x="24" y="6.5">GOODY · LB</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="22" cy="27" r="2.4"/>
+              <text class="player-num" x="22" y="27">4</text>
+              <text class="player-label tiny" x="22" y="22">KENNEDY · LCB</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="22" cy="41" r="2.4"/>
+              <text class="player-num" x="22" y="41">5</text>
+              <text class="player-label tiny" x="22" y="46">GABI · RCB</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="24" cy="55" r="2.4"/>
+              <text class="player-num" x="24" y="55">2</text>
+              <text class="player-label" x="24" y="60.5">ETIENNE · RB</text>
+            </g>
+
+            <!-- Mid 4 -->
+            <g class="player-token">
+              <circle class="player-circle" cx="40" cy="14" r="2.4"/>
+              <text class="player-num" x="40" y="14">7</text>
+              <text class="player-label tiny" x="40" y="9">BOBBY · LM tuck</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="40" cy="28" r="2.4"/>
+              <text class="player-num" x="40" y="28">6</text>
+              <text class="player-label tiny" x="40" y="23">IBISO · LCM</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="40" cy="40" r="2.4"/>
+              <text class="player-num" x="40" y="40">8</text>
+              <text class="player-label tiny" x="40" y="45">REUBEN · RCM</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="40" cy="54" r="2.4"/>
+              <text class="player-num" x="40" y="54">11</text>
+              <text class="player-label tiny" x="40" y="59">JOBI · RM tuck</text>
+            </g>
+
+            <!-- Front 2 -->
+            <g class="player-token">
+              <circle class="player-circle" cx="54" cy="24" r="2.4"/>
+              <text class="player-num" x="54" y="24">9</text>
+              <text class="player-label" x="54" y="19">FORTUNE</text>
+            </g>
+            <g class="player-token">
+              <circle class="player-circle" cx="54" cy="44" r="2.4"/>
+              <text class="player-num" x="54" y="44">10</text>
+              <text class="player-label" x="54" y="49">REX</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="pitch-caption">
+          <div>
+            <div class="title">Out of Possession · 4-4-2 Mid-Block</div>
+            <div class="meta">Sit 15-20m from our box. Compact. Force them wide. Wait for the trigger.</div>
+          </div>
+          <div class="pitch-legend">
+            <span class="item"><span class="swatch"></span> Player</span>
+            <span class="item"><span class="swatch line warn"></span> Recovery run</span>
+          </div>
+        </div>
+
+        <div class="shape-info">
+          <div class="info-block">
+            <div class="k">Front pair</div>
+            <div class="v"><strong>Fortune + Rex</strong> press from the front. They start the block. They don't finish it alone.</div>
+          </div>
+          <div class="info-block">
+            <div class="k">Wide tucks</div>
+            <div class="v"><strong>Bobby</strong> tucks into LM. <strong>Jobi</strong> tucks into RM. Our wide forwards become wide midfielders.</div>
+          </div>
+          <div class="info-block">
+            <div class="k">Block discipline</div>
+            <div class="v">≤10m vertical gap between midfield and back lines. We move as one unit. Always.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 04, OPPOSITION
+     ============================================================ -->
+<section id="opposition">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">04</span> Opposition</span>
+        <h2 class="title">Cyper Reapers. <span class="accent">Beatable.</span></h2>
+      </div>
+      <p class="desc">
+        They beat CS Royale 6-2. They press high, hold a high line, and play through ball-playing midfielders. That sounds dangerous, until you read what those things create for us. Every strength of theirs is also an opening.
+      </p>
+    </div>
+
+    <div class="cards-2 reveal">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">What makes them good</div>
+            <div class="card-sub">Read it. Respect it. Don't fear it.</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Calm on the ball, patient possession built around ball-playing midfielders</li>
+            <li>High press is organised and aggressive</li>
+            <li>Suffocated CS Royale in their own half for long periods</li>
+            <li>6-2 win means they have genuine attacking quality</li>
+            <li>Dangerous left winger plays like an inside 10</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">What makes them <span class="accent">beatable</span></div>
+            <div class="card-sub">Their weaknesses are inside their strengths.</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li><strong>Their result against another team is not their result against us.</strong></li>
+            <li><strong>Ball-playing midfielders pressing</strong>, they are not natural ball-winners. When they commit to pressing, the space behind them is bigger.</li>
+            <li><strong>High line = space in behind.</strong> The higher the line, the more exposed they are.</li>
+            <li><strong>Right side is weakest.</strong> This is where Bobby and Goody live all game.</li>
+            <li><strong>Counter vulnerability.</strong> Pressing high + high line + turnover = goal chance. CS Royale couldn't exploit this. We will.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 05, THE THREE PHASES
+     ============================================================ -->
+<section id="phases">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">05</span> The Three Phases</span>
+        <h2 class="title">Bait. Release. <span class="accent">Attack.</span></h2>
+      </div>
+      <p class="desc">
+        Our entire attacking idea against this team fits into three words. Everything else, the patterns, the rotations, the rules, serves these three phases.
+      </p>
+    </div>
+
+    <div class="phases-grid reveal">
+      <div class="phase-card">
+        <div class="phase-num">Phase 01</div>
+        <h3 class="phase-title"><span class="accent">Bait</span></h3>
+        <p>Draw their press. Invite them to commit. Make the space appear. Gabi holds the ball deep. We are not rushing. We are setting the trap.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 02</div>
+        <h3 class="phase-title"><span class="accent">Release</span></h3>
+        <p>The moment their presser commits and the space opens, we play through. Ibiso receives between the lines. Fast, direct, forward. One pass bypasses their entire press.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">Phase 03</div>
+        <h3 class="phase-title"><span class="accent">Attack</span></h3>
+        <p>The transition is the chance. Three runners going, full speed, before their defenders recover. This is what we call an "artificial transition", we manufactured it, we finish it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 06, BUILD-UP & THE BAIT
+     ============================================================ -->
+<section id="buildup">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">06</span> Build-Up &amp; The Bait</span>
+        <h2 class="title">Ibiso comes deep. <span class="accent">Reuben stays.</span></h2>
+      </div>
+      <p class="desc">
+        The single most important detail of our build-up against this team. <strong>Ibiso</strong> is the one who drops to collect, not Reuben. Ibiso has the carry and vision to connect the back line to the front 5. Reuben holds his spot as the safety screen.
+      </p>
+    </div>
+
+    <div class="pitch-wrap reveal">
+      <svg class="pitch" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Build-up bait shape against high press">
+        <defs>
+          <marker id="arr-bu" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/>
+          </marker>
+          <marker id="arr-bu-warn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--warn)"/>
+          </marker>
+        </defs>
+
+        <!-- Pitch -->
+        <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
+        <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
+        <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
+        <rect class="pitch-line" x="0.2" y="13.84" width="16.3" height="40.32"/>
+        <rect class="pitch-line" x="0.2" y="24.84" width="5.3" height="18.32"/>
+        <path class="pitch-line" d="M 16.5 26.69 A 9.15 9.15 0 0 1 16.5 41.31"/>
+        <line class="pitch-line" x1="0" y1="30.34" x2="0" y2="37.66" stroke-width="0.5"/>
+        <rect class="pitch-line" x="88.5" y="13.84" width="16.3" height="40.32"/>
+        <rect class="pitch-line" x="99.5" y="24.84" width="5.3" height="18.32"/>
+        <path class="pitch-line" d="M 88.5 26.69 A 9.15 9.15 0 0 0 88.5 41.31"/>
+        <line class="pitch-line" x1="105" y1="30.34" x2="105" y2="37.66" stroke-width="0.5"/>
+
+        <!-- High press zone overlay -->
+        <rect class="pitch-zone" x="13" y="10" width="22" height="48" rx="1.5" style="fill:var(--warn);fill-opacity:0.05;stroke:var(--warn);stroke-opacity:0.3;stroke-dasharray:0.6 0.4"/>
+        <text class="zone-label" x="24" y="9" style="fill:var(--warn);font-size:1.3px">THEIR HIGH PRESS</text>
+
+        <text class="compass" x="52.5" y="66.5" text-anchor="middle">ATTACK →</text>
+
+        <!-- GK splits wide with Gabi -->
+        <!-- Goody stretches very high left flank -->
+        <!-- Ibiso drops between lines, Reuben holds -->
+        <!-- Fortune/Rex drop into half-spaces -->
+        <!-- Bobby and Jobi stay high -->
+
+        <!-- ARROWS: build-up sequence -->
+        <!-- Destiny → Gabi (short, deep, wide) -->
+        <path d="M 5 34 Q 10 38 16 42" stroke="var(--accent)" fill="none" stroke-width="0.32" stroke-linecap="round" marker-end="url(#arr-bu)"/>
+        <!-- Gabi → Ibiso (the release) -->
+        <path d="M 18 42 Q 30 36 42 30" stroke="var(--accent)" fill="none" stroke-width="0.4" stroke-linecap="round" marker-end="url(#arr-bu)"/>
+        <!-- Goody's high run -->
+        <path d="M 24 14 Q 50 10 75 8" stroke="var(--accent)" fill="none" stroke-width="0.35" stroke-linecap="round" stroke-dasharray="0.6 0.4" marker-end="url(#arr-bu)"/>
+        <!-- Fortune drops into L half-space (from forward to between lines) -->
+        <path d="M 70 24 Q 64 26 58 28" stroke="var(--accent)" fill="none" stroke-width="0.3" stroke-linecap="round" stroke-dasharray="0.5 0.5" marker-end="url(#arr-bu)" opacity="0.7"/>
+        <!-- Rex drops into R half-space -->
+        <path d="M 78 44 Q 70 44 62 42" stroke="var(--accent)" fill="none" stroke-width="0.3" stroke-linecap="round" stroke-dasharray="0.5 0.5" marker-end="url(#arr-bu)" opacity="0.7"/>
+
+        <!-- LABELS for sequence -->
+        <text class="zone-label" x="11" y="48" style="font-size:1.4px;fill:var(--accent)">1. BAIT</text>
+        <text class="zone-label" x="32" y="36" style="font-size:1.4px;fill:var(--accent)">2. RELEASE</text>
+        <text class="zone-label" x="63" y="25" style="font-size:1.4px;fill:var(--accent)">3. ATTACK</text>
+
+        <!-- PLAYERS -->
+        <!-- GK -->
+        <g class="player-token">
+          <circle class="player-circle" cx="5" cy="34" r="2.4"/>
+          <text class="player-num" x="5" y="34">1</text>
+          <text class="player-label" x="5" y="39.5">DESTINY</text>
+        </g>
+
+        <!-- Gabi splits wide right of GK (deep) -->
+        <g class="player-token">
+          <circle class="player-circle" cx="18" cy="42" r="2.4"/>
+          <text class="player-num" x="18" y="42">5</text>
+          <text class="player-label" x="18" y="47.5">GABI</text>
+          <text class="player-label tiny" x="18" y="50">holds, baits</text>
+        </g>
+
+        <!-- Kennedy LCB -->
+        <g class="player-token">
+          <circle class="player-circle" cx="18" cy="26" r="2.4"/>
+          <text class="player-num" x="18" y="26">4</text>
+          <text class="player-label tiny" x="18" y="21.5">KENNEDY</text>
+        </g>
+
+        <!-- Etienne tucked -->
+        <g class="player-token">
+          <circle class="player-circle" cx="22" cy="56" r="2.4"/>
+          <text class="player-num" x="22" y="56">2</text>
+          <text class="player-label tiny" x="22" y="60.5">ETIENNE</text>
+        </g>
+
+        <!-- Goody pushed very high (LB → high) -->
+        <g class="player-token">
+          <circle class="player-circle" cx="75" cy="8" r="2.4"/>
+          <text class="player-num" x="75" y="8">3</text>
+          <text class="player-label" x="75" y="13.5">GOODY</text>
+          <text class="player-label tiny" x="75" y="16">high, stretching</text>
+        </g>
+
+        <!-- Ibiso dropping deep between lines -->
+        <g class="player-token">
+          <circle class="player-circle" cx="44" cy="30" r="2.4"/>
+          <text class="player-num" x="44" y="30">6</text>
+          <text class="player-label" x="44" y="25">IBISO</text>
+          <text class="player-label tiny" x="44" y="27.5">collector</text>
+        </g>
+
+        <!-- Reuben holds -->
+        <g class="player-token">
+          <circle class="player-circle" cx="40" cy="42" r="2.4"/>
+          <text class="player-num" x="40" y="42">8</text>
+          <text class="player-label" x="40" y="47.5">REUBEN</text>
+          <text class="player-label tiny" x="40" y="50">cover</text>
+        </g>
+
+        <!-- Fortune drops left half-space -->
+        <g class="player-token">
+          <circle class="player-circle" cx="58" cy="28" r="2.4"/>
+          <text class="player-num" x="58" y="28">9</text>
+          <text class="player-label" x="58" y="23">FORTUNE</text>
+          <text class="player-label tiny" x="58" y="25.5">L half-space</text>
+        </g>
+
+        <!-- Rex drops right half-space -->
+        <g class="player-token">
+          <circle class="player-circle" cx="62" cy="42" r="2.4"/>
+          <text class="player-num" x="62" y="42">10</text>
+          <text class="player-label" x="62" y="47.5">REX</text>
+          <text class="player-label tiny" x="62" y="50">R half-space</text>
+        </g>
+
+        <!-- Bobby wide left high -->
+        <g class="player-token">
+          <circle class="player-circle" cx="80" cy="14" r="2.4"/>
+          <text class="player-num" x="80" y="14">7</text>
+          <text class="player-label tiny" x="80" y="9">BOBBY</text>
+        </g>
+
+        <!-- Jobi wide right high -->
+        <g class="player-token">
+          <circle class="player-circle" cx="80" cy="56" r="2.4"/>
+          <text class="player-num" x="80" y="56">11</text>
+          <text class="player-label tiny" x="80" y="60.5">JOBI</text>
+        </g>
+
+        <!-- Opposition pressers shown -->
+        <g class="player-token">
+          <circle class="player-circle opp" cx="28" cy="26" r="2"/>
+        </g>
+        <g class="player-token">
+          <circle class="player-circle opp" cx="28" cy="42" r="2"/>
+        </g>
+        <g class="player-token">
+          <circle class="player-circle opp" cx="38" cy="20" r="2"/>
+        </g>
+        <g class="player-token">
+          <circle class="player-circle opp" cx="38" cy="48" r="2"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="pitch-caption">
+      <div>
+        <div class="title">Build-Up Shape · Baiting The Press</div>
+        <div class="meta">Destiny → Gabi (holds) → Ibiso (drops, receives) → release into half-spaces or over the top.</div>
+      </div>
+      <div class="pitch-legend">
+        <span class="item"><span class="swatch"></span> Us</span>
+        <span class="item"><span class="swatch opp"></span> Their press</span>
+        <span class="item"><span class="swatch line"></span> Pass / run</span>
+      </div>
+    </div>
+
+    <div class="rules-grid three reveal" style="margin-top:2.5rem;">
+      <div class="rule">
+        <div class="rule-num">DETAIL 01</div>
+        <div class="rule-title">Why Ibiso, not Reuben.</div>
+        <div class="rule-body">Ibiso has the carry and the vision. Reuben is the screen. If Ibiso is also closed, Reuben becomes the simple sideways reset. <strong>They cannot press both at once.</strong></div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">DETAIL 02</div>
+        <div class="rule-title">Why Goody pushes so high.</div>
+        <div class="rule-body">He stretches the pitch vertically. Pulls their right back deeper, or forces them to ignore him, either way, the wide channel opens. He is also the long-diagonal option for Gabi.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">DETAIL 03</div>
+        <div class="rule-title">Gabi has four options.</div>
+        <div class="rule-body">Long to Goody. Ground into Ibiso. Direct into Fortune or Rex. Reset to GK or Reuben. <strong>His patience creates the options. Do not rush.</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 07, RIGHT-SIDE 2v1
+     ============================================================ -->
+<section id="overload">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">07</span> Their Weakest Side</span>
+        <h2 class="title">Bobby + Goody. <span class="accent">2v1.</span> All game.</h2>
+      </div>
+      <p class="desc">
+        Their right side is the weakest flank on the pitch. Our left side is built to attack it. <strong>Bobby</strong> on the wing plus <strong>Goody</strong> pushed high from LB, that is a permanent 2v1 against their right back. We attack it first. We attack it repeatedly.
+      </p>
+    </div>
+
+    <div class="cards-2 reveal">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">The pattern</div>
+            <div class="card-sub">Bobby drives. Goody overlaps.</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>Build through the middle or attract them to our right side first</li>
+            <li>Quick ball into Bobby wide left</li>
+            <li>Bobby drives at their right back, body angled inside, ball at feet</li>
+            <li>Goody is already starting the overlap run on the outside</li>
+            <li>Their right back faces a 2v1, he cannot deal with both</li>
+            <li>If RB stays tight on Bobby → Goody is free outside for the cross</li>
+            <li>If RB goes to Goody → Bobby drives inside for the shot or cutback</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">The rule</div>
+            <div class="card-sub">Do not switch early.</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Let the centre or right side attract their defenders <em>first</em>. Then deliver to Bobby. A pass to an unattended Bobby in a 2v1 is much more dangerous than a pass to a Bobby they have already organised against.</p>
+          <p>Their right back will get tired of this. He will start cheating across. <strong>That is the trigger for Pattern B.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 08, ATTACKING PATTERNS
+     ============================================================ -->
+<section id="patterns">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">08</span> Attacking Patterns</span>
+        <h2 class="title">Four patterns. <span class="accent">Four triggers.</span></h2>
+      </div>
+      <p class="desc">
+        Patterns are not plays we run blindly. Each is triggered by a specific picture, the press committing, the right side overloaded, a turnover, a marker following too tight. Read the trigger. Run the pattern.
+      </p>
+    </div>
+
+    <div class="patterns-grid reveal">
+
+      <!-- PATTERN A -->
+      <article class="pattern-card">
+        <div class="pitch-wrap">
+          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern A, Bait and Release">
+            <defs>
+              <marker id="pa-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/>
+              </marker>
+            </defs>
+
+            <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
+            <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
+            <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
+            <rect class="pitch-line" x="88.5" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="99.5" y="24.84" width="5.3" height="18.32"/>
+            <path class="pitch-line" d="M 88.5 26.69 A 9.15 9.15 0 0 0 88.5 41.31"/>
+            <line class="pitch-line" x1="105" y1="30.34" x2="105" y2="37.66" stroke-width="0.5"/>
+            <rect class="pitch-line" x="0.2" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="0.2" y="24.84" width="5.3" height="18.32"/>
+            <path class="pitch-line" d="M 16.5 26.69 A 9.15 9.15 0 0 1 16.5 41.31"/>
+            <line class="pitch-line" x1="0" y1="30.34" x2="0" y2="37.66" stroke-width="0.5"/>
+
+            <!-- Their high line shown -->
+            <line x1="55" y1="5" x2="55" y2="63" stroke="var(--warn)" stroke-width="0.18" stroke-dasharray="0.5 0.5" opacity="0.6"/>
+            <text x="55" y="4" text-anchor="middle" style="fill:var(--warn);font-family:var(--font-mono);font-size:1.3px">THEIR HIGH LINE</text>
+
+            <!-- Sequence arrows -->
+            <!-- 1. Gabi → Ibiso -->
+            <path d="M 18 42 Q 30 36 42 30" stroke="var(--accent)" fill="none" stroke-width="0.4" stroke-linecap="round" marker-end="url(#pa-arr)"/>
+            <!-- 2. Ibiso → Rex -->
+            <path d="M 44 30 Q 54 36 62 42" stroke="var(--accent)" fill="none" stroke-width="0.4" stroke-linecap="round" marker-end="url(#pa-arr)"/>
+            <!-- 3a. Rex → Bobby running behind -->
+            <path d="M 64 42 Q 78 22 92 12" stroke="var(--accent)" fill="none" stroke-width="0.35" stroke-linecap="round" stroke-dasharray="0.6 0.5" marker-end="url(#pa-arr)"/>
+            <!-- 3b. Or Gabi long → Goody -->
+            <path d="M 18 42 Q 50 10 90 8" stroke="var(--accent)" fill="none" stroke-width="0.3" stroke-linecap="round" stroke-dasharray="0.5 0.5" marker-end="url(#pa-arr)" opacity="0.55"/>
+
+            <!-- Players -->
+            <g class="player-token"><circle class="player-circle" cx="18" cy="42" r="2.2"/><text class="player-num" x="18" y="42">5</text></g>
+            <g class="player-token"><circle class="player-circle" cx="44" cy="30" r="2.4"/><text class="player-num" x="44" y="30">6</text></g>
+            <g class="player-token"><circle class="player-circle" cx="64" cy="42" r="2.4"/><text class="player-num" x="64" y="42">10</text></g>
+            <g class="player-token"><circle class="player-circle ghost" cx="92" cy="12" r="2.2"/><text class="player-num" x="92" y="12" style="fill:var(--accent)">7</text></g>
+            <g class="player-token"><circle class="player-circle ghost" cx="90" cy="8" r="2.2"/><text class="player-num" x="90" y="8" style="fill:var(--accent)">3</text></g>
+
+            <!-- Their pressers committing -->
+            <g class="player-token"><circle class="player-circle opp" cx="30" cy="32" r="2"/></g>
+            <g class="player-token"><circle class="player-circle opp" cx="32" cy="44" r="2"/></g>
+          </svg>
+        </div>
+        <div class="pattern-meta"><span class="pattern-id">Pattern A · Primary</span></div>
+        <h3 class="pattern-name">Bait and Release</h3>
+        <div class="pattern-trigger"><b>Trigger</b>Their press commits to Gabi.</div>
+        <ol class="pattern-steps">
+          <li>Destiny plays to Gabi. Gabi holds the ball, baits the press.</li>
+          <li>Their pressing midfielder commits forward.</li>
+          <li>Ibiso drops between the lines, before the pass, not after.</li>
+          <li>Gabi plays Ibiso through the press.</li>
+          <li>Ibiso turns and plays Rex/Fortune in the half-spaces.</li>
+          <li>Bobby is already running behind, or Goody is the long diagonal option.</li>
+        </ol>
+        <div class="pattern-note"><b style="margin-right: 0.5rem;">Critical:</b>Ibiso's drop must happen <strong>before</strong> the ball moves, not after. Every build-up starts here.</div>
+      </article>
+
+      <!-- PATTERN B -->
+      <article class="pattern-card">
+        <div class="pitch-wrap">
+          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern B, Left to Right Switch">
+            <defs>
+              <marker id="pb-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/>
+              </marker>
+            </defs>
+
+            <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
+            <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
+            <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
+            <rect class="pitch-line" x="88.5" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="99.5" y="24.84" width="5.3" height="18.32"/>
+            <path class="pitch-line" d="M 88.5 26.69 A 9.15 9.15 0 0 0 88.5 41.31"/>
+            <line class="pitch-line" x1="105" y1="30.34" x2="105" y2="37.66" stroke-width="0.5"/>
+            <rect class="pitch-line" x="0.2" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="0.2" y="24.84" width="5.3" height="18.32"/>
+            <path class="pitch-line" d="M 16.5 26.69 A 9.15 9.15 0 0 1 16.5 41.31"/>
+            <line class="pitch-line" x1="0" y1="30.34" x2="0" y2="37.66" stroke-width="0.5"/>
+
+            <!-- LEFT side congested zone -->
+            <rect class="pitch-zone" x="60" y="4" width="35" height="22" rx="1" style="fill:var(--warn);fill-opacity:0.07"/>
+            <text class="zone-label" x="77" y="3" style="fill:var(--warn);font-size:1.3px">LEFT CONGESTED</text>
+
+            <!-- 1. Bobby lays back to Ibiso -->
+            <path d="M 80 14 Q 60 22 44 30" stroke="var(--accent)" fill="none" stroke-width="0.32" stroke-linecap="round" stroke-dasharray="0.5 0.4" marker-end="url(#pb-arr)"/>
+            <!-- 2. Switch Ibiso → Rex -->
+            <path d="M 44 30 Q 60 40 75 48" stroke="var(--accent)" fill="none" stroke-width="0.45" stroke-linecap="round" marker-end="url(#pb-arr)"/>
+            <!-- 3. Rex → Jobi in behind -->
+            <path d="M 77 48 Q 88 56 96 60" stroke="var(--accent)" fill="none" stroke-width="0.4" stroke-linecap="round" marker-end="url(#pb-arr)"/>
+
+            <!-- Players -->
+            <g class="player-token"><circle class="player-circle" cx="80" cy="14" r="2.2"/><text class="player-num" x="80" y="14">7</text></g>
+            <g class="player-token"><circle class="player-circle" cx="44" cy="30" r="2.4"/><text class="player-num" x="44" y="30">6</text></g>
+            <g class="player-token"><circle class="player-circle" cx="76" cy="48" r="2.4"/><text class="player-num" x="76" y="48">10</text></g>
+            <g class="player-token"><circle class="player-circle" cx="96" cy="60" r="2.2"/><text class="player-num" x="96" y="60">11</text></g>
+
+            <!-- Isolated opp LB -->
+            <g class="player-token"><circle class="player-circle opp" cx="86" cy="56" r="2"/></g>
+            <text x="86" y="63" text-anchor="middle" style="fill:var(--warn);font-family:var(--font-mono);font-size:1.3px">isolated LB</text>
+          </svg>
+        </div>
+        <div class="pattern-meta"><span class="pattern-id">Pattern B</span></div>
+        <h3 class="pattern-name">Left to Right Switch</h3>
+        <div class="pattern-trigger"><b>Trigger</b>Their RB and cover have collapsed onto Bobby.</div>
+        <ol class="pattern-steps">
+          <li>Bobby receives wide left, attracts their RB plus the cover.</li>
+          <li>Bobby lays back to Ibiso (or Reuben).</li>
+          <li>Rex is already waiting in the right half-space, demanding the switch.</li>
+          <li>Quick diagonal switch from Ibiso to Rex.</li>
+          <li>Rex plays Jobi into the space behind their isolated left back.</li>
+          <li>Rex follows his pass into the box for the cutback.</li>
+        </ol>
+        <div class="pattern-note"><b style="margin-right: 0.5rem;">Timing:</b>Rex must wait until their LB is occupied with something else. A switch to an organised right side is wasted.</div>
+      </article>
+
+      <!-- PATTERN C -->
+      <article class="pattern-card">
+        <div class="pitch-wrap">
+          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern C, Counter Launch">
+            <defs>
+              <marker id="pc-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/>
+              </marker>
+              <marker id="pc-arr-warn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--warn)"/>
+              </marker>
+            </defs>
+
+            <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
+            <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
+            <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
+            <rect class="pitch-line" x="88.5" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="99.5" y="24.84" width="5.3" height="18.32"/>
+            <path class="pitch-line" d="M 88.5 26.69 A 9.15 9.15 0 0 0 88.5 41.31"/>
+            <line class="pitch-line" x1="105" y1="30.34" x2="105" y2="37.66" stroke-width="0.5"/>
+            <rect class="pitch-line" x="0.2" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="0.2" y="24.84" width="5.3" height="18.32"/>
+            <path class="pitch-line" d="M 16.5 26.69 A 9.15 9.15 0 0 1 16.5 41.31"/>
+            <line class="pitch-line" x1="0" y1="30.34" x2="0" y2="37.66" stroke-width="0.5"/>
+
+            <!-- Their high line, VERY high -->
+            <line x1="68" y1="5" x2="68" y2="63" stroke="var(--warn)" stroke-width="0.25" stroke-dasharray="0.5 0.5" opacity="0.8"/>
+            <text x="68" y="4" text-anchor="middle" style="fill:var(--warn);font-family:var(--font-mono);font-size:1.3px">THEIR HIGH LINE</text>
+
+            <!-- Space behind shaded -->
+            <rect class="pitch-zone" x="70" y="6" width="33" height="56" rx="1" style="fill:var(--accent);fill-opacity:0.06"/>
+            <text class="zone-label" x="86" y="36" style="font-size:1.6px">SPACE</text>
+
+            <!-- Ball won zone -->
+            <circle cx="30" cy="34" r="3" fill="var(--warn)" fill-opacity="0.3" stroke="var(--warn)" stroke-width="0.2" stroke-dasharray="0.4 0.3"/>
+            <text x="30" y="40" text-anchor="middle" style="fill:var(--warn);font-family:var(--font-mono);font-size:1.3px">BALL WON</text>
+
+            <!-- Long balls over the top -->
+            <path d="M 30 34 Q 55 14 92 10" stroke="var(--accent)" fill="none" stroke-width="0.45" stroke-linecap="round" marker-end="url(#pc-arr)"/>
+            <path d="M 30 34 Q 55 54 92 58" stroke="var(--accent)" fill="none" stroke-width="0.35" stroke-linecap="round" stroke-dasharray="0.6 0.4" marker-end="url(#pc-arr)" opacity="0.7"/>
+
+            <!-- Bobby and Jobi running into space -->
+            <g class="player-token"><circle class="player-circle ghost" cx="92" cy="10" r="2.4"/><text class="player-num" x="92" y="10" style="fill:var(--accent)">7</text></g>
+            <g class="player-token"><circle class="player-circle ghost" cx="92" cy="58" r="2.4"/><text class="player-num" x="92" y="58" style="fill:var(--accent)">11</text></g>
+
+            <!-- Their back line stranded high -->
+            <g class="player-token"><circle class="player-circle opp" cx="64" cy="20" r="2"/></g>
+            <g class="player-token"><circle class="player-circle opp" cx="64" cy="34" r="2"/></g>
+            <g class="player-token"><circle class="player-circle opp" cx="64" cy="48" r="2"/></g>
+          </svg>
+        </div>
+        <div class="pattern-meta"><span class="pattern-id">Pattern C</span></div>
+        <h3 class="pattern-name">Counter Launch</h3>
+        <div class="pattern-trigger"><b>Trigger</b>We win the ball + their line is high + Bobby or Jobi is already running.</div>
+        <ol class="pattern-steps">
+          <li>We win the ball anywhere in our half.</li>
+          <li>First look: is Bobby or Jobi already running?</li>
+          <li>If yes, immediate long ball over their high line.</li>
+          <li>If no, Ibiso holds, team advances 10 metres, then attack.</li>
+          <li>Whoever receives finishes alone or squares for the trailing runner.</li>
+        </ol>
+        <div class="pattern-note"><b style="margin-right: 0.5rem;">Pre-planned:</b>Every time we win the ball, Bobby and Jobi should already be looking to run. This is not reactive, it is the default.</div>
+      </article>
+
+      <!-- PATTERN D -->
+      <article class="pattern-card">
+        <div class="pitch-wrap">
+          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern D, Fortune Bounce">
+            <defs>
+              <marker id="pd-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/>
+              </marker>
+            </defs>
+
+            <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
+            <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
+            <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
+            <rect class="pitch-line" x="88.5" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="99.5" y="24.84" width="5.3" height="18.32"/>
+            <path class="pitch-line" d="M 88.5 26.69 A 9.15 9.15 0 0 0 88.5 41.31"/>
+            <line class="pitch-line" x1="105" y1="30.34" x2="105" y2="37.66" stroke-width="0.5"/>
+            <rect class="pitch-line" x="0.2" y="13.84" width="16.3" height="40.32"/>
+            <rect class="pitch-line" x="0.2" y="24.84" width="5.3" height="18.32"/>
+            <path class="pitch-line" d="M 16.5 26.69 A 9.15 9.15 0 0 1 16.5 41.31"/>
+            <line class="pitch-line" x1="0" y1="30.34" x2="0" y2="37.66" stroke-width="0.5"/>
+
+            <!-- 1. Fortune (original) → Ibiso (bounce) -->
+            <path d="M 56 28 Q 50 30 46 32" stroke="var(--accent)" fill="none" stroke-width="0.4" stroke-linecap="round" marker-end="url(#pd-arr)"/>
+            <!-- Fortune movement to new position (dashed) -->
+            <path d="M 58 28 Q 64 32 70 38" stroke="var(--accent)" fill="none" stroke-width="0.3" stroke-linecap="round" stroke-dasharray="0.5 0.5" marker-end="url(#pd-arr)" opacity="0.7"/>
+            <!-- 2. Ibiso delivers to Fortune's new position -->
+            <path d="M 46 32 Q 58 36 70 40" stroke="var(--accent)" fill="none" stroke-width="0.45" stroke-linecap="round" marker-end="url(#pd-arr)"/>
+            <!-- 3. Fortune drives forward -->
+            <path d="M 72 40 Q 82 36 92 32" stroke="var(--accent)" fill="none" stroke-width="0.4" stroke-linecap="round" stroke-dasharray="0.6 0.4" marker-end="url(#pd-arr)"/>
+
+            <!-- Players -->
+            <!-- Fortune original (ghost) -->
+            <g class="player-token"><circle class="player-circle ghost" cx="56" cy="28" r="2.2"/><text class="player-num" x="56" y="28" style="fill:var(--accent)">9</text></g>
+            <text x="56" y="23" text-anchor="middle" style="fill:var(--text-3);font-family:var(--font-mono);font-size:1.2px">START</text>
+            <!-- Fortune new position -->
+            <g class="player-token"><circle class="player-circle" cx="70" cy="40" r="2.4"/><text class="player-num" x="70" y="40">9</text></g>
+            <text x="70" y="45.5" text-anchor="middle" style="fill:var(--text);font-family:var(--font-mono);font-size:1.3px">FORTUNE</text>
+            <!-- Ibiso -->
+            <g class="player-token"><circle class="player-circle" cx="44" cy="32" r="2.4"/><text class="player-num" x="44" y="32">6</text></g>
+
+            <!-- Their marker (left behind) -->
+            <g class="player-token"><circle class="player-circle opp" cx="56" cy="33" r="2"/></g>
+            <text x="56" y="38" text-anchor="middle" style="fill:var(--warn);font-family:var(--font-mono);font-size:1.2px">marker stuck</text>
+          </svg>
+        </div>
+        <div class="pattern-meta"><span class="pattern-id">Pattern D</span></div>
+        <h3 class="pattern-name">Fortune Bounce</h3>
+        <div class="pattern-trigger"><b>Trigger</b>Fortune receives with a marker tight on him.</div>
+        <ol class="pattern-steps">
+          <li>Fortune receives between lines, marker tight, back to goal.</li>
+          <li>One-touch bounce off Ibiso/Reuben, the give-and-go.</li>
+          <li>Fortune immediately moves into a new position, facing forward.</li>
+          <li>Ibiso/Reuben delivers to Fortune's new position.</li>
+          <li>Fortune drives at their disorganised midfield.</li>
+        </ol>
+        <div class="pattern-note"><b style="margin-right: 0.5rem;">Why it works:</b>Their ball-playing midfielders are not natural ball-winners. Fortune carrying forward after the bounce is a dangerous situation for them.</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 09, DEFENDING
+     ============================================================ -->
+<section id="defending">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">09</span> How We Defend</span>
+        <h2 class="title">Mid-block. <span class="accent">Patient.</span> No chasing.</h2>
+      </div>
+      <p class="desc">
+        Cyper Reapers are a possession team. They <em>want</em> us to chase. We don't. We sit in the 4-4-2 mid-block, stay compact, force them wide, and wait. Their patient possession breaks down if we stay organised. Their press triggers are gifts.
+      </p>
+    </div>
+
+    <div class="rules-grid reveal">
+      <div class="rule">
+        <div class="rule-num">DEFENCE 01</div>
+        <div class="rule-title">The 4-4-2 mid-block.</div>
+        <div class="rule-body">Sit 15-20m from our box. ≤10m vertical gap between the back four and the midfield four. Move as one unit. Always.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">DEFENCE 02</div>
+        <div class="rule-title">Pressing their back 3.</div>
+        <div class="rule-body">In possession they build with a back 3. Fortune and Rex press the two high CBs. The dropped wide player is Bobby's or Jobi's man. Don't press without a trigger.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">DEFENCE 03</div>
+        <div class="rule-title">Press triggers.</div>
+        <div class="rule-body">CB receives facing his own goal → Fortune and Rex sprint. Ball goes back to their GK → press immediately. Otherwise, hold the block.</div>
+      </div>
+    </div>
+
+    <div class="cards-2 reveal" style="margin-top:2.5rem;">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Handling their dangerous LW (inside 10) - Gadus</div>
+            <div class="card-sub">The one player who can hurt us.</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Their left winger plays like an inside 10. He drifts central, finds pockets, and turns to face goal. We cannot let that happen.</p>
+          <p><strong>The assignment is simple:</strong></p>
+          <ul>
+            <li>In midfield zones (centrally) → <strong>Reuben tracks him.</strong></li>
+            <li>In wide areas (our right flank) → <strong>Etienne tracks him.</strong></li>
+          </ul>
+          <p>The handoff is clear. Reuben does not chase him into wide zones. Etienne does not get pulled inside. <strong>The rule: he does not receive and turn facing our goal. Ever.</strong></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">When they press high</div>
+            <div class="card-sub">This is opportunity, not threat.</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Their press is the moment we manufacture an artificial transition. Do not panic.</p>
+          <ul>
+            <li>Stay calm. Do not kick it long in panic.</li>
+            <li>Gabi or Kennedy holds, baits the presser to fully commit.</li>
+            <li>Ibiso drops, receives between the lines.</li>
+            <li>Play forward immediately.</li>
+            <li>If Ibiso is also closed, Reuben is the safety valve. Reset.</li>
+          </ul>
+          <p><strong>What we do NOT do:</strong> hoof it long because we are nervous. A long ball without a runner ready is possession given away. Patient build-up destroys their press better than panic.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 10, DEFENSIVE SET PIECES
+     ============================================================ -->
+<section id="setpieces">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">10</span> Defensive Set Pieces</span>
+        <h2 class="title">No ball-watching. <span class="accent">Clear it.</span></h2>
+      </div>
+      <p class="desc">
+        A 6-2 winning team has set-piece quality. Stay disciplined. Mark your man. Clear your lines. We win the second balls.
+      </p>
+    </div>
+
+    <div class="rules-grid reveal">
+      <div class="rule">
+        <div class="rule-num">SP 01</div>
+        <div class="rule-title">Gabi → their biggest aerial threat.</div>
+        <div class="rule-body">Their tallest, most dangerous header. Gabi is on him from before the ball is whipped in.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">SP 02</div>
+        <div class="rule-title">Kennedy → their second aerial threat.</div>
+        <div class="rule-body">Second-most dangerous header. Kennedy doesn't lose him.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">SP 03</div>
+        <div class="rule-title">Reuben → second balls.</div>
+        <div class="rule-body">Edge of the box. Anything cleared half-heartedly, Reuben wins it back and starts our counter.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 11, ENERGY CONSERVATION
+     ============================================================ -->
+<section id="energy">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">11</span> Energy Plan</span>
+        <h2 class="title">The 70th minute <span class="accent">is ours.</span></h2>
+      </div>
+      <p class="desc">
+        The team that conserves energy through minutes 1-60 runs the other team ragged in minutes 60-90. This is not optional, it is part of the game plan. Smart with our sprints. Patient in the block. The last 30 minutes are won in the first 60.
+      </p>
+    </div>
+
+    <div class="energy-grid reveal">
+      <div class="energy-card do">
+        <div class="label">Sprint here</div>
+        <h4>Full commitment. No holding back.</h4>
+        <ul>
+          <li>Runs in behind their high line, Bobby and Jobi</li>
+          <li>Press triggers when activated, GK back-pass, CB facing own goal</li>
+          <li>The moment after Ibiso plays forward, Goody, Rex, Fortune attacking the artificial transition</li>
+          <li>Recovery runs after we lose the ball in their half</li>
+        </ul>
+      </div>
+
+      <div class="energy-card dont">
+        <div class="label">Do not sprint here</div>
+        <h4>They want us to chase. Don't.</h4>
+        <ul>
+          <li>Chasing their ball-playing midfielders around our mid-block</li>
+          <li>Walking the ball into our shape after a clearance, jog with purpose</li>
+          <li>Sprinting back into position when we have time, walk, breathe, reset</li>
+          <li>Closing down their CBs when we are not on a press trigger</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rules-grid reveal" style="margin-top:2rem;">
+      <div class="rule">
+        <div class="rule-num">HABIT 01</div>
+        <div class="rule-title">Use every stoppage.</div>
+        <div class="rule-body">Throw-ins, goal kicks, fouls, substitutions, these are recovery seconds. Hydrate. Breathe. Talk. Reset shape. <strong>Take them.</strong></div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">HABIT 02</div>
+        <div class="rule-title">Mid-block is energy-efficient.</div>
+        <div class="rule-body">Let them carry the ball into our shape. We do not need to win it in their half, we need to win it in ours and break.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">HABIT 03</div>
+        <div class="rule-title">Pace the runs in behind.</div>
+        <div class="rule-body">Bobby and Jobi look to run every transition, but the long sprints are <em>picked</em> moments, not every touch. Pick the ball. Pick the moment. Commit.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 13, PLAYER BRIEFS
+     ============================================================ -->
+<section id="briefs">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">13</span> Player Briefs</span>
+        <h2 class="title">One line. <span class="accent">Per player.</span> Remember yours.</h2>
+      </div>
+      <p class="desc">
+        Every player gets one line. That line is the brief. If you remember nothing else about this game plan, remember your line. Everything else flows from it.
+      </p>
+    </div>
+
+    <div class="briefs-grid reveal">
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">1</div>
+          <div>
+            <div class="name">Destiny</div>
+            <div class="pos">Goalkeeper</div>
+          </div>
+        </div>
+        <div class="body">Short first, to Gabi every time. Go long only when their line is high <em>and</em> Bobby or Jobi are running.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">2</div>
+          <div>
+            <div class="name">Etienne</div>
+            <div class="pos">Right back · tucks to RCB</div>
+          </div>
+        </div>
+        <div class="body">In possession, tuck to make the back 3. Stay wide right out of possession. Track their LW into wide zones, he is yours when he drifts to our flank.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">5</div>
+          <div>
+            <div class="name">Gabi</div>
+            <div class="pos">RCB → CCB in possession</div>
+          </div>
+        </div>
+        <div class="body">Hold the ball. Bait the press. Find Ibiso or our players in the halfspaces. When their line is high, play over it.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">4</div>
+          <div>
+            <div class="name">Kennedy</div>
+            <div class="pos">Left centre-back</div>
+          </div>
+        </div>
+        <div class="body">Organise the back line. Cover Goody when he pushes. Be the safe reset on the left.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">3</div>
+          <div>
+            <div class="name">Goodluck</div>
+            <div class="pos">Left back → Front 5 in possession</div>
+          </div>
+        </div>
+        <div class="body">Push high. Stretch the pitch. 2v1 with Bobby attacking their right back all game. <strong>Recover to LB the moment we lose it.</strong></div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">6</div>
+          <div>
+            <div class="name">Ibiso</div>
+            <div class="pos">DM · Left of pivot · Collector</div>
+          </div>
+        </div>
+        <div class="body">Drop <em>before</em> the pass, not after. Be the collector, connect build-up to attack. You are the releaser</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">8</div>
+          <div>
+            <div class="name">Reuben</div>
+            <div class="pos">DM · Right of pivot · Screen</div>
+
+
+<!-- ============================================================
+     SECTION 13, PLAYER BRIEFS
+     ============================================================ -->
+<section id="briefs">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">13</span> Player Briefs</span>
+        <h2 class="title">One line. <span class="accent">Per player.</span> Remember yours.</h2>
+      </div>
+      <p class="desc">
+        Every player gets one line. That line is the brief. If you remember nothing else about this game plan, remember your line. Everything else flows from it.
+      </p>
+    </div>
+
+    <div class="briefs-grid reveal">
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">1</div>
+          <div>
+            <div class="name">Destiny</div>
+            <div class="pos">Goalkeeper</div>
+          </div>
+        </div>
+        <div class="body">Short first, every time. Go long only when their line is high <em>and</em> Bobby or Jobi are running.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">2</div>
+          <div>
+            <div class="name">Etienne</div>
+            <div class="pos">Right back · tucks to RCB</div>
+          </div>
+        </div>
+        <div class="body">In possession, tuck to make the back 3. Stay wide right out of possession. Track their LW into wide zones, he is yours when he drifts to our flank.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">5</div>
+          <div>
+            <div class="name">Gabi</div>
+            <div class="pos">RCB → CCB in possession</div>
+          </div>
+        </div>
+        <div class="body">Hold the ball. Bait the press. Find Ibiso. When their line is high, play over it.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">4</div>
+          <div>
+            <div class="name">Kennedy</div>
+            <div class="pos">Left centre-back</div>
+          </div>
+        </div>
+        <div class="body">Organise the back line. Cover Goody when he pushes. Be the safe reset on the left.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          
+          </div>
+        </div>
+        <div class="body">Hold position. <strong>Never past halfway.</strong> Safety valve. Track their LW in midfield zones.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">11</div>
+          <div>
+            <div class="name">Jobi</div>
+            <div class="pos">Right winger</div>
+          </div>
+        </div>
+        <div class="body">Stay high and wide. When we win the ball, your run starts <em>immediately</em>. Run channels behind their LB.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">10</div>
+          <div>
+            <div class="name">Rex</div>
+            <div class="pos">Right attacking mid · R half-space</div>
+          </div>
+        </div>
+        <div class="body">Drop between the lines to receive. Switch play when the left is congested. You are the connector to Jobi's runs.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">9</div>
+          <div>
+            <div class="name">Fortune</div>
+            <div class="pos">Left attacking mid · Shadow 9</div>
+          </div>
+        </div>
+        <div class="body">Bounce passes off Ibiso, then move. Box arrivals, late, not early. First press trigger when they have the GK.</div>
+      </div>
+
+      <div class="brief-card">
+        <div class="head">
+          <div class="avatar">7</div>
+          <div>
+            <div class="name">Bobby</div>
+            <div class="pos">Left winger</div>
+          </div>
+        </div>
+        <div class="body">Stay wide. Run in behind every time we win the ball deep. 2v1 with Goody on the left. <strong>You are the counter threat.</strong></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 14, SUMMARY
+     ============================================================ -->
+<section id="summary">
+  <div class="container-wide">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow"><span class="num">14</span> Summary</span>
+        <h2 class="title">Four battles. <span class="accent">Win them.</span> Win the game.</h2>
+      </div>
+      <p class="desc">
+        If you remember nothing else from this document, remember these four. They are what decides this match. Win these four battles, we win the game.
+      </p>
+    </div>
+
+    <div class="summary-block reveal">
+      <div class="summary-row">
+        <div class="key">Battle 01</div>
+        <div class="val">We <span class="accent">bait the press</span> successfully.<em>Play through their press 3-4 times in the first half and their confidence drops. They drop off. That gives us more space.</em></div>
+      </div>
+      <div class="summary-row">
+        <div class="key">Battle 02</div>
+        <div class="val">We attack the space <span class="accent">behind their high line.</span><em>Bobby and Jobi commit to those runs every time we win the ball deep. One goal from in behind changes the entire game.</em></div>
+      </div>
+      <div class="summary-row">
+        <div class="key">Battle 03</div>
+        <div class="val">Their LW <span class="accent">does not turn</span> in dangerous positions.<em>Reuben in midfield, Etienne when wide. He can have the ball with his back to goal, he cannot turn.</em></div>
+      </div>
+      <div class="summary-row">
+        <div class="key">Battle 04</div>
+        <div class="val">We win the <span class="accent">energy battle.</span><em>Smart with our sprints. Patient in the mid-block. The last 30 minutes are ours if we manage the first 60.</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="container-wide">
+    <div class="row">
+      <div class="meta">
+        <span class="accent">GAME PLAN</span> &nbsp;&middot;&nbsp; CSC FC vs Cyper Reapers &nbsp;&middot;&nbsp; Nacos Super League<br>
+        Year 3 &nbsp;&middot;&nbsp; Wayne Tactic applied &nbsp;&middot;&nbsp; 4-4-2 / 3-2-5<br>
+        Internal &middot; Players, Coaching Staff &middot; <strong>Coach: Wayne</strong>
+      </div>
+      <a href="/wayne-tactic" class="back-to-tactic">← Back to Wayne Tactic</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  /* NAV, mobile menu toggle */
+  (function() {
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const backdrop = document.getElementById('mobileBackdrop');
+    if (!navToggle || !mobileMenu) return;
+
+    function setOpen(open) {
+      mobileMenu.classList.toggle('open', open);
+      if (backdrop) backdrop.classList.toggle('open', open);
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    navToggle.addEventListener('click', function() {
+      setOpen(!mobileMenu.classList.contains('open'));
+    });
+    if (backdrop) backdrop.addEventListener('click', function() { setOpen(false); });
+    mobileMenu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() { setOpen(false); });
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setOpen(false);
+    });
+  })();
+
+  /* SHAPE TOGGLE, IP / OOP */
+  (function() {
+    const buttons = document.querySelectorAll('[data-shape]');
+    const frames = {
+      ip: document.getElementById('frame-ip'),
+      oop: document.getElementById('frame-oop')
+    };
+    if (!buttons.length || !frames.ip || !frames.oop) return;
+
+    function setShape(shape) {
+      Object.keys(frames).forEach(function(k) {
+        if (!frames[k]) return;
+        frames[k].classList.toggle('active', k === shape);
+      });
+      buttons.forEach(function(b) {
+        b.classList.toggle('active', b.dataset.shape === shape);
+        b.setAttribute('aria-pressed', String(b.dataset.shape === shape));
+      });
+    }
+
+    buttons.forEach(function(b) {
+      b.addEventListener('click', function() {
+        setShape(b.dataset.shape);
+      });
+    });
+
+    setShape('ip');
+  })();
+
+  /* REVEAL ANIMATIONS */
+  (function() {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function(el) {
+        el.classList.add('in');
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      observer.observe(el);
+    });
+  })();
+
+  /* SMOOTH SCROLL */
+  (function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          e.preventDefault();
+          const offset = 70;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+  })();
+
+  /* ACTIVE NAV LINK */
+  (function() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a:not(.back-link), .mobile-menu a');
+    if (!sections.length || !navLinks.length) return;
+
+    const linkMap = {};
+    navLinks.forEach(function(link) {
+      const href = link.getAttribute('href');
+      if (!href || !href.startsWith('#')) return;
+      const id = href.replace('#', '');
+      if (!linkMap[id]) linkMap[id] = [];
+      linkMap[id].push(link);
+    });
+
+    function setActive(id) {
+      navLinks.forEach(function(l) { l.classList.remove('active'); });
+      if (linkMap[id]) {
+        linkMap[id].forEach(function(l) { l.classList.add('active'); });
+      }
+    }
+
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
+        }
+      });
+    }, { threshold: 0, rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(function(s) { observer.observe(s); });
+  })();
+</script>
+
+</body>
+</html>

@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0A0B0A">
-<title>Wayne Tactic — 4-4-2 / 3-2-5 Positional System</title>
-<meta name="description" content="Complete tactical breakdown of the Wayne Tactic — a 4-4-2 defensive shape that morphs into a 3-2-5 in possession.">
+<title>Wayne Tactic, 4-4-2 / 3-2-5 Positional System</title>
+<meta name="description" content="Complete tactical breakdown of the Wayne Tactic, a 4-4-2 defensive shape that morphs into a 3-2-5 in possession.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@ a { color: inherit; text-decoration: none; }
   --accent: #D8FF3C;          /* Electric tactical lime */
   --accent-soft: rgba(216, 255, 60, 0.12);
   --accent-line: rgba(216, 255, 60, 0.35);
-  --warn: #FF6B3A;            /* Warm contrast — triggers, transitions */
+  --warn: #FF6B3A;            /* Warm contrast, triggers, transitions */
   --warn-soft: rgba(255, 107, 58, 0.12);
   --info: #6CC5FF;
   --info-soft: rgba(108, 197, 255, 0.10);
@@ -208,10 +208,10 @@ section + section { border-top: 1px solid var(--border-soft); }
 .nav {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: rgba(10, 11, 10, 0.72);
-  backdrop-filter: blur(16px) saturate(140%);
+  z-index: 1001;
+  background: rgba(10, 11, 10, 0.85);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
   border-bottom: 1px solid var(--border-soft);
 }
 .nav-inner {
@@ -277,6 +277,30 @@ section + section { border-top: 1px solid var(--border-soft); }
 }
 .nav-links a:hover { color: var(--text); background: var(--surface); }
 .nav-links a.active { color: var(--accent); }
+.nav-links a.gameplan-link {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  margin-left: 0.5rem;
+  font-weight: 600;
+}
+.nav-links a.gameplan-link:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+.mobile-menu .gameplan-li {
+  margin-top: 1rem;
+  border-bottom: none;
+}
+.mobile-menu .gameplan-li a {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 8px;
+  padding: 1rem 1rem;
+  font-family: var(--font-display);
+}
+.mobile-menu .gameplan-li a::before { display: none; }
 @media (min-width: 1100px) { .nav-links { display: inline-flex; } }
 
 .nav-toggle {
@@ -291,20 +315,43 @@ section + section { border-top: 1px solid var(--border-soft); }
 .nav-toggle:hover { background: var(--surface); color: var(--text); }
 @media (min-width: 1100px) { .nav-toggle { display: none; } }
 
-.mobile-menu {
+.mobile-backdrop {
   position: fixed;
-  inset: 60px 0 0 0;
-  background: rgba(10, 11, 10, 0.96);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid var(--border-soft);
-  z-index: 99;
-  padding: 1.5rem 1.25rem 2rem;
-  overflow-y: auto;
-  transform: translateY(-8px);
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 11, 10, 0.55);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+  z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+  transition: opacity 220ms ease, visibility 220ms;
 }
+@media (min-width: 768px) { .mobile-backdrop { top: 68px; } }
+.mobile-backdrop.open { opacity: 1; visibility: visible; }
+
+.mobile-menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(14, 16, 14, 0.98), rgba(10, 11, 10, 0.97));
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  backdrop-filter: blur(24px) saturate(140%);
+  border-top: 1px solid var(--border-soft);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  padding: 1.5rem 1.25rem 2rem;
+  overflow-y: auto;
+  transform: translateY(-12px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 220ms ease, transform 280ms cubic-bezier(0.2, 0.7, 0.2, 1), visibility 220ms;
+}
+@media (min-width: 768px) { .mobile-menu { top: 68px; } }
 .mobile-menu.open { opacity: 1; transform: translateY(0); visibility: visible; }
 .mobile-menu ol { list-style: none; counter-reset: m; }
 .mobile-menu li { counter-increment: m; border-bottom: 1px solid var(--border-soft); }
@@ -359,6 +406,129 @@ section + section { border-top: 1px solid var(--border-soft); }
   gap: 0.75rem;
   align-items: center;
   margin-bottom: 1.5rem;
+}
+
+/* Gameplan CTA banner */
+.gameplan-cta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
+  background:
+    radial-gradient(600px 200px at 0% 0%, rgba(216, 255, 60, 0.08), transparent 60%),
+    linear-gradient(135deg, rgba(216, 255, 60, 0.06), rgba(216, 255, 60, 0.02));
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+.gameplan-cta::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  opacity: 0.7;
+}
+.gameplan-cta:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(216, 255, 60, 0.08);
+}
+.gameplan-cta .cta-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+.gameplan-cta .cta-pulse {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(216, 255, 60, 0.8);
+  animation: ctaPulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes ctaPulse {
+  0% { box-shadow: 0 0 0 0 rgba(216, 255, 60, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(216, 255, 60, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(216, 255, 60, 0); }
+}
+.gameplan-cta .cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.gameplan-cta .cta-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+}
+.gameplan-cta .cta-headline {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.gameplan-cta .cta-headline .vs {
+  color: var(--text-3);
+  font-weight: 400;
+  font-style: italic;
+  margin: 0 0.35rem;
+}
+.gameplan-cta .cta-headline .opp { color: var(--accent); }
+.gameplan-cta .cta-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+}
+.gameplan-cta .cta-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.1rem;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  flex-shrink: 0;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.gameplan-cta .cta-arrow .arr {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+.gameplan-cta:hover .cta-arrow {
+  box-shadow: 0 6px 16px rgba(216, 255, 60, 0.25);
+}
+.gameplan-cta:hover .cta-arrow .arr { transform: translateX(4px); }
+@media (max-width: 700px) {
+  .gameplan-cta {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.1rem 1.1rem 1.1rem 1.25rem;
+  }
+  .gameplan-cta .cta-headline { font-size: var(--fs-md); }
+  .gameplan-cta .cta-arrow {
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    font-size: 10px;
+  }
 }
 .tag {
   display: inline-flex;
@@ -1420,7 +1590,7 @@ footer .glyph {
    ============================================================ */
 @media print {
   body { background: white; color: black; }
-  .nav, .mobile-menu, .nav-toggle, .shape-toggle { display: none; }
+  .nav, .mobile-menu, .mobile-backdrop, .nav-toggle, .shape-toggle { display: none; }
   section { padding: 1rem 0; page-break-inside: avoid; }
   .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
 }
@@ -1447,29 +1617,33 @@ footer .glyph {
       <a href="#patterns">Patterns</a>
       <a href="#rules">Rules</a>
       <a href="#summary">Summary</a>
+      <a href="/gameplan" class="gameplan-link">Game Plan →</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
   </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <ol>
-      <li><a href="#identity">Tactical Identity</a></li>
-      <li><a href="#shapes">The Two Shapes</a></li>
-      <li><a href="#squad">Squad Roles</a></li>
-      <li><a href="#buildup">Build-Up Sequence</a></li>
-      <li><a href="#overload">The Left 2v1 Overload</a></li>
-      <li><a href="#rex">Rex in the Right Half-Space</a></li>
-      <li><a href="#front5">Front 5</a></li>
-      <li><a href="#back-pivot">Back 3 &amp; Pivot</a></li>
-      <li><a href="#patterns">Attacking Patterns</a></li>
-      <li><a href="#rules">Non-Negotiables</a></li>
-      <li><a href="#asymmetry">Asymmetry</a></li>
-      <li><a href="#relationships">Relationships</a></li>
-      <li><a href="#summary">Summary</a></li>
-    </ol>
-  </div>
 </header>
+
+<div class="mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <ol>
+    <li><a href="#identity">Tactical Identity</a></li>
+    <li><a href="#shapes">The Two Shapes</a></li>
+    <li><a href="#squad">Squad Roles</a></li>
+    <li><a href="#buildup">Build-Up Sequence</a></li>
+    <li><a href="#overload">The Left 2v1 Overload</a></li>
+    <li><a href="#rex">Rex in the Right Half-Space</a></li>
+    <li><a href="#front5">Front 5</a></li>
+    <li><a href="#back-pivot">Back 3 &amp; Pivot</a></li>
+    <li><a href="#patterns">Attacking Patterns</a></li>
+    <li><a href="#rules">Non-Negotiables</a></li>
+    <li><a href="#asymmetry">Asymmetry</a></li>
+    <li><a href="#relationships">Relationships</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li class="gameplan-li"><a href="/gameplan">Game Plan · vs Cyper Reapers →</a></li>
+  </ol>
+</div>
 
 <main id="top">
 
@@ -1479,6 +1653,17 @@ footer .glyph {
 <section class="hero">
   <div class="hero-grid-bg" aria-hidden="true"></div>
   <div class="container-wide">
+    <a href="/gameplan" class="gameplan-cta" aria-label="Open match game plan vs Cyper Reapers">
+      <div class="cta-content">
+        <span class="cta-pulse" aria-hidden="true"></span>
+        <div class="cta-text">
+          <div class="cta-label">Next Match · Game Plan Ready</div>
+          <div class="cta-headline">CSC FC<span class="vs">vs</span><span class="opp">Cyper Reapers</span></div>
+          <div class="cta-sub">Tactical breakdown for the fixture</div>
+        </div>
+      </div>
+      <span class="cta-arrow">Open Plan <span class="arr">→</span></span>
+    </a>
     <div class="hero-meta">
       <span class="tag dot accent">v1.0 · System Document</span>
       <span class="tag">Internal · Players &amp; Staff</span>
@@ -1541,7 +1726,7 @@ footer .glyph {
       </div>
       <div class="row">
         <div class="k">Possession Shape</div>
-        <div class="v"><strong>3-2-5</strong> — a back three plus a double pivot supporting a true front five across all five vertical lanes.</div>
+        <div class="v"><strong>3-2-5</strong>, a back three plus a double pivot supporting a true front five across all five vertical lanes.</div>
       </div>
       <div class="row">
         <div class="k">Out of Possession</div>
@@ -1553,7 +1738,7 @@ footer .glyph {
       </div>
       <div class="row">
         <div class="k">Goal Source</div>
-        <div class="v">Overloads, late arrivals, exploitation of the five-lane structure. There is <strong>no fixed striker</strong> &mdash; goals come from anywhere in the front five plus arriving runners.</div>
+        <div class="v">Overloads, late arrivals, exploitation of the five-lane structure. There is <strong>no fixed striker</strong>, goals come from anywhere in the front five plus arriving runners.</div>
       </div>
       <div class="row">
         <div class="k">Defensive Identity</div>
@@ -1565,7 +1750,7 @@ footer .glyph {
 
 
 <!-- ============================================================
-     SHAPES — IP 3-2-5 / OOP 4-4-2
+     SHAPES, IP 3-2-5 / OOP 4-4-2
      ============================================================ -->
 <section id="shapes">
   <div class="container-wide">
@@ -1648,7 +1833,7 @@ footer .glyph {
             <!-- Goody pushes high from LB -->
             <path class="pitch-arrow dashed" d="M 24 12 Q 50 14 76 19"/>
 
-            <!-- PLAYERS — IP 3-2-5 -->
+            <!-- PLAYERS, IP 3-2-5 -->
             <!-- GK -->
             <g class="player-token">
               <circle class="player-circle" cx="5" cy="34" r="2.4"/>
@@ -1676,7 +1861,7 @@ footer .glyph {
               <text class="player-label tiny" x="22" y="58">RCB · tucked</text>
             </g>
 
-            <!-- Double pivot — Ibiso left, Reuben right -->
+            <!-- Double pivot, Ibiso left, Reuben right -->
              <g class="player-token">
               <circle class="player-circle" cx="44" cy="28" r="2.4"/>
               <text class="player-num" x="44" y="28">I</text>
@@ -1711,7 +1896,7 @@ footer .glyph {
               <text class="player-label" x="86" y="39.5">9 · FREE</text>
               <text class="player-label tiny" x="86" y="42">any player rotates in</text>
             </g>
-            <!-- Fortune as shadow ST — drops between lines, rotates into the 9 -->
+            <!-- Fortune as shadow ST, drops between lines, rotates into the 9 -->
             <g class="player-token">
               <circle class="player-circle" cx="74" cy="34" r="2.4"/>
               <text class="player-num" x="74" y="34">F</text>
@@ -1753,11 +1938,11 @@ footer .glyph {
           </div>
           <div class="info-block">
             <div class="k">Anchor (right of pivot)</div>
-            <div class="v">Reuben &mdash; never advances past halfway. Sits on the right of the double pivot. Insurance for everything Goody and Ibiso do.</div>
+            <div class="v">Reuben, never advances past halfway. Sits on the right of the double pivot. Insurance for everything Goody and Ibiso do.</div>
           </div>
           <div class="info-block">
             <div class="k">Connector (left of pivot)</div>
-            <div class="v">Ibiso &mdash; the progressive DM on the <strong>left</strong> of the pivot. Links back three to front five and covers Goody&rsquo;s vacated zone.</div>
+            <div class="v">Ibiso, the progressive DM on the <strong>left</strong> of the pivot. Links back three to front five and covers Goody&rsquo;s vacated zone.</div>
           </div>
           <div class="info-block">
             <div class="k">The 9 slot</div>
@@ -1798,14 +1983,14 @@ footer .glyph {
             <path class="pitch-arrow warn dashed" d="M 78 20 Q 50 14 24 12"/>
             <text class="zone-label" x="50" y="9" style="fill:var(--warn);font-size:1.4px">RECOVERY: Goody → LB</text>
 
-            <!-- PLAYERS — OOP 4-4-2 -->
+            <!-- PLAYERS, OOP 4-4-2 -->
             <!-- GK -->
             <g class="player-token">
               <circle class="player-circle" cx="5" cy="34" r="2.4"/>
               <text class="player-num" x="5" y="34">GK</text>
             </g>
 
-            <!-- Back 4 — Goody LB, Etienne LCB, Gabi RCB, Mill RB -->
+            <!-- Back 4, Goody LB, Etienne LCB, Gabi RCB, Mill RB -->
             <g class="player-token">
               <circle class="player-circle" cx="24" cy="12" r="2.4"/>
               <text class="player-num" x="24" y="12">G</text>
@@ -1902,7 +2087,7 @@ footer .glyph {
     <div class="section-head reveal">
       <span class="eyebrow"><span class="num">03</span> Squad &amp; Roles</span>
       <h2 class="title">Eleven players. <span class="accent">Two jobs each.</span></h2>
-      <p class="desc">Every player has a role in possession and a role out of possession. They are not the same role. The transition between them &mdash; in either direction &mdash; is the system.</p>
+      <p class="desc">Every player has a role in possession and a role out of possession. They are not the same role. The transition between them, in either direction, is the system.</p>
     </div>
 
     <div class="players-grid reveal-stagger">
@@ -1959,7 +2144,7 @@ footer .glyph {
         <div class="head"><div class="avatar">G</div><div><div class="name">Goody</div><div class="pos">LB · Advanced</div></div></div>
         <div class="role-row">
           <div class="role-pill"><span class="label">In Possession</span>Advanced wing-back from LB. Pushes high. Creates 2v1.</div>
-          <div class="role-pill oop"><span class="label">Out of Possession</span>Left-back &mdash; recovers to LB the moment we lose the ball.</div>
+          <div class="role-pill oop"><span class="label">Out of Possession</span>Left-back, recovers to LB the moment we lose the ball.</div>
         </div>
       </article>
 
@@ -2010,7 +2195,7 @@ footer .glyph {
         <h2 class="title">From Goalkeeper to <span class="accent">final third</span> in five touches.</h2>
       </div>
       <p class="desc">
-        The standard build-up funnel. Every pass has a purpose &mdash; not sideways for show, but vertical via Ibiso into Rex or Fortune. Mill never receives from the keeper; he is a defensive anchor in build-up, not an outlet.
+        The standard build-up funnel. Every pass has a purpose, not sideways for show, but vertical via Ibiso into Rex or Fortune. Mill never receives from the keeper; he is a defensive anchor in build-up, not an outlet.
       </p>
     </div>
 
@@ -2044,14 +2229,14 @@ footer .glyph {
 
     <div class="callout reveal" style="margin-top: 2rem;">
       <span class="label">Key timing</span>
-      Ibiso must drop as the opposition striker commits to pressing the CB &mdash; not after receiving the pass. <strong>The movement comes first.</strong> Late drops are how high presses get bypassed by the opposition, not by us.
+      Ibiso must drop as the opposition striker commits to pressing the CB, not after receiving the pass. <strong>The movement comes first.</strong> Late drops are how high presses get bypassed by the opposition, not by us.
     </div>
   </div>
 </section>
 
 
 <!-- ============================================================
-     OVERLOAD — LEFT 2v1
+     OVERLOAD, LEFT 2v1
      ============================================================ -->
 <section id="overload">
   <div class="container-wide">
@@ -2134,7 +2319,7 @@ footer .glyph {
               <text class="player-label" x="78" y="25.5">GOODY</text>
             </g>
 
-            <!-- Ibiso (feeder) — left of the double pivot -->
+            <!-- Ibiso (feeder), left of the double pivot -->
             <g class="player-token">
               <circle class="player-circle" cx="44" cy="28" r="2.4"/>
               <text class="player-num" x="44" y="28">I</text>
@@ -2160,7 +2345,7 @@ footer .glyph {
         </div>
         <div class="pitch-caption">
           <div>
-            <div class="title">Left 2v1 — Bobby + Goody</div>
+            <div class="title">Left 2v1, Bobby + Goody</div>
             <div class="meta">Two opposite runs, never the same direction.</div>
           </div>
           <div class="pitch-legend">
@@ -2177,7 +2362,7 @@ footer .glyph {
           <div class="card-body">
             <ul>
               <li>Bobby occupies the opposition right-back wide.</li>
-              <li>Goody runs <em>opposite</em> to Bobby &mdash; if Bobby holds wide, Goody runs inside or overlaps.</li>
+              <li>Goody runs <em>opposite</em> to Bobby, if Bobby holds wide, Goody runs inside or overlaps.</li>
               <li>The right-back cannot mark both at once.</li>
               <li>Ibiso feeds the left from the pivot.</li>
               <li>Fortune times his run into the box. Rex drifts central for the cutback.</li>
@@ -2216,7 +2401,7 @@ footer .glyph {
         <h2 class="title">Rex in the <span class="accent">right half-space.</span></h2>
       </div>
       <p class="desc">
-        The release valve. Rex drops between the opposition&rsquo;s LM and LB &mdash; a zone defenders won&rsquo;t track strikers into. He receives, scans, and chooses: switch the play, slide Jobi in behind, or combine with Fortune. Then he keeps running.
+        The release valve. Rex drops between the opposition&rsquo;s LM and LB, a zone defenders won&rsquo;t track strikers into. He receives, scans, and chooses: switch the play, slide Jobi in behind, or combine with Fortune. Then he keeps running.
       </p>
     </div>
 
@@ -2295,7 +2480,7 @@ footer .glyph {
         <div class="pitch-caption">
           <div>
             <div class="title">Rex&rsquo;s three options</div>
-            <div class="meta">Switch · Thru · Combo &mdash; then keep running.</div>
+            <div class="meta">Switch · Thru · Combo, then keep running.</div>
           </div>
         </div>
       </div>
@@ -2334,7 +2519,7 @@ footer .glyph {
 
 
 <!-- ============================================================
-     FRONT 5 — INDIVIDUAL RESPONSIBILITIES
+     FRONT 5, INDIVIDUAL RESPONSIBILITIES
      ============================================================ -->
 <section id="front5">
   <div class="container">
@@ -2353,7 +2538,7 @@ footer .glyph {
         </div>
         <div class="role-body">
           <div>
-            <p>Stays wide. Hugs the touchline in possession. Bobby is the primary goal threat from open play. He doesn&rsquo;t need to create &mdash; he finishes what others create.</p>
+            <p>Stays wide. Hugs the touchline in possession. Bobby is the primary goal threat from open play. He doesn&rsquo;t need to create, he finishes what others create.</p>
             <p>His most important movement is the interchange with Goody. When Goody overlaps, Bobby cuts inside to attack the box. When Goody runs inside, Bobby attacks the space behind the right back.</p>
           </div>
           <div class="callout">
@@ -2400,11 +2585,11 @@ footer .glyph {
       <div class="role-section">
         <div class="role-head">
           <div class="name">Rex</div>
-          <div class="role-tag"><span class="accent">●</span> Half-Space Creator · Right Half-Space — <em style="color:var(--text-3)">the brain</em></div>
+          <div class="role-tag"><span class="accent">●</span> Half-Space Creator · Right Half-Space, <em style="color:var(--text-3)">the brain</em></div>
         </div>
         <div class="role-body">
           <div>
-            <p>The most important player in the system. Drops from the front 5 into the right half-space. Creates the triangle: Ibiso below, Jobi wide, Fortune central. Distributes &mdash; long switches to Bobby, through balls to Jobi, short combinations with Fortune.</p>
+            <p>The most important player in the system. Drops from the front 5 into the right half-space. Creates the triangle: Ibiso below, Jobi wide, Fortune central. Distributes, long switches to Bobby, through balls to Jobi, short combinations with Fortune.</p>
             <p>After playing, continues his run into the box as a late arriving attacker.</p>
           </div>
           <div class="callout">
@@ -2421,12 +2606,12 @@ footer .glyph {
         </div>
         <div class="role-body">
           <div>
-            <p>Holds width on the right. Primary receiver from Rex&rsquo;s passes. His job is simple: receive from Rex, run at the defender, beat them. Doesn&rsquo;t need to create complex combinations &mdash; <strong>directness is the weapon</strong>.</p>
+            <p>Holds width on the right. Primary receiver from Rex&rsquo;s passes. His job is simple: receive from Rex, run at the defender, beat them. Doesn&rsquo;t need to create complex combinations, <strong>directness is the weapon</strong>.</p>
             <p>When the left overload is drawing defenders, Jobi&rsquo;s 1v1 opens up. Rex plays him in when the opposition&rsquo;s LB has been attracted toward the centre.</p>
           </div>
           <div class="callout">
             <span class="label">Rex-Jobi partnership</span>
-            The pass is timed for Jobi to receive <strong>in stride going forward</strong> &mdash; not to feet standing still.
+            The pass is timed for Jobi to receive <strong>in stride going forward</strong>, not to feet standing still.
           </div>
         </div>
       </div>
@@ -2443,7 +2628,7 @@ footer .glyph {
     <div class="section-head reveal">
       <span class="eyebrow"><span class="num">08</span> Back 3 &amp; Double Pivot</span>
       <h2 class="title">The structure that <span class="accent">lets the front 5 play.</span></h2>
-      <p class="desc">Five attackers can only push high if there is genuine cover behind them. The back 3 plus Reuben and Ibiso are the system&rsquo;s insurance &mdash; not afterthoughts, but the foundation.</p>
+      <p class="desc">Five attackers can only push high if there is genuine cover behind them. The back 3 plus Reuben and Ibiso are the system&rsquo;s insurance, not afterthoughts, but the foundation.</p>
     </div>
 
     <div class="grid grid-3 reveal-stagger">
@@ -2465,7 +2650,7 @@ footer .glyph {
             <li>Central reference. Deepest outfield player in possession.</li>
             <li>Distributes centrally when both flanks are closed.</li>
             <li>Covers when Ibiso steps out.</li>
-            <li>Organises the back 3 &mdash; calls defensive positioning.</li>
+            <li>Organises the back 3, calls defensive positioning.</li>
           </ul>
         </div>
       </div>
@@ -2474,9 +2659,9 @@ footer .glyph {
         <div class="card-body">
           <ul>
             <li>Right side of the back 3 in possession.</li>
-            <li>Does not advance &mdash; holds the right defensive channel.</li>
+            <li>Does not advance, holds the right defensive channel.</li>
             <li>If opp attacks right in transition, Mill is the first defensive line.</li>
-            <li>Simple passes only &mdash; to Reuben or GK.</li>
+            <li>Simple passes only, to Reuben or GK.</li>
           </ul>
         </div>
       </div>
@@ -2484,7 +2669,7 @@ footer .glyph {
 
     <div class="grid grid-2 reveal" style="margin-top:1.5rem;">
       <div class="card">
-        <div class="card-head"><div><div class="card-sub">Double Pivot · Anchor</div><div class="card-title">Reuben — Screening DM</div></div></div>
+        <div class="card-head"><div><div class="card-sub">Double Pivot · Anchor</div><div class="card-title">Reuben, Screening DM</div></div></div>
         <div class="card-body">
           <ul>
             <li>Positional anchor. Never leaves the space between back 3 and front 5.</li>
@@ -2499,7 +2684,7 @@ footer .glyph {
         </div>
       </div>
       <div class="card">
-        <div class="card-head"><div><div class="card-sub">Double Pivot · Connector</div><div class="card-title">Ibiso — Progressive DM</div></div></div>
+        <div class="card-head"><div><div class="card-sub">Double Pivot · Connector</div><div class="card-title">Ibiso, Progressive DM</div></div></div>
         <div class="card-body">
           <ul>
             <li>The connective tissue of the system.</li>
@@ -2529,7 +2714,7 @@ footer .glyph {
         <h2 class="title">Five patterns. <span class="accent">Five triggers.</span></h2>
       </div>
       <p class="desc">
-        Patterns are not plays we run blindly. Each is triggered by a specific picture &mdash; a defender committing, the opposition pressing, the left side overloaded. Read the trigger. Run the pattern.
+        Patterns are not plays we run blindly. Each is triggered by a specific picture, a defender committing, the opposition pressing, the left side overloaded. Read the trigger. Run the pattern.
       </p>
     </div>
 
@@ -2538,7 +2723,7 @@ footer .glyph {
       <!-- PATTERN A -->
       <article class="pattern-card">
         <div class="pitch-wrap">
-          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern A — Bobby Run">
+          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern A, Bobby Run">
             <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
             <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
             <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
@@ -2580,7 +2765,7 @@ footer .glyph {
       <!-- PATTERN B -->
       <article class="pattern-card">
         <div class="pitch-wrap">
-          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern B — Rex Switch">
+          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern B, Rex Switch">
             <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
             <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
             <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
@@ -2622,7 +2807,7 @@ footer .glyph {
       <!-- PATTERN C -->
       <article class="pattern-card">
         <div class="pitch-wrap">
-          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern C — Fortune Late">
+          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern C, Fortune Late">
             <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
             <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
             <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
@@ -2661,7 +2846,7 @@ footer .glyph {
       <!-- PATTERN D -->
       <article class="pattern-card">
         <div class="pitch-wrap">
-          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern D — Goody Inside">
+          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern D, Goody Inside">
             <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
             <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
             <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
@@ -2697,13 +2882,13 @@ footer .glyph {
           <li>Jobi&rsquo;s simultaneous run pins the right CB.</li>
           <li>Goody shoots, or finds Rex arriving late.</li>
         </ol>
-        <div class="pattern-note"><b>Note</b>Only works if Jobi runs simultaneously. Without his run the right CB covers Goody. <strong>Jobi&rsquo;s movement is the enabler — even though he never touches the ball.</strong></div>
+        <div class="pattern-note"><b>Note</b>Only works if Jobi runs simultaneously. Without his run the right CB covers Goody. <strong>Jobi&rsquo;s movement is the enabler, even though he never touches the ball.</strong></div>
       </article>
 
       <!-- PATTERN E -->
       <article class="pattern-card">
         <div class="pitch-wrap">
-          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern E — Playing out from the back">
+          <svg class="pitch pitch-mini" viewBox="0 0 105 68" xmlns="http://www.w3.org/2000/svg" aria-label="Pattern E, Playing out from the back">
             <rect class="pitch-line" x="0.2" y="0.2" width="104.6" height="67.6"/>
             <line class="pitch-line" x1="52.5" y1="0.2" x2="52.5" y2="67.8"/>
             <circle class="pitch-line" cx="52.5" cy="34" r="9.15"/>
@@ -2740,7 +2925,7 @@ footer .glyph {
         <div class="pattern-trigger"><b>Trigger</b>Opposition press our back 3 with their front 2.</div>
         <ol class="pattern-steps">
           <li>GK plays short to Etienne or Gabi.</li>
-          <li>CB draws the press &mdash; holds calmly.</li>
+          <li>CB draws the press, holds calmly.</li>
           <li>Ibiso has already dropped before the pass.</li>
           <li>CB plays Ibiso between the lines.</li>
           <li>Ibiso turns and plays Rex or Fortune immediately.</li>
@@ -2755,7 +2940,7 @@ footer .glyph {
 
 
 <!-- ============================================================
-     SECTION 10 — NON-NEGOTIABLES
+     SECTION 10, NON-NEGOTIABLES
      ============================================================ -->
 <section id="rules">
   <div class="container-wide">
@@ -2765,7 +2950,7 @@ footer .glyph {
         <h2 class="title">Six rules. <span class="accent">No exceptions.</span></h2>
       </div>
       <p class="desc">
-        Patterns are flexible. These are not. Break any of these and the system collapses &mdash; either we lose shape, get countered, or the overloads stop appearing. Memorise them.
+        Patterns are flexible. These are not. Break any of these and the system collapses, either we lose shape, get countered, or the overloads stop appearing. Memorise them.
       </p>
     </div>
 
@@ -2773,7 +2958,7 @@ footer .glyph {
       <div class="rule">
         <div class="rule-num">RULE 01</div>
         <div class="rule-title">Goody &amp; Ibiso never advance together.</div>
-        <p class="rule-body">When Goody pushes high on the left, Ibiso holds the half-space behind him. When Ibiso steps forward to receive, Goody stays. One up, one back &mdash; always. The left side cannot empty.</p>
+        <p class="rule-body">When Goody pushes high on the left, Ibiso holds the half-space behind him. When Ibiso steps forward to receive, Goody stays. One up, one back, always. The left side cannot empty.</p>
       </div>
       <div class="rule">
         <div class="rule-num">RULE 02</div>
@@ -2798,7 +2983,7 @@ footer .glyph {
       <div class="rule">
         <div class="rule-num">RULE 06</div>
         <div class="rule-title">Mill holds the right channel.</div>
-        <p class="rule-body">Mill tucks in possession to make the back 3, but the moment we lose the ball he's the right-back. He doesn't drift centrally late. The right channel is his &mdash; in transition, that channel is what protects us.</p>
+        <p class="rule-body">Mill tucks in possession to make the back 3, but the moment we lose the ball he's the right-back. He doesn't drift centrally late. The right channel is his, in transition, that channel is what protects us.</p>
       </div>
     </div>
   </div>
@@ -2806,7 +2991,7 @@ footer .glyph {
 
 
 <!-- ============================================================
-     SECTION 11 — THE ASYMMETRY
+     SECTION 11, THE ASYMMETRY
      ============================================================ -->
 <section id="asymmetry">
   <div class="container-wide">
@@ -2816,13 +3001,13 @@ footer .glyph {
         <h2 class="title">Two sides. <span class="accent">Two jobs.</span></h2>
       </div>
       <p class="desc">
-        Wayne Tactic is deliberately uneven. The left attacks through overloads &mdash; bodies, combinations, layered runs. The right attacks through space &mdash; isolation, 1v1s, half-space passes. Same system. Different weapons.
+        Wayne Tactic is deliberately uneven. The left attacks through overloads, bodies, combinations, layered runs. The right attacks through space, isolation, 1v1s, half-space passes. Same system. Different weapons.
       </p>
     </div>
 
     <div class="asymmetry reveal">
       <div class="asymm-side left">
-        <div class="head"><span class="dot"></span><span>Left Side &mdash; Overload</span></div>
+        <div class="head"><span class="dot"></span><span>Left Side, Overload</span></div>
         <ul>
           <li>
             <span class="top">Goody pushes high.</span>
@@ -2850,7 +3035,7 @@ footer .glyph {
       <div class="asymm-divider" aria-hidden="true"><span>vs</span></div>
 
       <div class="asymm-side right">
-        <div class="head"><span class="dot"></span><span>Right Side &mdash; Space</span></div>
+        <div class="head"><span class="dot"></span><span>Right Side, Space</span></div>
         <ul>
           <li>
             <span class="top">Mill tucks inside.</span>
@@ -2858,7 +3043,7 @@ footer .glyph {
           </li>
           <li>
             <span class="top">Jobi is the runner.</span>
-            <span class="bot">Stays high and wide. His job is to occupy the opposition left-back &mdash; alone.</span>
+            <span class="bot">Stays high and wide. His job is to occupy the opposition left-back, alone.</span>
           </li>
           <li>
             <span class="top">1v1 + Rex is the weapon.</span>
@@ -2877,14 +3062,14 @@ footer .glyph {
     </div>
 
     <p class="reveal" style="color: var(--text-2); line-height: 1.6; margin-top: 1.5rem; max-width: 70ch;">
-      The asymmetry is not an accident. It&rsquo;s how we play to the strengths of the squad we have. Bobby and Goody combine well &mdash; we manufacture overloads. Jobi is direct, Rex is a thinker &mdash; we manufacture space. Defending teams have to choose: load up against the left and concede space to Jobi and Rex, or balance up and get torn apart by the 2v1.
+      The asymmetry is not an accident. It&rsquo;s how we play to the strengths of the squad we have. Bobby and Goody combine well, we manufacture overloads. Jobi is direct, Rex is a thinker, we manufacture space. Defending teams have to choose: load up against the left and concede space to Jobi and Rex, or balance up and get torn apart by the 2v1.
     </p>
   </div>
 </section>
 
 
 <!-- ============================================================
-     SECTION 12 — KEY RELATIONSHIPS
+     SECTION 12, KEY RELATIONSHIPS
      ============================================================ -->
 <section id="relationships">
   <div class="container-wide">
@@ -2894,7 +3079,7 @@ footer .glyph {
         <h2 class="title">Four partnerships. <span class="accent">The system runs on them.</span></h2>
       </div>
       <p class="desc">
-        Individuals don&rsquo;t make this system work. Pairs do. These four relationships are the invisible architecture &mdash; if any one breaks, the whole shape falls apart in that zone.
+        Individuals don&rsquo;t make this system work. Pairs do. These four relationships are the invisible architecture, if any one breaks, the whole shape falls apart in that zone.
       </p>
     </div>
 
@@ -2905,7 +3090,7 @@ footer .glyph {
           <span>Goody</span><span class="arrow">&harr;</span><span>Ibiso</span>
         </div>
         <p class="desc">
-          The balance partnership. When Goody pushes, Ibiso covers. When Ibiso advances, Goody holds. They communicate constantly &mdash; voice, eye contact, gestures. The whole left side&rsquo;s defensive integrity sits on this pair reading each other.
+          The balance partnership. When Goody pushes, Ibiso covers. When Ibiso advances, Goody holds. They communicate constantly, voice, eye contact, gestures. The whole left side&rsquo;s defensive integrity sits on this pair reading each other.
         </p>
       </article>
 
@@ -2914,7 +3099,7 @@ footer .glyph {
           <span>Rex</span><span class="arrow">&harr;</span><span>Fortune</span>
         </div>
         <p class="desc">
-          The creation axis. Rex finds space in the right half-space, Fortune drifts central or left to receive. They rotate. One drops, the other arrives. Together they connect midfield to attack &mdash; without either, the front line gets isolated.
+          The creation axis. Rex finds space in the right half-space, Fortune drifts central or left to receive. They rotate. One drops, the other arrives. Together they connect midfield to attack, without either, the front line gets isolated.
         </p>
       </article>
 
@@ -2932,7 +3117,7 @@ footer .glyph {
           <span>Etienne / Gabi</span><span class="arrow">&harr;</span><span>Ibiso</span>
         </div>
         <p class="desc">
-          The build-up axis. The back 3 finds Ibiso. Ibiso turns and finds the front 5. If this connection breaks &mdash; if Ibiso isn&rsquo;t available, or the CBs can&rsquo;t see him &mdash; we go long, we lose possession, and the entire structure goes to waste.
+          The build-up axis. The back 3 finds Ibiso. Ibiso turns and finds the front 5. If this connection breaks, if Ibiso isn&rsquo;t available, or the CBs can&rsquo;t see him, we go long, we lose possession, and the entire structure goes to waste.
         </p>
       </article>
 
@@ -2942,7 +3127,7 @@ footer .glyph {
 
 
 <!-- ============================================================
-     SECTION 13 — SUMMARY AT A GLANCE
+     SECTION 13, SUMMARY AT A GLANCE
      ============================================================ -->
 <section id="summary">
   <div class="container-wide">
@@ -2952,7 +3137,7 @@ footer .glyph {
         <h2 class="title">The system, <span class="accent">in six lines.</span></h2>
       </div>
       <p class="desc">
-        If you remember nothing else from this document, remember these. They are the system in its compressed form &mdash; the answer to every question a player or coach can ask about Wayne Tactic.
+        If you remember nothing else from this document, remember these. They are the system in its compressed form, the answer to every question a player or coach can ask about Wayne Tactic.
       </p>
     </div>
 
@@ -2979,7 +3164,7 @@ footer .glyph {
       </div>
       <div class="summary-row">
         <div class="key">The keys</div>
-        <div class="val">Six rules. Four relationships. Two shapes. <em>Discipline runs the system &mdash; not talent.</em></div>
+        <div class="val">Six rules. Four relationships. Two shapes. <em>Discipline runs the system, not talent.</em></div>
       </div>
     </div>
   </div>
@@ -2995,6 +3180,7 @@ footer .glyph {
         Internal &middot; Players, Coaching Staff, Analysts<br>
         4&minus;4&minus;2 / 3&minus;2&minus;5 &middot; Vertical Positional Play
       </div>
+      <a href="/gameplan" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.1rem;background:var(--accent);color:var(--bg);border-radius:8px;font-family:var(--font-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;transition:transform 200ms ease;" onmouseover="this.style.transform='translateX(3px)'" onmouseout="this.style.transform='translateX(0)'">Game Plan · vs Cyper Reapers →</a>
       <div class="glyph" aria-hidden="true">
         <svg width="56" height="56" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
           <rect x="0.5" y="0.5" width="55" height="55" rx="6" fill="none" stroke="var(--border)"/>
@@ -3010,32 +3196,36 @@ footer .glyph {
 
 <script>
   /* ============================================================
-     NAV — mobile menu toggle
+     NAV, mobile menu toggle
      ============================================================ */
   (function() {
     const navToggle = document.getElementById('navToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    if (navToggle && mobileMenu) {
-      navToggle.addEventListener('click', function() {
-        const isOpen = mobileMenu.classList.toggle('open');
-        navToggle.classList.toggle('open', isOpen);
-        navToggle.setAttribute('aria-expanded', String(isOpen));
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-      });
-      // Close menu when a link is tapped
-      mobileMenu.querySelectorAll('a').forEach(function(a) {
-        a.addEventListener('click', function() {
-          mobileMenu.classList.remove('open');
-          navToggle.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        });
-      });
+    const backdrop = document.getElementById('mobileBackdrop');
+    if (!navToggle || !mobileMenu) return;
+
+    function setOpen(open) {
+      mobileMenu.classList.toggle('open', open);
+      if (backdrop) backdrop.classList.toggle('open', open);
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
     }
+
+    navToggle.addEventListener('click', function() {
+      setOpen(!mobileMenu.classList.contains('open'));
+    });
+    if (backdrop) backdrop.addEventListener('click', function() { setOpen(false); });
+    mobileMenu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() { setOpen(false); });
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) setOpen(false);
+    });
   })();
 
   /* ============================================================
-     SHAPE TOGGLE — IP / OOP
+     SHAPE TOGGLE, IP / OOP
      ============================================================ */
   (function() {
     const buttons = document.querySelectorAll('[data-shape]');
