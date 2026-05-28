@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Warehouse Food & Bar | PH's Finest Resto-Lounge</title>
+  <link rel="stylesheet" href="/warehouse/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar" id="navbar">
+    <div class="logo">
+      <span class="logo-icon">🍴</span>
+      <div class="logo-text">
+        <strong>TWH</strong>
+        <span>FOOD & BAR</span>
+      </div>
+    </div>
+    <nav id="nav-links">
+      <a href="#home">Home</a>
+      <a href="#experience">Experience</a>
+      <a href="#menu">Menu</a>
+      <a href="#events">Events</a>
+      <a href="#contact">Book</a>
+    </nav>
+    <button class="nav-cta" onclick="openWhatsApp()">Reserve Now</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">&#9776;</button>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="hero-bg-text">TWH</div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        Open Daily · 12PM — Late · 181 Odili Road, PH
+      </div>
+      <h1>PH'S FINEST<br><em>RESTO-LOUNGE</em></h1>
+      <p>Premium Dining &nbsp;·&nbsp; Elite Bowling &nbsp;·&nbsp; Sophisticated Nightlife</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Your Lane</button>
+        <button class="btn-outline" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore Menu</button>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-bar"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>5+</strong><span>Years Running</span></div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat"><strong>10K+</strong><span>Guests Hosted</span></div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat"><strong>8</strong><span>Bowling Lanes</span></div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat"><strong>VIP</strong><span>Tables Available</span></div>
+    </div>
+  </section>
+
+  <div class="trust-bar">
+    <div class="trust-item"><span>🍽️</span>Gourmet Kitchen</div>
+    <div class="trust-item"><span>🎳</span>Bowling Alley</div>
+    <div class="trust-item"><span>🍸</span>Premium Bar</div>
+    <div class="trust-item"><span>🎵</span>Live Events</div>
+    <div class="trust-item"><span>🏆</span>VIP Tables</div>
+    <div class="trust-item"><span>📍</span>181 Odili Road, PH</div>
+  </div>
+
+  <section class="about reveal" id="experience">
+    <div class="about-content">
+      <span class="label">OUR STORY</span>
+      <h2>INDUSTRIAL SOUL.<br><span class="gold">PREMIUM SPIRIT.</span></h2>
+      <p>The Warehouse Food and Bar is Port Harcourt's premier destination for those who seek more than just a night out. Located at the heart of Odili Road, we've redefined the resto-lounge experience by blending industrial aesthetics with high-end luxury.</p>
+      <p>Whether you're hitting the pins in our state-of-the-art bowling alley, savoring artisanal cocktails at the bar, or enjoying a signature meal in our lounge — we provide an atmosphere that is both electric and refined. It's not just a venue. It's an experience.</p>
+      <div class="about-features">
+        <div class="feature">
+          <span class="feature-icon">🎳</span>
+          <div><strong>Elite Bowling</strong><p>State-of-the-art lanes for every level of player</p></div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🍽️</span>
+          <div><strong>Gourmet Kitchen</strong><p>Bold flavors crafted by our expert culinary team</p></div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🍸</span>
+          <div><strong>Premium Bar</strong><p>Curated cocktails and an extensive drinks selection</p></div>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🎵</span>
+          <div><strong>Live Entertainment</strong><p>Regular events, live music and DJ nights</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-image">
+      <div class="about-img-placeholder"><span>[ Venue Photo ]</span></div>
+      <div class="about-badge">
+        <strong>"Not Just A Venue.</strong>
+        <span>An Experience."</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-section reveal" id="menu">
+    <div class="section-header">
+      <span class="label">WHAT WE SERVE</span>
+      <h2>THE <span class="gold">WAREHOUSE</span> MENU</h2>
+      <p>From warehouse-style bold flavors to refined cocktails — every item is crafted with intention.</p>
+    </div>
+    <div class="menu-tabs">
+      <button class="tab active" onclick="switchTab('food', this)">Food</button>
+      <button class="tab" onclick="switchTab('drinks', this)">Drinks</button>
+      <button class="tab" onclick="switchTab('specials', this)">Specials</button>
+    </div>
+    <div class="menu-grid" id="menu-food">
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🥩</span></div>
+        <div class="menu-info">
+          <h3>Steak Platter</h3>
+          <p>Succulent cuts grilled to perfection. Served with warehouse-style seasoned sides.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🍗</span></div>
+        <div class="menu-info">
+          <h3>Grilled Chicken</h3>
+          <p>Juicy, flame-grilled chicken with our signature spice blend and fresh garnish.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🍝</span></div>
+        <div class="menu-info">
+          <h3>Pasta Warehouse</h3>
+          <p>Our signature pasta — bold, rich, and crafted with locally inspired flavors.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🍱</span></div>
+        <div class="menu-info">
+          <h3>Local Delicacies</h3>
+          <p>The best of PH cuisine — native soups, rice, and more prepared fresh daily.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🍟</span></div>
+        <div class="menu-info">
+          <h3>Small Chops & Sides</h3>
+          <p>Perfect starters and shareable plates for the whole table.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🎳</span></div>
+        <div class="menu-info">
+          <h3>Bowling + Meal Bundle</h3>
+          <p>Book a lane and get a curated meal package for your group. The ultimate TWH combo.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-grid hidden" id="menu-drinks">
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🍸</span></div>
+        <div class="menu-info">
+          <h3>Signature Cocktails</h3>
+          <p>Artisanal cocktails crafted by our expert mixologists. Ask for the TWH special.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🍷</span></div>
+        <div class="menu-info">
+          <h3>Wines & Spirits</h3>
+          <p>A curated selection of premium wines and spirits from around the world.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🍺</span></div>
+        <div class="menu-info">
+          <h3>Draft & Bottled Beer</h3>
+          <p>Cold, refreshing beer on tap and a wide selection of bottled favorites.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-img-placeholder"><span>🥤</span></div>
+        <div class="menu-info">
+          <h3>Mocktails & Soft Drinks</h3>
+          <p>Premium non-alcoholic options for every guest. Refreshing and beautifully crafted.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="menu-grid hidden" id="menu-specials">
+      <div class="menu-card featured-card">
+        <div class="featured-badge">Chef's Special</div>
+        <div class="menu-img-placeholder"><span>⭐</span></div>
+        <div class="menu-info">
+          <h3>TWH Chef's Platter</h3>
+          <p>The ultimate TWH experience on a plate. Curated selection for groups of 2-4.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+      <div class="menu-card featured-card">
+        <div class="featured-badge">Weekend Only</div>
+        <div class="menu-img-placeholder"><span>🎉</span></div>
+        <div class="menu-info">
+          <h3>Weekend Brunch Package</h3>
+          <p>Saturday and Sunday brunch — food, drinks and bowling all in one package.</p>
+          <div class="menu-footer"><span class="price">₦[PRICE]</span><button class="order-btn" onclick="openWhatsApp()">Order →</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="events reveal" id="events">
+    <div class="section-header">
+      <span class="label">PRIVATE & CORPORATE</span>
+      <h2>HOST YOUR <span class="gold">EVENT</span> WITH US</h2>
+      <p>From intimate celebrations to large corporate events — The Warehouse is the perfect backdrop.</p>
+    </div>
+    <div class="events-grid">
+      <div class="event-card">
+        <span class="event-icon">🎂</span>
+        <h3>Birthday Parties</h3>
+        <p>Make your birthday unforgettable. Private VIP section, custom decor, dedicated staff, and a curated menu.</p>
+        <button class="event-btn" onclick="openWhatsApp()">Plan My Party →</button>
+      </div>
+      <div class="event-card">
+        <span class="event-icon">💼</span>
+        <h3>Corporate Events</h3>
+        <p>Team outings, client dinners, product launches. We handle the space, food, and ambiance professionally.</p>
+        <button class="event-btn" onclick="openWhatsApp()">Plan My Event →</button>
+      </div>
+      <div class="event-card">
+        <span class="event-icon">💍</span>
+        <h3>Special Occasions</h3>
+        <p>Anniversaries, proposals, graduation dinners — every milestone deserves the TWH treatment.</p>
+        <button class="event-btn" onclick="openWhatsApp()">Plan My Occasion →</button>
+      </div>
+      <div class="event-card">
+        <span class="event-icon">🎳</span>
+        <h3>Bowling Tournaments</h3>
+        <p>Book all lanes for a private tournament. Ideal for groups, companies, and weekend parties.</p>
+        <button class="event-btn" onclick="openWhatsApp()">Book Lanes →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials reveal">
+    <div class="section-header">
+      <span class="label">GUEST REVIEWS</span>
+      <h2>WHAT PEOPLE <span class="gold">SAY</span></h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"The Warehouse is in a class of its own in PH. The bowling, the food, the vibe — everything is top tier. My go-to spot."</p>
+        <strong>— Emeka O., Port Harcourt</strong>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Hosted my company's team outing here. Professional staff, perfect space, incredible food. Highly recommend."</p>
+        <strong>— Tunde A., Lagos</strong>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Best birthday experience in PH. The VIP section, cocktails, bowling — we had an absolute blast."</p>
+        <strong>— Chioma B., Port Harcourt</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact reveal" id="contact">
+    <div class="contact-info">
+      <span class="label">GET IN TOUCH</span>
+      <h2>BOOK YOUR <span class="gold">EXPERIENCE</span></h2>
+      <p>Reserve a table, book a bowling lane, or plan your next private event. We're always ready to host.</p>
+      <button class="whatsapp-btn" onclick="openWhatsApp()">💬 Book on WhatsApp</button>
+      <div class="contact-details">
+        <div class="contact-item"><span>📍</span><div><strong>Location</strong><p>Plot 181 Peter Odili Rd, Trans Amadi, Port Harcourt</p></div></div>
+        <div class="contact-item"><span>📞</span><div><strong>Phone</strong><p>0806 993 6994</p></div></div>
+        <div class="contact-item"><span>🕐</span><div><strong>Opening Hours</strong><p>Open Daily: 12:00 PM — Late</p></div></div>
+        <div class="contact-item"><span>📸</span><div><strong>Instagram</strong><p>@thewarehouseph</p></div></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <span class="label">MAKE A RESERVATION</span>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="John"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe"></div>
+      </div>
+      <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" placeholder="+234 000 000 0000"></div>
+      <div class="form-group">
+        <label>I want to book</label>
+        <select>
+          <option>A table for dining</option>
+          <option>A bowling lane</option>
+          <option>VIP section</option>
+          <option>Private event / party</option>
+          <option>Corporate event</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Date</label><input type="date"></div>
+        <div class="form-group"><label>Time</label><input type="time"></div>
+      </div>
+      <div class="form-group">
+        <label>Group Size</label>
+        <select>
+          <option>1-2 People</option>
+          <option>3-5 People</option>
+          <option>6-10 People</option>
+          <option>11-20 People</option>
+          <option>20+ People (Private Event)</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Special Requests</label><textarea placeholder="Any special requests, dietary requirements, or occasion details..."></textarea></div>
+      <button class="submit-btn" onclick="handleSubmit()">Confirm Booking</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo"><strong>TWH</strong><span>FOOD & BAR</span></div>
+    <p>PH's Finest Resto-Lounge · 181 Odili Road, Trans Amadi, Port Harcourt</p>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="#experience">Experience</a>
+      <a href="#menu">Menu</a>
+      <a href="#events">Events</a>
+      <a href="#contact">Book</a>
+    </div>
+    <p class="footer-credit">© 2025 The Warehouse Food & Bar. Website by <a href="https://instagram.com/buildwithapex0" target="_blank">APEX</a></p>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/2348069936994" target="_blank">💬</a>
+
+  <button class="chatbot-toggle" id="chatToggle" onclick="toggleChat()">💬</button>
+  <div class="chatbot-window" id="chatWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar">🍴</div>
+      <div class="chatbot-header-text">
+        <strong>TWH Assistant</strong>
+        <span>● Online — replies instantly</span>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-msg bot">Welcome to The Warehouse Food & Bar 🍴 How can I help you today?</div>
+    </div>
+    <div class="quick-replies" id="quickReplies">
+      <button class="quick-reply" onclick="quickReply('Menu & Pricing')">Menu & Prices</button>
+      <button class="quick-reply" onclick="quickReply('Book a Lane')">Book a Lane</button>
+      <button class="quick-reply" onclick="quickReply('Opening Hours')">Opening Hours</button>
+      <button class="quick-reply" onclick="quickReply('Location')">Location</button>
+      <button class="quick-reply" onclick="quickReply('Private Events')">Private Events</button>
+    </div>
+    <div class="chatbot-input-area">
+      <input class="chatbot-input" id="chatInput" placeholder="Type a message..." onkeypress="handleKey(event)">
+      <button class="chatbot-send" onclick="sendMessage()">&#10148;</button>
+    </div>
+  </div>
+
+  <script src="/warehouse/script.js"></script>
+</body>
+</html>
